@@ -1,26 +1,24 @@
 ![Logo We Know IT](https://code.weknowit.se/logo.png)
 
 # Projektnamn
-*Kort beskrivning av projektet. T.ex.: "YOO.SE är en mobilapplikation utvecklad av We Know IT på uppdrag av Joachim von Rost på IT'S A WRAP AB."*
+Next Venture är en hemsida utvecklad av We Know IT på uppdrag av Sten Lillieström på Next Venture AB.
 
 |||
 | --- | --- |
-| **Projekttyp** | App/Hemsida/Bemanning |
-| **Kund** | Företagsnamn |
-| **Kontaktperson** | Namn Namn |
+| **Projekttyp** | Hemsida |
+| **Kund** | Next Venture |
+| **Kontaktperson** | Sten Lillieström |
 
 ### Projektidentitet
 | Roll | Namn | Kontakt |
 | --- | --- | --- |
-| Projektledare | Namn Namn | [namn@weknowit.se](mailto:namn@weknowit.se) |
-| Utvecklare | Namn Namn | [namn@weknowit.se](mailto:namn@weknowit.se) |
-| Utvecklare | Namn Namn | [namn@weknowit.se](mailto:namn@weknowit.se) |
+| Projektledare | Robin Repo Wecklauf | [robin.repowecklauf@weknowit.se](mailto:robin.repowecklauf@weknowit.se) |
+| Utvecklare | Omar Hindawi | [omar.hindawi@weknowit.se](mailto:omar.hindawi@weknowit.se) |
+| Utvecklare | Nikolas Rosinelli | [nikolas.rosinelli@weknowit.se](mailto:nikolas.rosinelli@weknowit.se) |
+| UI/UX | Emma Rosenlind | [emma.rosenlind@weknowit.se](mailto:emma.rosenlind@weknowit.se) |
 
-[Länk till projektmapp](https://drive.google.com/xxxxxx)
+[Länk till projektmapp](https://drive.google.com/drive/u/2/folders/1cu_8kFHEplSNTECUPEEXFd74ArrUWIzz)
 
-*Om ni väljer att ha mer omfattande dokumentation av projektet, inkludera en länk till dokumentationen (vilken lämpligtvis läggs i en mapp "Dokumentation" i git repo:n) här. T.ex.:*
-
-[Länk till projektdokumentation](https://code.weknowit.se/weknowit/REPO_NAMN/src/branch/master/Dokumentation)
 ___
 
 ## Teknisk specifikation
