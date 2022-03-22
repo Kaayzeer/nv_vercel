@@ -5,10 +5,13 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 
 const navigation = [
-  { name: "Dashboard", href: "#", current: true },
-  { name: "Team", href: "#", current: false },
-  { name: "Projects", href: "#", current: false },
-  { name: "Calendar", href: "#", current: false },
+  { name: "Home", href: "/", current: true },
+  { name: "Find", href: "/find", current: false },
+  { name: "Sell", href: "/sell", current: false },
+  { name: "Buy", href: "/buy", current: false },
+  { name: "Testimonials", href: "/testimonials", current: false },
+  { name: "About", href: "/about", current: false },
+  { name: "Market", href: "/market", current: false },
 ];
 
 function classNames(...classes: any) {
@@ -17,7 +20,7 @@ function classNames(...classes: any) {
 
 export interface IHeaderProps {}
 
-export function Header(props: IHeaderProps) {
+export default function Nav(props: IHeaderProps) {
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (

@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import { Header } from "../components/Header/Header";
+import Nav from "../components/Nav/Nav";
 import styles from "../styles/Home.module.css";
 
 const Homepage: NextPage = () => {
@@ -13,7 +13,7 @@ const Homepage: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header />
+      <Nav />
 
       <main className={styles.main}>
         <h1 className="text-3xl font-bold underline">Hello world!</h1>

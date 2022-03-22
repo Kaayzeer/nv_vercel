@@ -1,34 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![Logo We Know IT](https://code.weknowit.se/logo.png)
 
-## Getting Started
+# Projektnamn
+Next Venture är en hemsida utvecklad av We Know IT på uppdrag av Sten Lillieström på Next Venture AB.
 
-First, run the development server:
+|||
+| --- | --- |
+| **Projekttyp** | Hemsida |
+| **Kund** | Next Venture |
+| **Kontaktperson** | Sten Lillieström |
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+### Projektidentitet
+| Roll | Namn | Kontakt |
+| --- | --- | --- |
+| Projektledare | Robin Repo Wecklauf | [robin.repowecklauf@weknowit.se](mailto:robin.repowecklauf@weknowit.se) |
+| Utvecklare | Omar Hindawi | [omar.hindawi@weknowit.se](mailto:omar.hindawi@weknowit.se) |
+| Utvecklare | Nikolas Rosinelli | [nikolas.rosinelli@weknowit.se](mailto:nikolas.rosinelli@weknowit.se) |
+| UI/UX | Emma Rosenlind | [emma.rosenlind@weknowit.se](mailto:emma.rosenlind@weknowit.se) |
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[Länk till projektmapp](https://drive.google.com/drive/u/2/folders/1cu_8kFHEplSNTECUPEEXFd74ArrUWIzz)
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+___
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Teknisk specifikation
+* *Beskriv vilka ramverk som används.*
+* *Beskriv vilka externa API:er/databaser/lösningar som används.*
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Projekt setup
+*Beskriv en snabb och kortfattad process för att komma igång med projektet i en lokal miljö. `Inkludera terminalkommandon`*
 
-## Learn More
+## Deployment
+*Beskriv en snabb och kortfattad process för att deploy:a en ny version av projektet. `Inkludera terminalkommandon`*
 
-To learn more about Next.js, take a look at the following resources:
+## Kodstandard
+*Beskriv er valda namngivningskonvention (t.ex. camelCase, PascalCase...) och glöm inte specificera detta för olika objekt - filer/klasser.*
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+*Beksriv er standard för kommentarer i kod.*
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+___
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Beskriv andra relevanta punkter för projektet
+* *T.ex. driftkostnader, domäner, bakgrund till val av tekniska system etc.*
+* *Använd H2 (## Titel) för nya avsnitt.*

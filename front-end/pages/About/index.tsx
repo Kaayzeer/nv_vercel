@@ -2,6 +2,6 @@ import * as React from "react";
 
 export interface IAboutProps {}
 
-export function About(props: IAboutProps) {
+export default function About(props: IAboutProps) {
   return <div>About</div>;
 }
