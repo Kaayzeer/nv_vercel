@@ -1,7 +1,8 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import Nav from "../components/Nav/Nav";
+import Layout from "../components/Layout/Layout";
+
 import styles from "../styles/Home.module.css";
 
 const Homepage: NextPage = () => {
@@ -13,8 +14,6 @@ const Homepage: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Nav />
-
       <main className={styles.main}>
         <h1 className="text-3xl font-bold underline">Hello world!</h1>
       </main>
@@ -23,3 +22,11 @@ const Homepage: NextPage = () => {
 };
 
 export default Homepage;
+
+/* Homepage.getLayout = function getLayout(page: ReactElement) {
+  return (
+    <Layout>
+      <NestedLayout>{page}</NestedLayout>
+    </Layout>
+  )
+} */

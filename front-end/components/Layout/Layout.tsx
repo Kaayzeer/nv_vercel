@@ -1,7 +1,15 @@
 import * as React from "react";
+import Nav from "../Nav/Nav";
 
-export interface ILayoutProps {}
+export interface ILayoutProps {
+  children: React.ReactNode;
+}
 
-export function Layout(props: ILayoutProps) {
-  return <div></div>;
+export default function Layout({ children }: ILayoutProps) {
+  return (
+    <div>
+      <Nav />
+      {children}
+    </div>
+  );
 }
