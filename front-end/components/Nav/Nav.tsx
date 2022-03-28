@@ -40,7 +40,7 @@ export default function Nav(props: IHeaderProps) {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+              <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start ">
                 <div className="flex-shrink-0 flex items-center">
                   {/*   <Image
                     className="block lg:hidden h-8 w-auto"
@@ -57,8 +57,8 @@ export default function Nav(props: IHeaderProps) {
                     height={45}
                   />
                 </div>
-                <div className="hidden sm:block sm:mx-auto">
-                  <div className="flex space-x-6">
+                <div className="hidden sm:block sm:ml-auto ">
+                  <div className="flex  space-x-4">
                     {navigation.map((item) => (
                       <a
                         key={item.name}
