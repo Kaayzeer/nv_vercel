@@ -1,7 +1,14 @@
-import * as React from "react";
+import React, { useState } from "react";
+import Form from "../../components/Form/Form";
 
 export interface ISellProps {}
 
 export default function Sell(props: ISellProps) {
-  return <div>sell</div>;
+  const [isFind, setIsFind] = useState(false);
+
+  return (
+    <div>
+      <Form isFind={isFind} />
+    </div>
+  );
 }

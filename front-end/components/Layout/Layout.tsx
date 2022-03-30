@@ -1,4 +1,5 @@
 import * as React from "react";
+import Footer from "../Footer/Footer";
 import Nav from "../Nav/Nav";
 
 export interface ILayoutProps {
@@ -7,9 +8,10 @@ export interface ILayoutProps {
 
 export default function Layout({ children }: ILayoutProps) {
   return (
-    <div>
+    <>
       <Nav />
       {children}
-    </div>
+      <Footer />
+    </>
   );
 }
