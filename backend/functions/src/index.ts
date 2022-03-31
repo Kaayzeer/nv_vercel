@@ -34,8 +34,8 @@ app.use(bodyParser.json());
 app.use(cors({origin: true}));
 
 // Add routes
-const routeRoute = require("./routes/route");
+const publicRoute = require("./routes/public");
 
-app.use("/route", routeRoute)
+app.use("/public", publicRoute)
 
 export const api = functions.region(REGION).https.onRequest(app);
