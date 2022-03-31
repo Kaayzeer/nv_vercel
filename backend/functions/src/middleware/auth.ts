@@ -1,5 +1,6 @@
 import {Request, Response} from "express";
 import * as admin from "firebase-admin";
+import { checkAuth } from "../lib/auth";
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export async function isAuthed(req: Request, res: Response, next: Function) {
@@ -29,4 +30,13 @@ export async function isAuthed(req: Request, res: Response, next: Function) {
   } catch (err) {
     return res.status(401).send({message: "Unauthorized"});
   }
+}
+
+export async function isNotAuthed(req: Request, res: Response, next: Function) {
+  const {authorization} = req.headers;
+
+  if(await checkAuth(authorization as string))
+    return res.status(401).send({message: "Authorized"});
+  else
+    return next();
 }
