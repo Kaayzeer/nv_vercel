@@ -51,7 +51,7 @@ export default function Nav(props: IHeaderProps) {
                   /> */}
                   <Image
                     className="hidden lg:block h-8 w-auto"
-                    src="/../static/images/nextVentureLogo.png"
+                    src="/images/nextVentureLogo.png"
                     alt="venture-logo"
                     width={75}
                     height={45}

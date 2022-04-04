@@ -51,7 +51,10 @@ export default function Form({ isFind }: Props) {
                   </label>
                   <input
                     type="text"
-                    {...register("lastName", { pattern: /^[A-Za-z]+$/i })}
+                    {...register("lastName", {
+                      required: true,
+                      maxLength: 20,
+                    })}
                     autoComplete="family-name"
                     className="block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2"
                   />
@@ -65,7 +68,11 @@ export default function Form({ isFind }: Props) {
                   </label>
                   <input
                     type="number"
-                    {...register("phone", { min: 18, max: 99 })}
+                    {...register("phone", {
+                      required: true,
+                      minLength: 10,
+                      maxLength: 15,
+                    })}
                     className="block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2"
                   />
                 </div>
@@ -77,8 +84,11 @@ export default function Form({ isFind }: Props) {
                     Lösenord
                   </label>
                   <input
-                    type="text"
-                    {...register("password", { min: 18, max: 99 })}
+                    type="password"
+                    {...register("password", {
+                      minLength: 6,
+                      maxLength: 20,
+                    })}
                     className="block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2"
                   />
                 </div>
