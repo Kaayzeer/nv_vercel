@@ -3,15 +3,15 @@ import { createBuy, createOffer, createSell } from "../controller/public";
 
 const router = express.Router()
 
-router.post("offer",
+router.post("/offer",
     createOffer
 );
 
-router.post("sell",
+router.post("/sell",
     createSell
 );
 
-router.post("offer",
+router.post("/offer",
     createBuy
 );
 
