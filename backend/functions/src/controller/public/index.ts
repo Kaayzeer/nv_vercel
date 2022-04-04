@@ -7,6 +7,7 @@ export async function createOffer(req: Request, res: Response) {
     const {authorization} = req.headers;
     const {firstname, surname, email, phone, domain} : OfferDomain = req.body;
 
+    // TODO: ADD joi
     // Add to firestore
     try{
         // Check if authed
@@ -42,6 +43,7 @@ export async function createSell(req: Request, res: Response) {
     const {authorization} = req.headers;
     const {firstname, surname, email, phone, domain, price} : SellDomain = req.body;
 
+    // TODO: ADD joi
     // Add to firestore
     try{
         // Check if authed
@@ -79,6 +81,7 @@ export async function createBuy(req: Request, res: Response) {
     const {authorization} = req.headers;
     const {firstname, surname, email, phone, domain} : BuyDomain = req.body;
 
+    // TODO: ADD joi
     // Add to firestore
     try{
         // Check if authed
