@@ -1,20 +1,36 @@
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { auth } from "../../firebaseSetup";
+import { useLogin } from "../../hooks/useLogin";
 
 type Props = {
   isFind: Boolean;
 };
 
 interface IFormInput {
-  firstName: string;
-  lastName: string;
+  firstname: string;
+  surname: string;
   phone: number;
-  password: string;
+  email: string;
 }
 
 export default function Form({ isFind }: Props) {
+  const { login } = useLogin();
   const { register, handleSubmit } = useForm<IFormInput>();
-  const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<IFormInput> = (data) => {
+    // fetch("http://localhost:5001/next-venture/europe-west1/api/public/offer", {
+    //   method: "POST",
+    //   headers: {
+    //     /* 'authorization': "Bearer " + token, */
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(data),
+    // })
+    //   .then((data) => console.log(data))
+    //   .catch((err) => console.log(err));
+    login("niko@test.com", "123456");
+  };
   return (
     <>
       {isFind && (
@@ -28,13 +44,13 @@ export default function Form({ isFind }: Props) {
                 <div className="col-span-6 ">
                   <label
                     className="block text-sm font-medium text-gray-700"
-                    htmlFor="firstName"
+                    htmlFor="firstname"
                   >
                     Förnamn
                   </label>
                   <input
                     type="text"
-                    {...register("firstName", {
+                    {...register("firstname", {
                       required: true,
                       maxLength: 20,
                     })}
@@ -45,13 +61,13 @@ export default function Form({ isFind }: Props) {
                 <div className="col-span-6">
                   <label
                     className="block text-sm font-medium text-gray-700"
-                    htmlFor="lastName"
+                    htmlFor="surname"
                   >
                     Efternamn
                   </label>
                   <input
                     type="text"
-                    {...register("lastName", {
+                    {...register("surname", {
                       required: true,
                       maxLength: 20,
                     })}
@@ -79,20 +95,19 @@ export default function Form({ isFind }: Props) {
                 <div className="col-span-6 ">
                   <label
                     className="block text-sm font-medium text-gray-700"
-                    htmlFor="password"
+                    htmlFor="email"
                   >
-                    Lösenord
+                    E-mail
                   </label>
                   <input
-                    type="password"
-                    {...register("password", {
-                      minLength: 6,
-                      maxLength: 20,
-                    })}
+                    type="email"
+                    {...register("email")}
                     className="block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2"
                   />
                 </div>
-                <input type="submit" />
+                <button className="block w-full" type="submit" value="Skicka">
+                  Skicka
+                </button>
               </form>
             </div>
           </div>
