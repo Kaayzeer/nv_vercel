@@ -3,6 +3,7 @@ import * as React from "react";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
+import { useRouter } from "next/router";
 
 import Image from "next/image";
 
@@ -23,6 +24,10 @@ function classNames(...classes: any) {
 export interface IHeaderProps {}
 
 export default function Nav(props: IHeaderProps) {
+  const router = useRouter();
+
+  const handleClick = () => {};
+
   return (
     <Disclosure as="nav" className="bg-white-800">
       {({ open }) => (
@@ -62,6 +67,7 @@ export default function Nav(props: IHeaderProps) {
                     {navigation.map((item) => (
                       <a
                         key={item.name}
+                        onClick={handleClick}
                         href={item.href}
                         className={classNames(
                           item.current

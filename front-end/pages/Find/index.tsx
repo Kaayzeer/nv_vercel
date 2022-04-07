@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import Form from "../../components/Form/Form";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 export interface IFindProps {}
 
 export default function Find(props: IFindProps) {
-  const [isFind, setIsFind] = useState(true);
-
+  const { user, authIsReady } = useAuthContext();
+  console.log(user);
   return (
     <div>
-      <Form isFind={isFind} />
+      <Form isFind={true} isLogin={false} type="offer" />
     </div>
   );
 }

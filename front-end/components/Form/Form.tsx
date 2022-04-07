@@ -1,10 +1,13 @@
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { auth } from "../../firebaseSetup";
+import { useAuthContext } from "../../hooks/useAuthContext";
 import { useLogin } from "../../hooks/useLogin";
+import { auth } from "../../firebaseSetup";
 
 type Props = {
   isFind: Boolean;
+  isLogin: Boolean;
+  type: "offer" | "buy" | "sell";
 };
 
 interface IFormInput {
@@ -12,25 +15,41 @@ interface IFormInput {
   surname: string;
   phone: number;
   email: string;
+  password: string;
 }
 
-export default function Form({ isFind }: Props) {
+export default function Form({ isFind, isLogin, type }: Props) {
   const { login } = useLogin();
+  const { user, authIsReady } = useAuthContext();
   const { register, handleSubmit } = useForm<IFormInput>();
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    // fetch("http://localhost:5001/next-venture/europe-west1/api/public/offer", {
-    //   method: "POST",
-    //   headers: {
-    //     /* 'authorization': "Bearer " + token, */
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(data),
-    // })
-    //   .then((data) => console.log(data))
-    //   .catch((err) => console.log(err));
-    login("niko@test.com", "123456");
+
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    const headers: any = {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    };
+
+    // Add to header
+    if (user) {
+      await auth.currentUser?.getIdToken().then(async (token: string) => {
+        headers["authorization"] = `Bearer  ${token}`;
+      });
+    }
+
+    fetch(
+      `http://localhost:5001/next-venture/europe-west1/api/public/${type}`,
+      {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(data),
+      }
+    )
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
+
+    isLogin && login("niko@test.com", "123456");
   };
+
   return (
     <>
       {isFind && (
@@ -102,6 +121,53 @@ export default function Form({ isFind }: Props) {
                   <input
                     type="email"
                     {...register("email")}
+                    className="block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2"
+                  />
+                </div>
+
+                <button className="block w-full" type="submit" value="Skicka">
+                  Skicka
+                </button>
+              </form>
+            </div>
+          </div>
+        </>
+      )}
+
+      {isLogin && (
+        <>
+          <div className="b py-16 bg-gray-50 px-4 sm:px-6 h-screen w-screen flex justify-center items-center">
+            <div className="mx-auto w-full max-w-2xl rounded-xl bg-white p-8 shadow">
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="grid grid-cols-6 gap-6"
+              >
+                <div className="col-span-6 ">
+                  <label
+                    className="block text-sm font-medium text-gray-700"
+                    htmlFor="email"
+                  >
+                    E-mail
+                  </label>
+                  <input
+                    type="email"
+                    {...register("email")}
+                    className="block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2"
+                  />
+                </div>
+                <div className="col-span-6">
+                  <label
+                    className="block text-sm font-medium text-gray-700"
+                    htmlFor="password"
+                  >
+                    Lösenord
+                  </label>
+                  <input
+                    type="password"
+                    {...register("password", {
+                      required: true,
+                      maxLength: 20,
+                    })}
                     className="block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2"
                   />
                 </div>

@@ -8,7 +8,7 @@ export default function Buy(props: IBuyProps) {
 
   return (
     <div>
-      <Form isFind={isFind} />
+      <Form isFind={isFind} isLogin type="buy" />
     </div>
   );
 }
