@@ -6,7 +6,7 @@ import { AuthContextProvider } from "../context/AuthContext";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <AuthContextProvider>
-      <Layout>
+      <Layout title="" description="" keywords="">
         <Component {...pageProps} />
       </Layout>
     </AuthContextProvider>
