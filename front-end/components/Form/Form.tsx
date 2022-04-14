@@ -1,8 +1,14 @@
 import React from "react";
+
+//react hook form
 import { useForm, SubmitHandler } from "react-hook-form";
+
+//hooks
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useLogin } from "../../hooks/useLogin";
-import { auth } from "../../firebaseSetup";
+
+//firebase imports
+import { auth } from "../../firebase/firebaseSetup";
 
 type Props = {
   isFind: Boolean;
@@ -20,7 +26,7 @@ interface IFormInput {
 
 export default function Form({ isFind, isLogin, type }: Props) {
   const { login } = useLogin();
-  const { user, authIsReady } = useAuthContext();
+  const { user } = useAuthContext();
   const { register, handleSubmit } = useForm<IFormInput>();
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
@@ -35,7 +41,7 @@ export default function Form({ isFind, isLogin, type }: Props) {
         headers["authorization"] = `Bearer  ${token}`;
       });
     }
-
+    //send to db
     fetch(
       `http://localhost:5001/next-venture/europe-west1/api/public/${type}`,
       {

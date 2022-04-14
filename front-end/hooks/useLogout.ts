@@ -1,12 +1,16 @@
-import {useState} from 'react';
+import { useState } from "react";
+
+//hooks
 import { useAuthContext } from "./useAuthContext";
 //firebase imports
-import { auth } from '../firebaseSetup';
+import { auth } from "../firebase/firebaseSetup";
 import { signOut } from "firebase/auth";
 
 export const useLogout = () => {
-    const [error, setError] = useState(null);
+  const [error, setError] = useState(null);
   const { dispatch } = useAuthContext();
+
+  //logout user
   const logout = () => {
     signOut(auth)
       .then(() => {
@@ -14,9 +18,9 @@ export const useLogout = () => {
         console.log("utloggad");
       })
       .catch((err) => {
-          setError(err.message)
-          console.log("utloggad");
-        });
+        setError(err.message);
+        console.log("utloggad");
+      });
   };
   return { logout, error };
 };

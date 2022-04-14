@@ -1,5 +1,7 @@
 import React, { createContext, useReducer, useEffect, ReactNode } from "react";
-import { auth } from "../firebaseSetup";
+
+//firebase imports
+import { auth } from "../firebase/firebaseSetup";
 import { onAuthStateChanged } from "firebase/auth";
 
 type User = {
@@ -9,12 +11,10 @@ type User = {
   phone: string;
 } | null;
 
-type AuthState = {
-  state: User;
-};
-
+// create context
 export const AuthContext = createContext<any>(null);
 
+// context types from useReducer
 export const authReducer = (state: any, action: any) => {
   switch (action.type) {
     case "LOGIN":
@@ -32,6 +32,7 @@ interface Props {
   children?: ReactNode;
 }
 
+//Provide firebase auth to context API
 export const AuthContextProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(authReducer, {
     user: null,

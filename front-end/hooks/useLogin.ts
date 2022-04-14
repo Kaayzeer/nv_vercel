@@ -1,7 +1,10 @@
 import { useState } from "react";
+
+//hooks
 import { useAuthContext } from "./useAuthContext";
+
 // firebase imports
-import { auth } from "../firebaseSetup";
+import { auth } from "../firebase/firebaseSetup";
 import {
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
@@ -12,11 +15,14 @@ export const useLogin = () => {
   const [message, setMessage] = useState("");
   const { dispatch } = useAuthContext();
 
+  //login user
   const login = (email: string, password: string) => {
     setError(null);
 
+    //password sign in
     signInWithEmailAndPassword(auth, email, password)
       .then((res) => {
+        //send to useReducer in AuthContext
         dispatch({ type: "LOGIN", payload: res.user });
         console.log("success");
       })
@@ -26,6 +32,7 @@ export const useLogin = () => {
       });
   };
 
+  //forgot password, send to user email
   const sendPasswordReset = async (email: string) => {
     try {
       await sendPasswordResetEmail(auth, email);
