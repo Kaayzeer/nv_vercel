@@ -1,6 +1,14 @@
 import {Request, Response} from "express";
 import { RegisterUser } from "../schema/user";
 import * as admin from "firebase-admin";
+import { addCustomer } from "../lib/salesforce";
+
+export async function testController(req: Request, res: Response){
+    addCustomer("test", "oma");
+
+    return res.status(200).send({message: "Succesfully registered new user", status: "success"});
+}
+
 
 export async function registerUser(req: Request, res: Response) {
     const {firstname, surname, email, phone, password, re_password} : RegisterUser = req.body;

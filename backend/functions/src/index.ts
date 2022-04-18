@@ -6,12 +6,14 @@ import bodyParser from "body-parser";
 
 const REGION = "europe-west1";
 
-admin.initializeApp(); 
+if (!admin.apps.length){
+  admin.initializeApp(); 
 
-// Ignore undefined
-admin.firestore().settings({
-  ignoreUndefinedProperties: true,
-})
+  // Ignore undefined
+  admin.firestore().settings({
+    ignoreUndefinedProperties: true,
+  })
+}
 
 // Disable new users
 exports.disableNewUser = functions.region(REGION).auth.user().onCreate(async (event) => {

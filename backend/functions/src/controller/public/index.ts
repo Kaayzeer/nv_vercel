@@ -1,15 +1,26 @@
 import {Request, Response} from "express";
-import { BuyDomain, OfferDomain, SellDomain } from "../../schema/domain";
+import { BuyDomain, FindDomain, SellDomain } from "../../schema/domain";
 import * as admin from "firebase-admin";
 import { checkAuth } from "../../lib/auth";
 
-export async function createOffer(req: Request, res: Response) {
+export async function createFind(req: Request, res: Response) {
     const {authorization} = req.headers;
-    const {firstname, surname, email, phone, domain} : OfferDomain = req.body;
+    const {firstname, surname, email, phone, business_desc, business_type, additional_details, country, names_disliked, keywords, maximum_letters, maximum_words} : FindDomain = req.body;
 
     // TODO: ADD joi
     // Add to firestore
     try{
+        var payload : FindDomain = {
+            business_desc: business_desc,
+            business_type: business_type,
+            additional_details: additional_details,
+            country: country,
+            names_disliked: names_disliked,
+            keywords: keywords,
+            maximum_letters: maximum_letters,
+            maximum_words: maximum_words
+        } as FindDomain
+
         // Check if authed
         if(await checkAuth(authorization as string)){
             const splitToken = authorization!.split("Bearer ");
@@ -17,20 +28,21 @@ export async function createOffer(req: Request, res: Response) {
 
             const user = await admin.auth().verifyIdToken(token);
 
-            await admin.firestore().collection("domain_offers").add({
-                user_id: admin.firestore().collection("users").doc(user.uid),
-                domain: domain
-            } as OfferDomain)
+            payload = {
+                ...payload, 
+                user_id: admin.firestore().collection("users").doc(user.uid)
+            }
         }
-        else{
-            await admin.firestore().collection("domain_offers").add({
+        else
+            payload = {
+                ...payload, 
                 firstname: firstname,
                 surname: surname,
                 email: email,
-                phone: phone,
-                domain: domain
-            } as OfferDomain)
-        }
+                phone: phone
+            }
+
+        await admin.firestore().collection("domain_find").add(payload)
 
         return res.status(200).send({message: "Succesfully created an offer", status: "success"});
     }
@@ -41,11 +53,15 @@ export async function createOffer(req: Request, res: Response) {
 
 export async function createSell(req: Request, res: Response) {
     const {authorization} = req.headers;
-    const {firstname, surname, email, phone, domain, price} : SellDomain = req.body;
+    const {firstname, surname, email, phone, domains} : SellDomain = req.body;
 
     // TODO: ADD joi
     // Add to firestore
     try{
+        var payload : SellDomain = {
+            domains: domains
+        } as SellDomain
+
         // Check if authed
         if(await checkAuth(authorization as string)){
             const splitToken = authorization!.split("Bearer ");
@@ -53,22 +69,21 @@ export async function createSell(req: Request, res: Response) {
 
             const user = await admin.auth().verifyIdToken(token);
 
-            await admin.firestore().collection("domain_offers").add({
-                user_id: admin.firestore().collection("users").doc(user.uid),
-                domain: domain,
-                price: price
-            } as SellDomain)
+            payload = {
+                ...payload, 
+                user_id: admin.firestore().collection("users").doc(user.uid)
+            }
         }
-        else{
-            await admin.firestore().collection("domain_sell").add({
+        else
+            payload = {
+                ...payload, 
                 firstname: firstname,
                 surname: surname,
                 email: email,
-                phone: phone,
-                domain: domain,
-                price: price
-            } as SellDomain)
-        }
+                phone: phone
+            }
+
+        await admin.firestore().collection("domain_sell").add(payload)
 
         return res.status(200).send({message: "Succesfully created a sell request", status: "success"});
     }
@@ -79,11 +94,16 @@ export async function createSell(req: Request, res: Response) {
 
 export async function createBuy(req: Request, res: Response) {
     const {authorization} = req.headers;
-    const {firstname, surname, email, phone, domain} : BuyDomain = req.body;
+    const {firstname, surname, email, phone, domain, budget} : BuyDomain = req.body;
 
     // TODO: ADD joi
     // Add to firestore
     try{
+        var payload : BuyDomain = {
+            domain: domain,
+            budget: budget
+        } as BuyDomain
+
         // Check if authed
         if(await checkAuth(authorization as string)){
             const splitToken = authorization!.split("Bearer ");
@@ -91,20 +111,23 @@ export async function createBuy(req: Request, res: Response) {
 
             const user = await admin.auth().verifyIdToken(token);
 
-            await admin.firestore().collection("domain_offers").add({
-                user_id: admin.firestore().collection("users").doc(user.uid),
-                domain: domain
-            } as BuyDomain)
+            payload = {
+                ...payload, 
+                user_id: admin.firestore().collection("users").doc(user.uid)
+            }
         }
-        else{
-            await admin.firestore().collection("domain_sell").add({
+        // Not logged in, extend with firstname etc
+        else
+            payload = {
+                ...payload, 
                 firstname: firstname,
                 surname: surname,
                 email: email,
-                phone: phone,
-                domain: domain
-            } as BuyDomain)
-        }
+                phone: phone
+            }
+
+
+        await admin.firestore().collection("domain_buy").add(payload);
 
         return res.status(200).send({message: "Succesfully created a buy request", status: "success"});
     }
