@@ -37,7 +37,11 @@ app.use(cors({origin: true}));
 
 // Add routes
 const publicRoute = require("./routes/public");
+const userRoute = require("./routes/user");
+const paymentRoute = require("./routes/payment");
 
 app.use("/public", publicRoute)
+app.use("/user", userRoute)
+app.use("/payment", paymentRoute)
 
 export const api = functions.region(REGION).https.onRequest(app);

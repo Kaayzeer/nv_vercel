@@ -10,4 +10,6 @@ export interface User {
 export interface RegisterUser extends User {
     password: string;
     re_password: string;
+
+    salesforce_id?: number;
 }

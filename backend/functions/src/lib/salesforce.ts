@@ -8,14 +8,21 @@ export const checkCustomer = async(forename: string, surname: string) => {
 
 }
 
-export const addCustomer = async (forename : string, surname: string) => {
+export const addCustomer = async (forename : string, surname: string, email: string = "", phone : string = "") => {
     // Get Auth token
     const token = await getAuthToken();
 
     // Payload
-    const payload = {
+    const payload : any = {
         "Name": `${forename} ${surname}`
     }
+
+    // Add optional
+    if(email)
+        payload["e_post__c"] = email;
+
+    if(phone)
+        payload["phone__c"] = phone;
 
     // Add record 
     await fetch(`${process.env.SALESFORCE_URL}services/data/v54.0/sobjects/Customer/`, {
@@ -28,16 +35,19 @@ export const addCustomer = async (forename : string, surname: string) => {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+        // Return id
+        if(data["success"])
+            return data["id"];
+        else
+            return undefined;
     })
     .catch(err => {
         console.log(err)
+        return undefined;
     })
 }
 
 export const getAuthToken = async () => {
-    let token = undefined;
-
     // Add payload
     let payload : string[] = [];
     payload.push(`grant_type=password`)
@@ -55,11 +65,9 @@ export const getAuthToken = async () => {
     })
     .then(response => response.json())
     .then(response => {
-        token = response["access_token"];
+        return response["access_token"];
     })
     .catch(err => {
-        console.log(err)
+        return undefined;
     })
-    
-    return token;
 }

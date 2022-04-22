@@ -2,6 +2,7 @@ import {Request, Response} from "express";
 import { RegisterUser } from "../schema/user";
 import * as admin from "firebase-admin";
 import { addCustomer } from "../lib/salesforce";
+import {UserPasswordJoiSchema} from "../validation-schema/user"
 
 export async function testController(req: Request, res: Response){
     addCustomer("test", "oma");
@@ -13,9 +14,10 @@ export async function testController(req: Request, res: Response){
 export async function registerUser(req: Request, res: Response) {
     const {firstname, surname, email, phone, password, re_password} : RegisterUser = req.body;
 
-    // TODO: change to joi
-    if(password == "" || password !== re_password)
-        return res.status(500).send({message: `Not matching passwords`});
+    // Validate
+    const userValidation = UserPasswordJoiSchema.validate({firstname, surname, email, phone, password, re_password})
+    if(userValidation.error)
+        return res.status(400).send({message: userValidation.error})
 
     // Add to firestore
     try{
@@ -26,6 +28,9 @@ export async function registerUser(req: Request, res: Response) {
             displayName: `${firstname} ${surname}`,
             disabled: false,
           });
+
+        // Add to salesforce
+        addCustomer(firstname, surname, email, phone);
 
         await admin.firestore().collection("domain_offers").doc(user.uid).set({
             firstname: firstname,
