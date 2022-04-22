@@ -24,10 +24,13 @@ export async function createFind(req: Request, res: Response) {
         } as FindDomain
 
         // Validate form
-        const formValidation = FindJoiSchema.validate({business_desc, business_type, country, keywords, budget})
-        if(formValidation.error)
-            return res.status(400).send({message: formValidation.error})
-
+        try{
+            await FindJoiSchema.validateAsync({business_desc, business_type, country, keywords, budget})
+        }
+        catch(err){
+            return res.status(400).send({message: err})
+        }
+            
         // Check if authed
         if(await checkAuth(authorization as string)){
             const splitToken = authorization!.split("Bearer ");
@@ -42,9 +45,12 @@ export async function createFind(req: Request, res: Response) {
         }
         else{
             // Check with joi
-            const userValidation = UserJoiSchema.validate({firstname, surname, email, phone})
-            if(userValidation.error)
-                return res.status(400).send({message: userValidation.error})
+            try{
+                await UserJoiSchema.validateAsync({firstname, surname, email, phone})
+            }
+            catch(err){
+                return res.status(400).send({message: err})
+            }
 
             // Add to salesforce
             addCustomer(firstname!, surname!, email, phone)
@@ -78,10 +84,13 @@ export async function createSell(req: Request, res: Response) {
         } as SellDomain
 
         // Validate form
-        const formValidation = SellJoiSchema.validate({domains})
-        if(formValidation.error)
-            return res.status(400).send({message: formValidation.error})
-
+        try{
+            await SellJoiSchema.validateAsync({domains})
+        }
+        catch(err){
+            return res.status(400).send({message: err})
+        }
+        
         // Check if authed
         if(await checkAuth(authorization as string)){
             const splitToken = authorization!.split("Bearer ");
@@ -96,9 +105,12 @@ export async function createSell(req: Request, res: Response) {
         }
         else{
             // Check with joi
-            const userValidation = UserJoiSchema.validate({firstname, surname, email, phone})
-            if(userValidation.error)
-                return res.status(400).send({message: userValidation.error})
+            try{
+                await UserJoiSchema.validateAsync({firstname, surname, email, phone})
+            }
+            catch(err){
+                return res.status(400).send({message: err})
+            }
 
             // Add to salesforce
             addCustomer(firstname!, surname!, email, phone)
@@ -133,9 +145,12 @@ export async function createBuy(req: Request, res: Response) {
         } as BuyDomain
 
         // Validate form
-        const formValidation = BuyJoiSchema.validate({domain, budget})
-        if(formValidation.error)
-            return res.status(400).send({message: formValidation.error})
+        try{
+            await BuyJoiSchema.validateAsync({domain, budget})
+        }
+        catch(err){
+            return res.status(400).send({message: err})
+        }
 
         // Check if authed
         if(await checkAuth(authorization as string)){
@@ -152,9 +167,12 @@ export async function createBuy(req: Request, res: Response) {
         // Not logged in, extend with firstname etc
         else{
             // Check with joi
-            const userValidation = UserJoiSchema.validate({firstname, surname, email, phone})
-            if(userValidation.error)
-                return res.status(400).send({message: userValidation.error})
+            try{
+                await UserJoiSchema.validateAsync({firstname, surname, email, phone})
+            }
+            catch(err){
+                return res.status(400).send({message: err})
+            }
 
             // Add to salesforce
             addCustomer(firstname!, surname!, email, phone)

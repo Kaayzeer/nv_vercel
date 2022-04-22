@@ -25,10 +25,9 @@ exports.disableNewUser = functions.region(REGION).auth.user().onCreate(async (ev
   });
 
   // Remove token set
-  admin.auth().revokeRefreshTokens(uid)
-      .then(() => {
-        return admin.auth().getUser(uid);
-      });
+  admin.auth().revokeRefreshTokens(uid).then(() => {
+    return admin.auth().getUser(uid);
+  });
 });
 
 const app = express();
