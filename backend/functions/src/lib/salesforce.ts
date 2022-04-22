@@ -2,9 +2,6 @@ import fetch from 'node-fetch';
 
 export const checkCustomer = async(forename: string, surname: string) => {
     // Get Auth token
-    const token = await getAuthToken();
-
-    // Payload
 
 }
 

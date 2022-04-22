@@ -5,8 +5,6 @@ import { addCustomer } from "../lib/salesforce";
 import {UserPasswordJoiSchema} from "../validation-schema/user"
 
 export async function testController(req: Request, res: Response){
-    addCustomer("test", "oma");
-
     return res.status(200).send({message: "Succesfully registered new user", status: "success"});
 }
 
