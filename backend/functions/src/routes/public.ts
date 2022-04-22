@@ -1,10 +1,15 @@
 import * as express from "express";
-import { createBuy, createOffer, createSell } from "../controller/public";
+import { testController } from "../controller";
+import { createBuy, createFind, createSell } from "../controller/public";
 
 const router = express.Router()
 
-router.post("/offer",
-    createOffer
+router.get("/test",
+    testController
+);
+
+router.post("/find",
+    createFind
 );
 
 router.post("/sell",

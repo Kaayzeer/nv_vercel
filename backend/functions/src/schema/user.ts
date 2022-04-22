@@ -3,14 +3,11 @@ export interface User {
     surname: string;
     email: string;
     phone: string;
+
+    salesforce_id?: number;
 }
 
-export interface RegisterUser {
-    firstname: string;
-    surname: string;
-    phone: string;
-    email: string;
-
+export interface RegisterUser extends User {
     password: string;
     re_password: string;
 }
