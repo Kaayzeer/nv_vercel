@@ -24,10 +24,12 @@ exports.disableNewUser = functions.region(REGION).auth.user().onCreate(async (ev
     disabled: true,
   });
 
+  /*
   // Remove token set
   admin.auth().revokeRefreshTokens(uid).then(() => {
     return admin.auth().getUser(uid);
   });
+  */
 });
 
 const app = express();
@@ -38,9 +40,11 @@ app.use(cors({origin: true}));
 const publicRoute = require("./routes/public");
 const userRoute = require("./routes/user");
 const paymentRoute = require("./routes/payment");
+const fortnoxRoute = require("./routes/fortnox")
 
 app.use("/public", publicRoute)
 app.use("/user", userRoute)
 app.use("/payment", paymentRoute)
+app.use("/fortnox", fortnoxRoute)
 
 export const api = functions.region(REGION).https.onRequest(app);

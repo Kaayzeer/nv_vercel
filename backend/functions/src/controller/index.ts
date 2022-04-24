@@ -1,7 +1,7 @@
 import {Request, Response} from "express";
 import { RegisterUser } from "../schema/user";
 import * as admin from "firebase-admin";
-import { addCustomer } from "../lib/salesforce";
+import { addSalesForceCustomer } from "../lib/salesforce";
 import {UserPasswordJoiSchema} from "../validation-schema/user"
 
 export async function testController(req: Request, res: Response){
@@ -35,7 +35,7 @@ export async function registerUser(req: Request, res: Response) {
         });
 
         // Add to salesforce
-        addCustomer(firstname, surname, email, phone);
+        addSalesForceCustomer(firstname, surname, email, phone);
 
         // Add to database
         await admin.firestore().collection("domain_offers").doc(user.uid).set({

@@ -1,13 +1,13 @@
 import fetch from 'node-fetch';
 
-export const checkCustomer = async(forename: string, surname: string) => {
+export const checkSalesForceCustomer = async(forename: string, surname: string) => {
     // Get Auth token
 
 }
 
-export const addCustomer = async (forename : string, surname: string, email: string = "", phone : string = "") => {
+export const addSalesForceCustomer = async (forename : string, surname: string, email: string = "", phone : string = "") => {
     // Get Auth token
-    const token = await getAuthToken();
+    const token = await getSalesForceAuthToken();
 
     // Payload
     const payload : any = {
@@ -44,7 +44,10 @@ export const addCustomer = async (forename : string, surname: string, email: str
     })
 }
 
-export const getAuthToken = async () => {
+/**
+ * Get auth Token for SalesForce API
+ */
+export const getSalesForceAuthToken = async () => {
     // Add payload
     let payload : string[] = [];
     payload.push(`grant_type=password`)
