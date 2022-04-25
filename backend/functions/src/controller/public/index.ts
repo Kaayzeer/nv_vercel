@@ -2,7 +2,7 @@ import {Request, Response} from "express";
 import { BuyDomain, FindDomain, SellDomain } from "../../schema/domain";
 import * as admin from "firebase-admin";
 import { checkAuth } from "../../lib/auth";
-import { addCustomer } from "../../lib/salesforce";
+import { addSalesForceCustomer } from "../../lib/salesforce";
 import { BuyJoiSchema, FindJoiSchema, SellJoiSchema } from "../../validation-schema/domain";
 import { UserJoiSchema } from "../../validation-schema/user";
 
@@ -20,14 +20,19 @@ export async function createFind(req: Request, res: Response) {
             names_disliked: names_disliked,
             keywords: keywords,
             maximum_letters: maximum_letters,
-            maximum_words: maximum_words
+            maximum_words: maximum_words,
+            payment_status: "unpaid",
+            type: "find"
         } as FindDomain
 
         // Validate form
-        const formValidation = FindJoiSchema.validate({business_desc, business_type, country, keywords, budget})
-        if(formValidation.error)
-            return res.status(400).send({message: formValidation.error})
-
+        try{
+            await FindJoiSchema.validateAsync({business_desc, business_type, country, keywords, budget})
+        }
+        catch(err){
+            return res.status(400).send({message: err})
+        }
+            
         // Check if authed
         if(await checkAuth(authorization as string)){
             const splitToken = authorization!.split("Bearer ");
@@ -42,12 +47,15 @@ export async function createFind(req: Request, res: Response) {
         }
         else{
             // Check with joi
-            const userValidation = UserJoiSchema.validate({firstname, surname, email, phone})
-            if(userValidation.error)
-                return res.status(400).send({message: userValidation.error})
+            try{
+                await UserJoiSchema.validateAsync({firstname, surname, email, phone})
+            }
+            catch(err){
+                return res.status(400).send({message: err})
+            }
 
             // Add to salesforce
-            addCustomer(firstname!, surname!, email, phone)
+            addSalesForceCustomer(firstname!, surname!, email, phone)
 
             payload = {
                 ...payload, 
@@ -58,9 +66,9 @@ export async function createFind(req: Request, res: Response) {
             }
         }
 
-        await admin.firestore().collection("domain_find").add(payload)
+        const snap = await admin.firestore().collection("errands").add(payload)
 
-        return res.status(200).send({message: "Succesfully created an offer", status: "success"});
+        return res.status(200).send({message: "Succesfully created an offer", id: snap.id, status: "success"});
     }
     catch(err){
         return res.status(500).send({message: `Failed to create offer`});
@@ -74,14 +82,19 @@ export async function createSell(req: Request, res: Response) {
     // Add to firestore
     try{
         var payload : SellDomain = {
-            domains: domains
+            domains: domains,
+            payment_status: "unpaid",
+            type: "sell"
         } as SellDomain
 
         // Validate form
-        const formValidation = SellJoiSchema.validate({domains})
-        if(formValidation.error)
-            return res.status(400).send({message: formValidation.error})
-
+        try{
+            await SellJoiSchema.validateAsync({domains})
+        }
+        catch(err){
+            return res.status(400).send({message: err})
+        }
+        
         // Check if authed
         if(await checkAuth(authorization as string)){
             const splitToken = authorization!.split("Bearer ");
@@ -96,12 +109,15 @@ export async function createSell(req: Request, res: Response) {
         }
         else{
             // Check with joi
-            const userValidation = UserJoiSchema.validate({firstname, surname, email, phone})
-            if(userValidation.error)
-                return res.status(400).send({message: userValidation.error})
+            try{
+                await UserJoiSchema.validateAsync({firstname, surname, email, phone})
+            }
+            catch(err){
+                return res.status(400).send({message: err})
+            }
 
             // Add to salesforce
-            addCustomer(firstname!, surname!, email, phone)
+            addSalesForceCustomer(firstname!, surname!, email, phone)
 
             payload = {
                 ...payload, 
@@ -112,9 +128,9 @@ export async function createSell(req: Request, res: Response) {
             }
         }
 
-        await admin.firestore().collection("domain_sell").add(payload)
+        const snap = await admin.firestore().collection("errands").add(payload)
 
-        return res.status(200).send({message: "Succesfully created a sell request", status: "success"});
+        return res.status(200).send({message: "Succesfully created a sell request", id: snap.id, status: "success"});
     }
     catch(err){
         return res.status(500).send({message: `Failed to create a sell request`});
@@ -129,13 +145,18 @@ export async function createBuy(req: Request, res: Response) {
     try{
         var payload : BuyDomain = {
             domain: domain,
-            budget: budget
+            budget: budget,
+            payment_status: "unpaid",
+            type: "buy"
         } as BuyDomain
 
         // Validate form
-        const formValidation = BuyJoiSchema.validate({domain, budget})
-        if(formValidation.error)
-            return res.status(400).send({message: formValidation.error})
+        try{
+            await BuyJoiSchema.validateAsync({domain, budget})
+        }
+        catch(err){
+            return res.status(400).send({message: err})
+        }
 
         // Check if authed
         if(await checkAuth(authorization as string)){
@@ -152,12 +173,15 @@ export async function createBuy(req: Request, res: Response) {
         // Not logged in, extend with firstname etc
         else{
             // Check with joi
-            const userValidation = UserJoiSchema.validate({firstname, surname, email, phone})
-            if(userValidation.error)
-                return res.status(400).send({message: userValidation.error})
+            try{
+                await UserJoiSchema.validateAsync({firstname, surname, email, phone})
+            }
+            catch(err){
+                return res.status(400).send({message: err})
+            }
 
             // Add to salesforce
-            addCustomer(firstname!, surname!, email, phone)
+            addSalesForceCustomer(firstname!, surname!, email, phone)
 
             payload = {
                 ...payload, 
@@ -168,9 +192,9 @@ export async function createBuy(req: Request, res: Response) {
             }
         }
 
-        await admin.firestore().collection("domain_buy").add(payload);
+        const snap = await admin.firestore().collection("errands").add(payload);
 
-        return res.status(200).send({message: "Succesfully created a buy request", status: "success"});
+        return res.status(200).send({message: "Succesfully created a buy request", id: snap.id, status: "success"});
     }
     catch(err){
         return res.status(500).send({message: `Failed to create a buy request`});

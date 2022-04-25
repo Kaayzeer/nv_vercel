@@ -1,3 +1,8 @@
+interface Payment{
+    payment_id?: string;
+    payment_status: "unpaid" | "pending" | "paid";
+}
+
 interface BaseUser {
     firstname?: string;
     surname?: string;
@@ -18,18 +23,22 @@ interface Brief{
     maximum_words: string | number | boolean;
 }
 
-export interface BuyDomain extends BaseUser{
+interface ErrandBase{
+    type: "buy" | "sell" | "find";
+}
+
+export interface BuyDomain extends BaseUser, Payment, ErrandBase{
     // Domain info
     domain: string; 
     budget: number;
 }
 
-export interface SellDomain extends BaseUser {
+export interface SellDomain extends BaseUser, Payment, ErrandBase{
     // Domain info
     domains: string[];
 }
 
-export interface FindDomain extends BaseUser, Brief {
+export interface FindDomain extends BaseUser, Brief, Payment, ErrandBase{
     // Domain info
     budget: number;
 }
