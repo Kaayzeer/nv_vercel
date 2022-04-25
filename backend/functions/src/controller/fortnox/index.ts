@@ -19,14 +19,17 @@ export const getFortnoxAuthCode = async (req : Request, res : Response) => {
         let payload : string[] = [];
         payload.push(`code=${code}`)
         payload.push(`grant_type=authorization_code`)
-        payload.push(`redirect_uri=https://mysite.org/activation`)
+        payload.push(`redirect_uri=http://localhost:5001/next-venture/europe-west1/api/fortnox/generate-auth`)
 
+        console.log(code);
+        
         // Retrieve token
-        await fetch(`${API_TOKEN_CALL}?${payload.join("&")}`, {
+        await fetch(`${API_TOKEN_CALL}`, {
             method: "POST",
             headers: {
                 Authorization: `Basic ${credentials}`,
-                "Content-Type": "application/x-www-form-urlencoded"
+                "Content-Type": "application/x-www-form-urlencoded",
+                body: payload.join("&")
             }
         })
         .then(response => response.json())

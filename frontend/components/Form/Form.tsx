@@ -14,6 +14,7 @@ type Props = {
   isFind: Boolean;
   isLogin: Boolean;
   type: "offer" | "buy" | "sell";
+  onFetched: (id : number) => void;
 };
 
 interface IFormInput {
@@ -24,12 +25,14 @@ interface IFormInput {
   password: string;
 }
 
-export default function Form({ isFind, isLogin, type }: Props) {
+export default function Form({ isFind, isLogin, type, onFetched}: Props) {
   const { login } = useLogin();
   const { user } = useAuthContext();
   const { register, handleSubmit } = useForm<IFormInput>();
 
-  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+  const onSubmit: SubmitHandler<IFormInput> = async (data : any) => {
+    let fetched_id : number = -1;
+
     const headers: any = {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -42,7 +45,7 @@ export default function Form({ isFind, isLogin, type }: Props) {
       });
     }
     //send to db
-    fetch(
+    await fetch(
       `http://localhost:5001/next-venture/europe-west1/api/public/${type}`,
       {
         method: "POST",
@@ -50,10 +53,12 @@ export default function Form({ isFind, isLogin, type }: Props) {
         body: JSON.stringify(data),
       }
     )
-      .then((data) => console.log(data))
+      .then(res => res.json())
+      .then((data) => fetched_id = data.id)
       .catch((err) => console.log(err));
 
     isLogin && login("niko@test.com", "123456");
+    onFetched(fetched_id)
   };
 
   return (

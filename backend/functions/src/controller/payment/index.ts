@@ -12,10 +12,12 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
  */
 export const CreateCheckoutSession = async (req : Request, res: Response) => {
     // Get ID
-    const {id} = req.body;
+    const {id} = req.query;
+
+    console.log("BODY");
+    console.log(req.query);
 
     // Get errand type
-    try{
         const snap = await admin.firestore().collection("errands").doc(id).get();
         const snapData = snap.data();
 
@@ -44,17 +46,10 @@ export const CreateCheckoutSession = async (req : Request, res: Response) => {
         // Return session url
         if(session.url){
             // Update payment_id of errand
-            await admin.firestore().collection("errands").doc(id).update({
-                payment_id: session.payment_intent,
-                payment_status: "pending"
-            })
+            
     
             return res.redirect(303, session.url);
         }
-    }
-    catch(err){
-        return res.status(400).send({message: "Errand does not exist"})
-    }
 
     return res.status(500).send({message: "Failed to create payment"})
 }
