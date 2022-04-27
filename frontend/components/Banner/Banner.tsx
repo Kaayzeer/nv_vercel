@@ -11,12 +11,9 @@ type Props = {
 export default function Banner({ imgUrl, width, height }: Props) {
   return (
     <>
-      <div className="w-full  bg-banner-background bg-center  bg-cover bg-no-repeat">
-        {/* <div className="absolute bottom-0 left-0 ">
-          <Image src={imgUrl} width={width} height={height} />
-        </div> */}
-        <div className="customContainer z-50">
-          <div className=" flex-center w-full px-10 md:w-3/5 ">
+      <div className="w-full  bg-banner-background bg-center  bg-cover bg-no-repeat -mb-3 pb-8">
+        <div className="customContainer ">
+          <div className=" flex-start w-full px-10 md:w-3/5 ">
             <h1 className="section-title">SLAGKRAFTIG RUBRIK</h1>
             <p className="section-paragraph">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -25,8 +22,8 @@ export default function Banner({ imgUrl, width, height }: Props) {
             <Button
               linkHref="/about"
               color="text-white"
-              bgColor="bg-gradient-to-r from-royal-blue to-loyal-blue"
               buttonText="read more"
+              type="btnPrimary"
             />
           </div>
         </div>

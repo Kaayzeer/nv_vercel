@@ -4,19 +4,14 @@ import Link from "next/link";
 type Props = {
   linkHref: string;
   color: string;
-  bgColor: string;
   buttonText: string;
+  type: "btnPrimary" | "btnOutlined" | "btnSecondary";
 };
 
-export default function Button({
-  linkHref,
-  color,
-  bgColor,
-  buttonText,
-}: Props) {
+export default function Button({ linkHref, color, type, buttonText }: Props) {
   return (
     <Link href={linkHref}>
-      <a className={`btn ${color} ${bgColor}`}>{buttonText}</a>
+      <a className={`${type} ${color}`}>{buttonText}</a>
     </Link>
   );
 }
