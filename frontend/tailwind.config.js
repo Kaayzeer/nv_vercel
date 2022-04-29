@@ -15,6 +15,7 @@ module.exports = {
         "royal-blue": "#181B64",
         "loyal-blue": "#41448F",
         "section-blue": "#181B64",
+        "section-yellow": "#FFD986",
       },
       boxShadow: {
         "3xl": "-7px 6px 52px rgba(0, 0, 0, 0.08)",
