@@ -1,29 +1,47 @@
 import Image from "next/image";
-import React from "react";
+import React, { useRef, useState } from "react";
 
 type Props = {};
 
 const Customers = [
   {
-    picture: "/",
+    picture:
+      "https://tailus.io/sources/blocks/grid-cards/preview/images/avatars/first_user.webp",
     name: "namn på företag",
     service: "tjänst på företag",
   },
   {
-    picture: "/",
+    picture:
+      "https://tailus.io/sources/blocks/grid-cards/preview/images/avatars/first_user.webp",
     name: "namn på företag",
     service: "tjänst på företag",
   },
   {
-    picture: "/",
+    picture:
+      "https://tailus.io/sources/blocks/grid-cards/preview/images/avatars/first_user.webp",
     name: "namn på företag",
     service: "tjänst på företag",
   },
 ];
 
 export default function PortraitCard({}: Props) {
+  const [background, setBackground] = useState<string | null>(null);
+  const [checked, setChecked] = useState(false);
+
+  const clickedCard = () => {
+    setChecked((prevValue) => !prevValue);
+    if (checked === true) {
+      setBackground("shadow-3xl");
+    } else {
+      setBackground("");
+    }
+  };
+
   return (
-    <div className="p-6 gap-x-4 w-full mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
+    <div
+      onClick={clickedCard}
+      className={`${background} p-6 gap-x-4 w-full mx-auto rounded-xl flex items-center space-x-4 cursor-pointer`}
+    >
       <div className="shrink-0">
         <img
           className="rounded-full"
@@ -35,8 +53,10 @@ export default function PortraitCard({}: Props) {
         />
       </div>
       <div>
-        <h3 className="text-lg font-md text-black">För efternamn</h3>
-        <p className="text-md text-slate-500">Tjänst på företag</p>
+        <h3 className="text-xl font-bold text-black">För efternamn</h3>
+        <p className="text-lg font-normal testimonial-grey">
+          Tjänst på företag
+        </p>
       </div>
     </div>
   );

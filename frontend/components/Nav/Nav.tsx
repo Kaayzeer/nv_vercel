@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect, useRef } from "react";
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
@@ -25,10 +25,32 @@ export interface IHeaderProps {}
 export default function Nav(props: IHeaderProps) {
   const router = useRouter();
 
+  const [navBackground, setNavBackground] = useState(false);
+  const navRef = useRef<boolean | undefined>();
+  navRef.current = navBackground;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const show = window.scrollY > 50;
+      if (navRef.current !== show) {
+        setNavBackground(show);
+      }
+    };
+    document.addEventListener("scroll", handleScroll);
+    return () => {
+      document.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const handleClick = () => {};
 
   return (
-    <Disclosure as="nav" className="absolute left-0 top-0 w-full">
+    <Disclosure
+      as="nav"
+      className={`fixed left-0 top-0 z-50 w-full ${
+        navBackground ? "bg-white" : "bg-transparent"
+      }`}
+    >
       {({ open }) => (
         <>
           <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">

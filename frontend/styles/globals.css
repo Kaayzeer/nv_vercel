@@ -19,6 +19,10 @@ a {
   box-sizing: border-box;
 }
 
+ol {
+  list-style: decimal-leading-zero;
+}
+
 @layer components {
   /* components */
   .btnPrimary {
@@ -26,7 +30,12 @@ a {
   }
 
   .btnSecondary {
-    @apply bg-gradient-to-r from-royal-yellow to-loyal-yellow hover:from-loyal-yellow hover:to-royal-yellow rounded-xl py-5 px-20 uppercase text-sm font-normal shadow-btnPrimary cursor-pointer tracking-wider mt-4 hover:bg-white;
+    @apply bg-gradient-to-r from-royal-yellow to-loyal-yellow hover:from-loyal-yellow hover:to-royal-yellow rounded-xl py-5 px-20 uppercase text-sm font-normal shadow-btnPrimary cursor-pointer tracking-wider mt-4;
+  }
+
+  .btnTertiary {
+    @apply bg-gradient-to-r from-royal-yellow to-loyal-yellow hover:from-loyal-yellow hover:to-royal-yellow rounded-xl  uppercase text-sm font-bold shadow-btnPrimary cursor-pointer tracking-wider mt-4
+    flex justify-between py-5 px-10 max-w-266 w-5/6;
   }
 
   .btnOutlined {
@@ -37,19 +46,39 @@ a {
     @apply bg-gradient-to-r from-royal-yellow to-loyal-yellow uppercase text-xs font-bold cursor-pointer tracking-wider rounded-xl py-2 px-7 hover:text-white  focus:ring-white;
   }
 
+  /* html tags */
   .section-title {
-    @apply font-bold text-4xl md:text-5xl uppercase;
+    @apply font-bold text-3xl md:text-5xl uppercase;
   }
 
   .section-sub-title {
-    @apply font-bold text-2xl  uppercase;
+    @apply font-bold text-xl md:text-3xl  uppercase;
   }
 
   .section-paragraph {
-    @apply font-thin text-xl italic;
+    @apply font-thin text-sm md:text-xl;
   }
 
-  /* reusable classes */
+  .section-paragraphBold {
+    @apply font-bold text-xl;
+  }
+
+  .section-sub-paragraph {
+    @apply font-normal text-sm;
+  }
+
+  .section-title {
+    @apply font-bold text-3xl md:text-5xl uppercase;
+  }
+
+  .li-title {
+    @apply font-bold text-base md:text-2xl leading-7 md:leading-9 uppercase;
+  }
+
+  .li-paragraph {
+    @apply font-bold text-sm md:text-xl leading-7 md:leading-9 uppercase;
+  }
+  /* utilities */
   .customContainer {
     @apply max-w-[1140px] w-full  mx-auto;
   }
@@ -63,19 +92,23 @@ a {
   }
 
   .flex-center {
-    @apply flex flex-col justify-center items-center h-96 w-full gap-3;
+    @apply flex flex-col justify-center items-center h-screen w-full gap-3;
   }
 
   .flex-horiz {
     @apply flex flex-row justify-center items-center h-screen my-auto gap-3;
   }
 
-  .grid-col3 {
-    @apply grid grid-cols-3;
+  .grid-col1 {
+    @apply grid grid-cols-1;
   }
 
   .grid-col2 {
     @apply grid grid-cols-2;
+  }
+
+  .grid-col3 {
+    @apply grid grid-cols-3;
   }
 }
 
