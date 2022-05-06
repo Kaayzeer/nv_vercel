@@ -1,6 +1,7 @@
 import {Request, Response} from "express";
 import Stripe from 'stripe';
 import * as admin from "firebase-admin";
+import { addInvoicePayment } from "../../lib/fortnox";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
     apiVersion: "2020-08-27"
@@ -14,11 +15,9 @@ export const CreateCheckoutSession = async (req : Request, res: Response) => {
     // Get ID
     const {id} = req.query;
 
-    console.log("BODY");
-    console.log(req.query);
-
     // Get errand type
-        const snap = await admin.firestore().collection("errands").doc(id).get();
+    try{
+        const snap = await admin.firestore().collection("errands").doc(id as string).get();
         const snapData = snap.data();
 
         // Check payment status
@@ -33,8 +32,14 @@ export const CreateCheckoutSession = async (req : Request, res: Response) => {
         const session = await stripe.checkout.sessions.create({
             line_items: [
                 {
-                    price: "price_1KrIrqBvHU5UmnuthJ9SYMGo",
-                    quantity: 1
+                    price_data: {
+                        currency: "sek",
+                        unit_amount: 500,
+                        product_data: {
+                          name: "name of the product",
+                        },
+                      },
+                      quantity: 1,
                 }
             ],
             payment_method_types: ["card"],
@@ -46,10 +51,17 @@ export const CreateCheckoutSession = async (req : Request, res: Response) => {
         // Return session url
         if(session.url){
             // Update payment_id of errand
-            
+            await admin.firestore().collection("errands").doc(id as string).update({
+                payment_id: session.payment_intent,
+                payment_status: "pending"
+            })
     
             return res.redirect(303, session.url);
         }
+    }
+    catch(err){
+        return res.status(400).send({message: "Errand does not exist " })
+    }
 
     return res.status(500).send({message: "Failed to create payment"})
 }
@@ -79,10 +91,16 @@ export const CheckoutSessionWebhook = async (req : Request, res : Response) => {
                     
                     // Update errand in firestore
                     if(snap.size > 0){
+                        // Add invoice payment to fortnox
+                        // @ts-ignore - TS Schema not up to date?
+                        const invoice = await addInvoicePayment(session.data[0].price.unit_amount, session.data[0].price.currency);
+
+                        // Update Firebase entry
                         await admin.firestore().collection("errands")
                             .doc(snap.docs[0].id)
                             .update({
-                                "payment_status": "paid"
+                                "payment_status": "paid",
+                                "invoice": invoice
                             })
                     }
                     else{

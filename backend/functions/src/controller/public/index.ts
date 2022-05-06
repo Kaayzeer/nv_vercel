@@ -151,6 +151,12 @@ export async function createBuy(req: Request, res: Response) {
         } as BuyDomain
 
         // Validate form
+        try{
+            await BuyJoiSchema.validateAsync({domain, budget})
+        }
+        catch(err){
+            return res.status(400).send({message: err})
+        }
 
         // Check if authed
         if(await checkAuth(authorization as string)){
@@ -167,6 +173,12 @@ export async function createBuy(req: Request, res: Response) {
         // Not logged in, extend with firstname etc
         else{
             // Check with joi
+            try{
+                await UserJoiSchema.validateAsync({firstname, surname, email, phone})
+            }
+            catch(err){
+                return res.status(400).send({message: err})
+            }
 
             // Add to salesforce
             addSalesForceCustomer(firstname!, surname!, email, phone)

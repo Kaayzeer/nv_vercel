@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 
 //react hook form
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -29,6 +29,7 @@ export default function Form({ isFind, isLogin, type, onFetched}: Props) {
   const { login } = useLogin();
   const { user } = useAuthContext();
   const { register, handleSubmit } = useForm<IFormInput>();
+  const [error, setError] = useState<String>("");
 
   const onSubmit: SubmitHandler<IFormInput> = async (data : any) => {
     let fetched_id : number = -1;
@@ -50,11 +51,17 @@ export default function Form({ isFind, isLogin, type, onFetched}: Props) {
       {
         method: "POST",
         headers: headers,
-        body: JSON.stringify(data),
+        body: JSON.stringify({...data,
+        domain: "asd.com"}),
       }
     )
       .then(res => res.json())
-      .then((data) => fetched_id = data.id)
+      .then((data) => {
+        console.log(data)
+        if(!data.success)
+          setError(data.message.details.join("\n"))
+        fetched_id = data.id
+      })
       .catch((err) => console.log(err));
 
     isLogin && login("niko@test.com", "123456");
@@ -63,6 +70,13 @@ export default function Form({ isFind, isLogin, type, onFetched}: Props) {
 
   return (
     <>
+      {
+        (error) && (
+          <>
+            {error}
+          </>
+        )
+      }
       {isFind && (
         <>
           <div className="b py-16 bg-gray-50 px-4 sm:px-6 h-screen w-screen flex justify-center items-center">

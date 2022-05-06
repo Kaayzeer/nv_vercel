@@ -3,6 +3,7 @@ import admin from "firebase-admin";
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
+import { refreshFortnoxToken } from "./lib/fortnox";
 
 const REGION = "europe-west1";
 
@@ -31,6 +32,12 @@ exports.disableNewUser = functions.region(REGION).auth.user().onCreate(async (ev
   });
   */
 });
+
+// Refresh function for refreshing tokens
+exports.testFunction = functions.pubsub.schedule('every 30 minutes')
+  .onRun(async () => {
+    await refreshFortnoxToken();
+  });
 
 const app = express();
 app.use(bodyParser.json());
