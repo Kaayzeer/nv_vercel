@@ -1,4 +1,5 @@
 import * as React from "react";
+import AboutQuestions from "../../components/AboutQuestions/AboutQuestions";
 import Banner from "../../components/Banner/Banner";
 import AboutDescription from "../../components/Description/AboutDescription";
 import Section from "../../components/ui-components/Section/Section";
@@ -10,6 +11,7 @@ export default function About(props: IAboutProps) {
     <div>
       <Banner page="about" />
       <AboutDescription />
+      <AboutQuestions />
       <Section
         bgColor={"bg-section-blue"}
         h1={"want to know more?"}
