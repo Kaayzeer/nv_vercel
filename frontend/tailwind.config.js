@@ -13,6 +13,7 @@ module.exports = {
         "footer-background-sm": "url('../public/images/bgFooterSm.svg')",
         "section-blue-about":
           "linear-gradient(180deg, #181B64 0%, #1D2298 100%)",
+        "form-btn": "linear-gradient(264.11deg, #3E42AE 4.4%, #181B64 85.92%)",
       },
       colors: {
         "royal-yellow": "#FFDB5C",
@@ -23,6 +24,8 @@ module.exports = {
         "section-yellow": "#FFD986",
         "testimonial-grey": " #5A5A5A",
         "nav-background": "rgba(255, 255, 255, 0.9)",
+        "form-btn-blueOne": "#3E42AE",
+        "form-btn-blueTwo": "#181B64",
       },
       lineHeight: {
         "extra-loose": "54px",

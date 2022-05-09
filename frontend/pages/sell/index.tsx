@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import Form from "../../components/Form/Form";
+import FindFormStep1 from "../../components/Form/FindFormStep1";
+import FindFormStep2 from "../../components/Form/FindFormStep2";
 
 export interface ISellProps {}
 
@@ -7,8 +8,8 @@ export default function Sell(props: ISellProps) {
   const [isFind, setIsFind] = useState(false);
 
   return (
-    <div>
-      <Form isFind={isFind} />
-    </div>
+    <>
+      <FindFormStep2 />
+    </>
   );
 }

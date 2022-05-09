@@ -7,8 +7,15 @@ export default function Buy(props: IBuyProps) {
   const [isFind, setIsFind] = useState(false);
 
   return (
-    <div>
-      <Form isFind={isFind} isLogin type="buy" />
-    </div>
+    <>
+      <Form
+        isFind={isFind}
+        isLogin
+        type="sell"
+        onFetched={function (id: number): void {
+          throw new Error("Function not implemented.");
+        }}
+      />
+    </>
   );
 }

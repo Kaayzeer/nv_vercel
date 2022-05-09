@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 //react hook form
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -14,7 +14,7 @@ type Props = {
   isFind: Boolean;
   isLogin: Boolean;
   type: "offer" | "buy" | "sell";
-  onFetched: (id : number) => void;
+  onFetched: (id: number) => void;
 };
 
 interface IFormInput {
@@ -25,14 +25,14 @@ interface IFormInput {
   password: string;
 }
 
-export default function Form({ isFind, isLogin, type, onFetched}: Props) {
+export default function Form({ isFind, isLogin, type, onFetched }: Props) {
   const { login } = useLogin();
   const { user } = useAuthContext();
   const { register, handleSubmit } = useForm<IFormInput>();
   const [error, setError] = useState<String>("");
 
-  const onSubmit: SubmitHandler<IFormInput> = async (data : any) => {
-    let fetched_id : number = -1;
+  const onSubmit: SubmitHandler<IFormInput> = async (data: any) => {
+    let fetched_id: number = -1;
 
     const headers: any = {
       Accept: "application/json",
@@ -51,32 +51,24 @@ export default function Form({ isFind, isLogin, type, onFetched}: Props) {
       {
         method: "POST",
         headers: headers,
-        body: JSON.stringify({...data,
-        domain: "asd.com"}),
+        body: JSON.stringify({ ...data, domain: "asd.com" }),
       }
     )
-      .then(res => res.json())
+      .then((res) => res.json())
       .then((data) => {
-        console.log(data)
-        if(!data.success)
-          setError(data.message.details.join("\n"))
-        fetched_id = data.id
+        console.log(data);
+        if (!data.success) setError(data.message.details.join("\n"));
+        fetched_id = data.id;
       })
       .catch((err) => console.log(err));
 
     isLogin && login("niko@test.com", "123456");
-    onFetched(fetched_id)
+    onFetched(fetched_id);
   };
 
   return (
     <>
-      {
-        (error) && (
-          <>
-            {error}
-          </>
-        )
-      }
+      {error && <>{error}</>}
       {isFind && (
         <>
           <div className="b py-16 bg-gray-50 px-4 sm:px-6 h-screen w-screen flex justify-center items-center">

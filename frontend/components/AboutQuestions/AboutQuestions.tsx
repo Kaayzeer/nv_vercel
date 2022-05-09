@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import Dropdown from "./Dropdown";
+import Accordion from "./Accordion";
 
 const QuestionsSectionInfo = {
   h1: "Frequently asked questions",
@@ -19,7 +19,7 @@ export default function AboutQuestions({}: Props) {
             {QuestionsSectionInfo.p}
           </p>
           <div className="w-full">
-            <Dropdown />
+            <Accordion />
           </div>
         </div>
         <div className="text-center md:text-left mt-10">

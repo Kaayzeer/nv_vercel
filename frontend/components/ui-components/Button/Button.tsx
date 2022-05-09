@@ -6,7 +6,12 @@ type Props = {
   linkHref: string;
   color: string;
   buttonText: string;
-  type: "btnPrimary" | "btnOutlined" | "btnSecondary" | "btnTertiary";
+  type:
+    | "btnPrimary"
+    | "btnOutlined"
+    | "btnSecondary"
+    | "btnTertiary"
+    | "formBtn";
 };
 
 export default function Button({ linkHref, color, type, buttonText }: Props) {
