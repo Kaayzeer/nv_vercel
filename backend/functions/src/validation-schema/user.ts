@@ -4,7 +4,7 @@ export const UserJoiSchema = Joi.object({
     firstname: Joi.string().alphanum().min(2).required(),
     surname: Joi.string().alphanum().min(2).required(),
     email: Joi.string().email().required(),
-    phone: Joi.string().regex(/^\d{3}-\d{3}-\d{4}$/).required(),
+    phone: Joi.string().regex(/^\d{10}$/).required(),
 });
 
 
