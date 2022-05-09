@@ -14,7 +14,7 @@ type Props = {
   isFind: Boolean;
   isLogin: Boolean;
   type: "offer" | "buy" | "sell";
-  onFetched: (id: number) => void;
+  onFetched: (id: string) => void;
 };
 
 interface IFormInput {
@@ -45,25 +45,31 @@ export default function Form({ isFind, isLogin, type, onFetched }: Props) {
         headers["authorization"] = `Bearer  ${token}`;
       });
     }
+
+    console.log(data);
+    
     //send to db
     await fetch(
       `http://localhost:5001/next-venture/europe-west1/api/public/${type}`,
       {
         method: "POST",
         headers: headers,
-        body: JSON.stringify({ ...data, domain: "asd.com" }),
+        body: JSON.stringify({ ...data, domains: ["asd.com"] }),
       }
     )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (!data.success) setError(data.message.details.join("\n"));
-        fetched_id = data.id;
+        // if (!data.success) setError(data.message.details.join("\n"));
+
+        if(data.id){
+          console.log(data.id)
+          onFetched(data.id);
+        }
       })
       .catch((err) => console.log(err));
 
     isLogin && login("niko@test.com", "123456");
-    onFetched(fetched_id);
   };
 
   return (

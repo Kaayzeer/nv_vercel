@@ -76,6 +76,8 @@ export const CheckoutSessionWebhook = async (req : Request, res : Response) => {
         const event = stripe.webhooks.constructEvent(payload, headers["stripe-signature"], process.env.STRIPE_ENDPOINT_KEY!);
         const session = event.data.object;
 
+        console.log(event)
+
         switch(event.type){
             // Handle successfull payment, and delayed payment
             case 'checkout.session.completed':

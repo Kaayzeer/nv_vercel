@@ -9,6 +9,7 @@ export default function Sell(props: ISellProps) {
 
   return (
     <>
+    <FindFormStep1 />
       <FindFormStep2 />
     </>
   );

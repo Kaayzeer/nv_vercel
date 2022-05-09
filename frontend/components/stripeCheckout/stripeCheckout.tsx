@@ -3,10 +3,10 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import Form from "../../components/Form/Form";
 
-const stripeCheckout = () => {
+const StripeCheckout = () => {
   const router = useRouter();
   const { success, canceled } = router.query;
-  const [fetchedId, setFetchedId] = useState<number>(-1);
+  const [fetchedId, setFetchedId] = useState<string>("");
 
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
@@ -24,18 +24,18 @@ const stripeCheckout = () => {
     }
   }, [success, canceled]);
 
-  const onFetched = (id: number) => {
+  const onFetched = (id: string) => {
     console.log(id);
     setFetchedId(id);
   };
 
   return (
     <>
-      {fetchedId == -1 ? (
+      {!fetchedId ? (
         <Form
           isFind={true}
           isLogin={false}
-          type={"offer"}
+          type={"sell"}
           onFetched={onFetched}
         />
       ) : (
@@ -89,4 +89,4 @@ const stripeCheckout = () => {
   );
 };
 
-export default stripeCheckout;
+export default StripeCheckout;

@@ -12,8 +12,8 @@ export default function Buy(props: IBuyProps) {
         isFind={isFind}
         isLogin
         type="sell"
-        onFetched={function (id: number): void {
-          throw new Error("Function not implemented.");
+        onFetched={ (id: number) => {
+          console.log(id);
         }}
       />
     </>
