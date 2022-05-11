@@ -46,6 +46,11 @@ module.exports = {
       maxWidth: {
         266: "266px",
         546: "546px",
+        80: "80%",
+      },
+
+      width: {
+        546: "546px",
       },
       variants: {
         background: ["responsive", "hover", "focus", "group-hover"],
