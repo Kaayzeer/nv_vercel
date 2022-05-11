@@ -13,6 +13,7 @@ import Button from "../ui-components/Button/Button";
 import Dropdown from "../ui-components/Dropdown/Dropdown";
 import TextArea from "../ui-components/TextArea/TextArea";
 import FormTitle from "../ui-components/FormTitle/FormTitle";
+import BackButton from "../ui-components/Button/BackButton";
 
 type Props = {
   /*   isFind: Boolean;
@@ -42,34 +43,35 @@ export default function Form({}: Props) {
           <div className="customContainer px-4 py-5 md:px-0 md:py-0  space-y-10">
             <FormTitle
               step={"step 1"}
-              title={"Find a name"}
+              title={"What do you need to name?"}
               p={
-                "Let us help you curate a selection of brand names where the matching domain is likely possible to acquire. "
+                "Tell us about the use case in mind so that we can present a selection of suitable brand name domains. "
               }
             />
 
             <form className="space-y-10  ">
               <TextArea
-                title="What is your Business/ Brand about?"
-                p="Let us know what your business does and what traits you are looking for in a brand name."
+                title="What is your Business about?"
+                p="Let us know what you do. "
               />
 
               <Dropdown
                 title="Select your industry"
-                p="(Which is your primary industry?)"
-              />
-
-              <TextArea
-                title="Additional details"
-                p="Let us know any further thoughts"
+                p="Choose your primary vertical."
               />
 
               <Dropdown
                 title="Primary regions for the brand or business "
-                p="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                p="Where are you present?"
               />
 
-              <div className="px-4 py-40 mb-10 text-center sm:px-6 ">
+              <TextArea
+                title="Additional details "
+                p="Let us know what you think."
+              />
+
+              <div className="px-4 py-40 mb-10 text-center sm:px-6 flex flex-col items-center">
+                <BackButton title={"Go back"} />
                 <Button
                   linkHref={"#"}
                   color={"text-white"}

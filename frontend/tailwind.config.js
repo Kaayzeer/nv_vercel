@@ -45,11 +45,12 @@ module.exports = {
       },
       maxWidth: {
         266: "266px",
+        546: "546px",
       },
       variants: {
         background: ["responsive", "hover", "focus", "group-hover"],
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/forms")],
 };

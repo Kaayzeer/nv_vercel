@@ -47,7 +47,7 @@ ol {
   }
 
   .formBtn {
-    @apply bg-form-btn hover:from-form-btn-blueTwo hover:to-form-btn-blueOne rounded-lg py-4 px-52 uppercase text-sm font-normal shadow-btnPrimary cursor-pointer tracking-wider mt-4;
+    @apply bg-form-btn hover:from-form-btn-blueTwo hover:to-form-btn-blueOne rounded-lg py-4 px-52 uppercase text-sm font-normal shadow-btnPrimary cursor-pointer tracking-wider mt-4 max-w-546;
   }
 
   /* html tags */

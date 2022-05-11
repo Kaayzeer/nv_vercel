@@ -1,8 +1,10 @@
 import React from "react";
+import BackButton from "../ui-components/Button/BackButton";
 import Button from "../ui-components/Button/Button";
 import Dropdown from "../ui-components/Dropdown/Dropdown";
 import FormTitle from "../ui-components/FormTitle/FormTitle";
-import FormInput from "../ui-components/InputField/formInput";
+import FormInput from "../ui-components/InputField/FormInput";
+import RadioButton from "../ui-components/RadioButton/RadioButton";
 
 type Props = {};
 
@@ -12,9 +14,9 @@ export default function FindFormStep2({}: Props) {
       <div className="customContainer px-4 py-5 md:px-0 md:py-0  space-y-10">
         <FormTitle
           step={"step 2"}
-          title={"Find a name"}
+          title={"What kind of name do you want?"}
           p={
-            "Let us help you curate a selection of brand names where the matching domain is likely possible to acquire. "
+            "Try to explain what you are looking for in the name. This helps with curation and selection of suitable brand names. "
           }
         />
 
@@ -27,20 +29,40 @@ export default function FindFormStep2({}: Props) {
 
           <FormInput
             title={"What we don't like"}
-            p={"These words or ideas are not what we like."}
+            p={"Try to avoid using these terms or ideas in the name."}
             placeholder={"write what you don't like..."}
           />
-          <Dropdown
-            title="maximum number of letters"
-            p="(Which is your primary industry?)"
-          />
 
-          <Dropdown
-            title="maximum number of words"
-            p="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-          />
-
-          <div className="px-4 py-40 mb-10 text-center sm:px-6 ">
+          <div className="relative">
+            <Dropdown
+              title="maximum number of letters"
+              p="(Which is your primary industry?)"
+            />
+            <div className="absolute bottom-2 right-20">
+              <RadioButton
+                id={"no-letter-preference"}
+                htmlFor={"no-letter-preference"}
+                name={"no-preference-of-letter"}
+                title={"I dont have a preference"}
+              />
+            </div>
+          </div>
+          <div className="relative">
+            <Dropdown
+              title="maximum number of words"
+              p="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            />
+            <div className="absolute bottom-2 right-20">
+              <RadioButton
+                id={"no-word-preference"}
+                htmlFor={"no-word-preference"}
+                name={"no-preference-of-word"}
+                title={"I dont have a preference"}
+              />
+            </div>
+          </div>
+          <div className="px-4 py-40 mb-10 text-center sm:px-6 flex flex-col items-center">
+            <BackButton title={"Go back"} />
             <Button
               linkHref={"#"}
               color={"text-white"}
