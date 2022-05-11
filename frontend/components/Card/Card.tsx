@@ -7,7 +7,7 @@ type Props = {};
 export default function Card({}: Props) {
   return (
     <div className="w-full 2xl:w-2/3 2xl:mx-auto">
-      <div className="lg:grid-col3  place-items-center -mt-40 ">
+      <div className="lg:grid-col3  place-items-center -mt-40 px-4 md:px-0">
         <div className="flex-center bg-white rounded-md shadow-3xl w-full my-4 lg:max-w-sm px-14 h-500 gap-6 ">
           <Image src="/icons/sellIcon.svg" height={140} width={140} />
           <h2 className="section-title text-4xl">sell</h2>

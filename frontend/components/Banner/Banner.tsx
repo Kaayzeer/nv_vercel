@@ -5,11 +5,11 @@ import Button from "../ui-components/Button/Button";
 type Props = {
   page: "home" | "about";
 };
-
+/* + -mb-20 +  md:-mb-0 pb-8 */
 export default function Banner({ page }: Props) {
   const layoutStyle =
     page === "home"
-      ? "bg-banner-background + bg-center + -mb-20 +  md:-mb-0 pb-8"
+      ? "bg-banner-background + bg-center mb-20 sm:mb-10 md:mb-0 "
       : page === "about"
       ? "bg-about-background + bg-bottom"
       : null;
@@ -30,17 +30,17 @@ export default function Banner({ page }: Props) {
     page === "about"
       ? "text-center leading-extra-loose"
       : page === "home"
-      ? "text-center leading-2xLoose"
+      ? "text-left leading-7 md:text-center md:leading-2xLoose"
       : null;
   return (
     <>
-      <div className={`w-full ${layoutStyle} bg-cover bg-no-repeat`}>
+      <div className={`w-full ${layoutStyle} bg-cover bg-no-repeat `}>
         <div className="customContainer ">
           <div className={` ${flexStyle}  w-full px-10`}>
             <h1 className={`section-title ${titleStyle}`}>{title}</h1>
             {page === "home" && (
               <>
-                <p className="section-paragraph">
+                <p className="section-paragraph-italic">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </p>
