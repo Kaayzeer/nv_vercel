@@ -38,7 +38,7 @@ export default function FindFormStep2({}: Props) {
               title="maximum number of letters"
               p="(Which is your primary industry?)"
             />
-            <div className="absolute bottom-2 right-20">
+            <div className="mt-6 md:mt-0 md:absolute md:bottom-2 md:right-20">
               <RadioButton
                 id={"no-letter-preference"}
                 htmlFor={"no-letter-preference"}
@@ -52,7 +52,7 @@ export default function FindFormStep2({}: Props) {
               title="maximum number of words"
               p="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             />
-            <div className="absolute bottom-2 right-20">
+            <div className="mt-6 md:mt-0 md:absolute md:bottom-2 md:right-20">
               <RadioButton
                 id={"no-word-preference"}
                 htmlFor={"no-word-preference"}

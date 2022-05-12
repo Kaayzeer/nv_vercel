@@ -23,6 +23,10 @@ ol {
   list-style: decimal-leading-zero;
 }
 
+input[type="radio"] {
+  border: 3px solid #d8d8d8;
+}
+
 @layer components {
   /* components */
   .btnPrimary {

@@ -43,7 +43,7 @@ export default function FindFormStep3({}: Props) {
             p={"Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
             placeholder={"Company name"}
           />
-          <div className="pt-6">
+          <div className="pt-6 ">
             <RadioButton
               id={"check-policy"}
               htmlFor={"check-policy"}
