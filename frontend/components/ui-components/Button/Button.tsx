@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 type Props = {
-  linkHref: string;
+  linkHref: any;
   color: string;
   buttonText: string;
   type:
@@ -12,6 +12,7 @@ type Props = {
     | "btnSecondary"
     | "btnTertiary"
     | "formBtn";
+  /* onClick: () => void */
 };
 
 export default function Button({ linkHref, color, type, buttonText }: Props) {

@@ -1,15 +1,13 @@
 import React from "react";
-import { useRouter } from "next/router";
 
 type Props = {
   title: string;
+  onClick: () => void;
 };
 
-function BackButton({ title }: Props) {
-  const router = useRouter();
-
+function BackButton({ title, onClick }: Props) {
   return (
-    <button className="underline" type="button" onClick={() => router.back()}>
+    <button className="underline" type="button" onClick={onClick}>
       {title}
     </button>
   );

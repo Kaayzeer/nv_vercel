@@ -27,6 +27,95 @@ input[type="radio"] {
   border: 3px solid #d8d8d8;
 }
 
+/* Wizard styling */
+
+.section {
+  width: 95%;
+  max-width: 550px;
+  margin: 30px auto;
+}
+
+.wizard-layout {
+  margin: 5px auto;
+  padding: 30px 50px;
+  /* background-color: salmon; */
+  border-bottom: 1px solid #bbb;
+}
+
+.wizard-layout__navbar {
+  height: 30px;
+  display: flex;
+  background-color: rgba(196, 196, 196, 0.22);
+  /* flex-flow: row nowrap; */
+  justify-content: space-around;
+  gap: 10px;
+  align-items: center;
+  max-width: 1140px;
+  width: 100%;
+  margin: 0 auto;
+  border-top-left-radius: 9px;
+  border-bottom-left-radius: 9px;
+
+  z-index: 10000;
+}
+
+.wizard-layout-button {
+  border: none;
+  cursor: pointer;
+  z-index: 10000;
+  font-size: 0.8rem;
+  padding: 0.5rem 3rem;
+}
+
+.wizard-layout-button-selected {
+  border: none;
+  cursor: pointer;
+  z-index: 10000;
+  font-size: 0.8rem;
+  background: rgb(98, 0, 255);
+  padding: 0.5rem 3rem;
+}
+
+.wizard-layout__navbar__button:active {
+  outline: none;
+}
+.wizard-layout__navbar__button:focus {
+  outline: none;
+}
+
+.wizard-layout__question {
+  padding: 5px 10px;
+  font-size: 1.1rem;
+  color: #444;
+  height: 50px;
+}
+
+.wizard-layout__content {
+  padding: 5px 30px;
+  height: 60px;
+}
+
+.wizard-layout__buttons {
+  height: 40px;
+  padding: 15px 30px;
+}
+
+/* PROGRESS BAR */
+.progressbar {
+  width: 400px;
+  height: 10px;
+  background-color: white;
+  margin-bottom: 50px;
+}
+
+.progressbar div {
+  width: 33.3%;
+  height: 100%;
+  background-color: rgb(98, 0, 255);
+}
+
+/* Wizard styling */
+
 @layer components {
   /* components */
   .btnPrimary {
