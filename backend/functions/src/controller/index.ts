@@ -1,8 +1,8 @@
 import {Request, Response} from "express";
 import { RegisterUser } from "../schema/user";
 import * as admin from "firebase-admin";
-import { addSalesForceCustomer } from "../lib/salesforce";
 import {UserPasswordJoiSchema} from "../validation-schema/user"
+import { createFortnoxSalesForceUser } from "../lib/user";
 
 export async function testController(req: Request, res: Response){
     return res.status(200).send({message: "Succesfully registered new user", status: "success"});
@@ -34,19 +34,22 @@ export async function registerUser(req: Request, res: Response) {
             disabled: false,
         });
 
-        // Add to salesforce
-        addSalesForceCustomer(firstname, surname, email, phone);
-
-        // Add to database
-        await admin.firestore().collection("domain_offers").doc(user.uid).set({
-            firstname: firstname,
-            surname: surname,
-            phone: phone
-        } as RegisterUser)
-
+        // Add to salesforce & fortnox
+        let connection = await createFortnoxSalesForceUser(firstname!, surname!, email, phone);
         
+        if(connection){
+            // Add to database
+            await admin.firestore().collection("users").doc(user.uid).set({
+                firstname: firstname,
+                surname: surname,
+                phone: phone,
+                email: email
+            } as RegisterUser)
 
-        return res.status(200).send({message: "Succesfully registered new user", status: "success"});
+            return res.status(200).send({message: "Succesfully registered new user", status: "success"});
+        }
+        else
+            return res.status(500).send({message: `Failed to register user`});
     }
     catch(err){
         return res.status(500).send({message: `Failed to register user`});

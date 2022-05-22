@@ -2,6 +2,7 @@ import {Request, Response} from "express";
 import Stripe from 'stripe';
 import * as admin from "firebase-admin";
 import { addInvoicePayment } from "../../lib/fortnox";
+import { changeStatusErrand } from "../../lib/salesforce";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
     apiVersion: "2020-08-27"
@@ -26,8 +27,6 @@ export const CreateCheckoutSession = async (req : Request, res: Response) => {
         if(snapData!["payment_status"] == "pending")
             return res.status(400).send({message: "Payment is already pending"});
 
-        const errand_type : string = snapData!["type"];
-
         // Create checkout session
         const session = await stripe.checkout.sessions.create({
             line_items: [
@@ -50,6 +49,9 @@ export const CreateCheckoutSession = async (req : Request, res: Response) => {
     
         // Return session url
         if(session.url){
+            // Change status of Salesforce
+            await changeStatusErrand(snapData!.salesforce_id, snapData!.type, "pending");
+
             // Update payment_id of errand
             await admin.firestore().collection("errands").doc(id as string).update({
                 payment_id: session.payment_intent,
@@ -69,14 +71,13 @@ export const CreateCheckoutSession = async (req : Request, res: Response) => {
 /**
  * Webhook for picking up the Checkout session
  */
-export const CheckoutSessionWebhook = async (req : Request, res : Response) => {
+export const CheckoutSessionWebhook = async (req : any, res : Response) => {
     const headers : any = req.headers;
-    const payload : any = req.body;
-    try {
-        const event = stripe.webhooks.constructEvent(payload, headers["stripe-signature"], process.env.STRIPE_ENDPOINT_KEY!);
-        const session = event.data.object;
+    const payload : any = req.rawBody;
 
-        console.log(event)
+    try {
+        const event = stripe.webhooks.constructEvent(payload, headers["stripe-signature"], "whsec_3c8107487a88c471dd0a19c11da06b453444786e02b05b2fb3da1cb175e2e84f");
+        const session = event.data.object;
 
         switch(event.type){
             // Handle successfull payment, and delayed payment
@@ -88,14 +89,24 @@ export const CheckoutSessionWebhook = async (req : Request, res : Response) => {
                     const snap = await admin.firestore().collection("errands")
                         // @ts-ignore - TS Schema not up to date?
                         .where("payment_id", "==", session.payment_intent)
-                        .limit(1)
                         .get();
                     
-                    // Update errand in firestore
+                    // Update errand in firestore & salesforce
                     if(snap.size > 0){
+                        const snapData = snap.docs[0].data();
+
+                        // Get fortnox id from email
+                        const userSnap = await admin.firestore().collection("email_connection")
+                            .where("email", "==", snapData!.email)
+                            .get();
+                        const userData = userSnap.docs[0].data();
+
                         // Add invoice payment to fortnox
                         // @ts-ignore - TS Schema not up to date?
-                        const invoice = await addInvoicePayment(session.data[0].price.unit_amount, session.data[0].price.currency);
+                        const invoice = await addInvoicePayment(userData.fortnox_id, session.amount_total, session.currency);
+                        
+                        // Update salesforce entry
+                        await changeStatusErrand(snapData!.salesforce_id, snapData!.type, "paid");
 
                         // Update Firebase entry
                         await admin.firestore().collection("errands")
@@ -114,14 +125,15 @@ export const CheckoutSessionWebhook = async (req : Request, res : Response) => {
             // Failed payment
             case 'checkout.session.async_payment_failed': {
                 // TODO: Mejla användaren
-
+                
                 break;
               }
             default:
                 break;
         }
     }
-    catch(err : any){
+    catch(err){
+        console.log(err)
         return res.status(400).send(`Webhook error: ${err.message}`);
     }
 

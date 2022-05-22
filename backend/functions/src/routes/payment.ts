@@ -3,12 +3,13 @@ import { CheckoutSessionWebhook, CreateCheckoutSession } from "../controller/pay
 
 const router = express.Router()
 
-router.post("/create-checkout-session",
-    CreateCheckoutSession
-);
-
 router.post("/webhook",
     CheckoutSessionWebhook
+);
+
+
+router.post("/create-checkout-session",
+    CreateCheckoutSession
 );
 
 module.exports = router;

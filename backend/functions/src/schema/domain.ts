@@ -3,7 +3,7 @@ interface Payment{
     payment_status: "unpaid" | "pending" | "paid";
 }
 
-interface BaseUser {
+export interface BaseUser {
     firstname?: string;
     surname?: string;
     company?: string;
@@ -31,14 +31,18 @@ export interface BuyDomain extends BaseUser, Payment, ErrandBase{
     // Domain info
     domain: string; 
     budget: number;
+    salesforce_id?: string;
 }
 
 export interface SellDomain extends BaseUser, Payment, ErrandBase{
     // Domain info
     domains: string[];
+    salesforce_id?: string;
+    fortnox_customer?: string;
 }
 
 export interface FindDomain extends BaseUser, Brief, Payment, ErrandBase{
     // Domain info
     budget: number;
+    salesforce_id?: string;
 }

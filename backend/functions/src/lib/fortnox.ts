@@ -6,20 +6,158 @@ const API_TOKEN_CALL = "https://apps.fortnox.se/oauth-v1/token"
 const REDIRECT_URI = "http://localhost:5001/next-venture/europe-west1/api/fortnox/generate-auth"
 
 
-export const addInvoicePayment = async (amount : number, currency : string) => {
+// https://apps.fortnox.se/oauth-v1/login?next=%2Foauth-v1%2Fauth%3Fclient_id%3D9wfhkgTQV1gs%26redirect_uri%3Dhttp%3A%2F%2Flocalhost%3A5001%2Fnext-venture%2Feurope-west1%2Fapi%2Ffortnox%2Fgenerate-auth%26scope%3Dpayment%20customer%20invoice%20bookkeeping%26state%3Dasdasd%26access_type%3Doffline%26response_type%3Dcode%26account_type%3Dservice
+
+/**
+ * Create Financial Year
+ */
+export const createFinancialYear = async() => {
     const authToken = await fortnoxAuthToken()
 
-    let invoiceNumber = undefined;
+    if(authToken){
+        const year = new Date().getFullYear();
+
+        await fetch(`https://api.fortnox.se/3/financialyears/`,{
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${authToken}`,
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify({
+                "FinancialYear": {
+                    "FromDate": `${year}-01-01`,
+                    "ToDate": `${year}-12-31`,
+                    "AccountChartType": `Bas ${year}`
+                }
+            })
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+}
+
+/**
+ * Creates customer in Fortnox
+ */
+export const createCustomer = async(forename : string, surname: string, email: string) => {
+    const authToken = await fortnoxAuthToken()
+
+    let customer_id = undefined;
 
     if(authToken){
+        // Create if not exists
+        await fetch(`https://api.fortnox.se/3/customers/`,{
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${authToken}`,
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify({
+                "Customer": {
+                    "Name": `${forename} ${surname}`,
+                    "Email": email
+                }
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Get customer ID
+            if(data.Customer)
+                customer_id = data.Customer.CustomerNumber
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
+    return customer_id;
+}
+
+/**
+ * Create invoice object
+ */
+export const createInvoice = async(customer_id: number, amount: number, currency: string ) => {
+    const authToken = await fortnoxAuthToken()
+    let result = undefined;
+
+    // Create invoice
+    await fetch(`https://api.fortnox.se/3/invoices/`,{
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${authToken}`,
+            "Content-Type": "application/json",
+            Accept: "application/json"
+        },
+        body: JSON.stringify({
+            "Invoice": {
+                "InvoiceRows": [
+                    {
+                        "Price": amount,
+                        "DeliveredQuantity": 1,
+                        "Description": "Test faktura"
+                    }
+                ],
+                "CustomerNumber": customer_id,
+                "Currency": currency
+            }
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Get Invoice ID
+        if(data.Invoice)
+            result = data.Invoice.DocumentNumber
+    })
+    .catch(err => {
+        console.log(err)
+    })
+
+    // Book keep
+    if(result){
+        await fetch(`https://api.fortnox.se/3/invoices/${result}/bookkeep`,{
+            method: "PUT",
+            headers: {
+                Authorization: `Bearer ${authToken}`,
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            }
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
+    return result;
+}
+
+/**
+ * Create invoice object and add payment to it
+ */
+export const addInvoicePayment = async (customer_id: number, amount : number, currency : string) => {
+    const authToken = await fortnoxAuthToken()
+
+    let OCR = undefined;
+
+    await createFinancialYear();
+
+    if(authToken){
+        const invoiceNumber = await createInvoice(customer_id, amount, currency);
+
+        if(!invoiceNumber)
+            return undefined;
+            
         const payload = {
             "InvoicePayment": {
                 "Amount": amount,
                 "AmountCurrency": amount,
-                "Currency": currency,
-                "InvoiceNumber": "1"
+                "InvoiceNumber": invoiceNumber
             }
         }
+
+        let InvoiceNumber = undefined;
 
         await fetch(`https://api.fortnox.se/3/invoicepayments/`,{
             method: "POST",
@@ -32,15 +170,37 @@ export const addInvoicePayment = async (amount : number, currency : string) => {
         })
         .then(response => response.json())
         .then(data => {
-            invoiceNumber = data.InvoicePayment.InvoiceOCR;
+            if(data.InvoicePayment){
+                OCR = data.InvoicePayment.InvoiceOCR;
+                InvoiceNumber = data.InvoicePayment.Number;
+            }
         })
         .catch(err => {
+            console.log(err)
         })
+
+        // Bookkeep
+        if(InvoiceNumber){
+            await fetch(`https://api.fortnox.se/3/invoicepayments/${InvoiceNumber}/bookkeep`,{
+                method: "PUT",
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                    "Content-Type": "application/json",
+                    Accept: "application/json"
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        }
     }
 
-    return invoiceNumber;
+    return OCR;
 }
 
+/**
+ * Get stored auth token
+ */
 export const fortnoxAuthToken = async () => {
     const snap = await admin.firestore().collection("api").doc("fortnox").get()
     const snapData = snap.data()

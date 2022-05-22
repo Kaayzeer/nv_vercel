@@ -3,7 +3,8 @@ import admin from "firebase-admin";
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-import { refreshFortnoxToken } from "./lib/fortnox";
+import { createFinancialYear, refreshFortnoxToken } from "./lib/fortnox";
+import {Response} from "express";
 
 const REGION = "europe-west1";
 
@@ -34,13 +35,30 @@ exports.disableNewUser = functions.region(REGION).auth.user().onCreate(async (ev
 });
 
 // Refresh function for refreshing tokens
-exports.testFunction = functions.pubsub.schedule('every 30 minutes')
+exports.refreshFortnoxToken = functions.pubsub.schedule('every 30 minutes')
   .onRun(async () => {
     await refreshFortnoxToken();
   });
 
+// Create Fortnox Financial year, On 30th day of December every year
+exports.createFinancialYear = functions.pubsub.schedule('* * 30 12 *')
+  .onRun(async () => {
+    await createFinancialYear();
+  });
+
 const app = express();
-app.use(bodyParser.json());
+
+const rawBodySaver =  (req : any, res : Response, buf : any, encoding : any) =>{
+  if (buf && buf.length) {
+    req.rawBody = buf.toString(encoding || 'utf8');
+  }
+}
+
+const options = {
+  verify: rawBodySaver
+};
+
+app.use(bodyParser.json(options));
 app.use(cors({origin: true}));
 
 // Add routes
@@ -49,9 +67,9 @@ const userRoute = require("./routes/user");
 const paymentRoute = require("./routes/payment");
 const fortnoxRoute = require("./routes/fortnox")
 
+app.use("/payment", paymentRoute)
 app.use("/public", publicRoute)
 app.use("/user", userRoute)
-app.use("/payment", paymentRoute)
 app.use("/fortnox", fortnoxRoute)
 
 export const api = functions.region(REGION).https.onRequest(app);

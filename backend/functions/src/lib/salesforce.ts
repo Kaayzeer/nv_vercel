@@ -1,47 +1,101 @@
 import fetch from 'node-fetch';
 
-export const checkSalesForceCustomer = async(forename: string, surname: string) => {
+export const changeStatusErrand = async(id: string, type: string, status: string) => {
     // Get Auth token
+    let type_url = "";
 
+    // Map to sObject
+    if(type == "buy")
+        type_url = "BuyErrand__c"
+    else if(type == "sell")
+        type_url = "SellErrand__c"
+    else if(type == "find")
+        type_url = "FindErrand__c"
+
+    // Update record
+    await fetch(`${process.env.SALESFORCE_URL}services/data/v54.0/sobjects/${type_url}/${id}/`, {
+        method: "PATCH",
+        headers: {
+            Authorization: `Bearer ${await getSalesForceAuthToken()}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            "payment_status__c": status
+        })
+    })
+    .catch(err => {
+        console.log(err)
+    })
+}
+
+export const checkSalesForceCustomer = async(email: string) => {
+    // Get Auth token
+    let id = undefined;
+
+    await fetch(`${process.env.SALESFORCE_URL}services/data/v54.0/parameterizedSearch`, {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${await getSalesForceAuthToken()}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            q: email,
+            sobjects: [{
+                name: "Lead"
+            }]
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.searchRecords && data.searchRecords.length > 0)
+            id = data.searchRecords[0].Id;
+    })
+    .catch(err => {})
+
+    return id;
 }
 
 export const addSalesForceCustomer = async (forename : string, surname: string, email: string = "", phone : string = "") => {
-    // Get Auth token
-    const token = await getSalesForceAuthToken();
+    // Look if already exists
+    const search_id = await checkSalesForceCustomer(email);
+
+    if(search_id)
+        return {id: search_id, status: "exists"};
 
     // Payload
     const payload : any = {
-        "Name": `${forename} ${surname}`
+        "FirstName": forename,
+        "LastName": surname,
+        "Company": `${forename} ${surname}`
     }
 
     // Add optional
     if(email)
-        payload["e_post__c"] = email;
+        payload["Email"] = email;
 
     if(phone)
-        payload["phone__c"] = phone;
+        payload["MobilePhone"] = phone;
 
+    let id = undefined;
     // Add record 
-    await fetch(`${process.env.SALESFORCE_URL}services/data/v54.0/sobjects/Customer/`, {
+    await fetch(`${process.env.SALESFORCE_URL}services/data/v54.0/sobjects/Lead/`, {
         method: "POST",
         headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${await getSalesForceAuthToken()}`,
             "Content-Type": "application/json"
         },
         body: JSON.stringify(payload)
     })
     .then(response => response.json())
     .then(data => {
+        console.log(data)
         // Return id
         if(data["success"])
-            return data["id"];
-        else
-            return undefined;
+            id = data["id"];
     })
-    .catch(err => {
-        console.log(err)
-        return undefined;
-    })
+    .catch(err => {})
+
+    return {id: id, status: "new"}
 }
 
 /**
@@ -56,6 +110,8 @@ export const getSalesForceAuthToken = async () => {
     payload.push(`username=${process.env.SALESFORCE_INT_USER}`)
     payload.push(`password=${process.env.SALESFORCE_INT_PASS}`)
 
+    let token = undefined;
+
     // Retrieve auth token
     await fetch(`${process.env.SALESFORCE_URL}services/oauth2/token?${payload.join("&")}`, {
         method: "POST",
@@ -65,9 +121,10 @@ export const getSalesForceAuthToken = async () => {
     })
     .then(response => response.json())
     .then(response => {
-        return response["access_token"];
+        if(response["access_token"])
+            token = response["access_token"];
     })
-    .catch(err => {
-        return undefined;
-    })
+    .catch(err => {})
+
+    return token;
 }
