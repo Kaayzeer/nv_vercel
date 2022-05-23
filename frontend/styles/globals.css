@@ -56,13 +56,13 @@ input[type="radio"] {
   border-top-left-radius: 9px;
   border-bottom-left-radius: 9px;
 
-  z-index: 10000;
+  z-index: 100;
 }
 
 .wizard-layout-button {
   border: none;
   cursor: pointer;
-  z-index: 10000;
+  z-index: 1;
   font-size: 0.8rem;
   padding: 0.5rem 3rem;
 }
