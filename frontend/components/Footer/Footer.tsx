@@ -16,7 +16,7 @@ const footerInfo = {
 export default function Footer({}: Props) {
   return (
     <>
-      <div className="w-full max-h-699 bg-footer-background-sm md:bg-footer-background bg-center bg-cover bg-no-repeat mb-80 relative">
+      <div className="w-full max-h-699 bg-footer-background-sm md:bg-footer-background bg-center bg-cover bg-no-repeat relative overflow-hidden">
         <div className="customContainer  ">
           <div className=" grid-col2 md:grid-col3 h-screen px-8 ">
             <div className=" md:flex-start-top mt-20  lg:mt-40 w-full space-y-2 ">
