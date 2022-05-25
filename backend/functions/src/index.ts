@@ -59,7 +59,7 @@ const options = {
 };
 
 app.use(bodyParser.json(options));
-app.use(cors({origin: true}));
+app.use(cors({origin: "*"}));
 
 // Add routes
 const publicRoute = require("./routes/public");
