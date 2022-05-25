@@ -19,7 +19,7 @@ const HomePage = () => {
       <div className="aspect-[1090/100] bg-center  bg-cover bg-no-repeat bg-[url('/icons/bgbluecloud.svg')]"></div>
       <Card />
       <Description />
-      <div className="aspect-[1090/100] bg-center  bg-cover bg-no-repeat bg-[url('/icons/bgyellowcloud.svg')]"></div>
+      <div className="aspect-[1090/100] bg-center  bg-cover bg-no-repeat bg-[url('/icons/bgyellowcloud.svg')] -mb-1"></div>
       <Section
         bgColor="bg-section-yellow"
         h1="get to know us"

@@ -26,6 +26,7 @@ module.exports = {
         "nav-background": "rgba(255, 255, 255, 0.9)",
         "form-btn-blueOne": "#3E42AE",
         "form-btn-blueTwo": "#181B64",
+        "radio-border-color": "#D8D8D8",
       },
       lineHeight: {
         "extra-loose": "54px",
@@ -45,11 +46,17 @@ module.exports = {
       },
       maxWidth: {
         266: "266px",
+        546: "546px",
+        80: "80%",
+      },
+
+      width: {
+        546: "546px",
       },
       variants: {
         background: ["responsive", "hover", "focus", "group-hover"],
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/forms")],
 };

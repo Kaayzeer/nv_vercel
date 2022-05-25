@@ -28,6 +28,24 @@ export default function Section({ bgColor, h1, p, page }: Props) {
       ? "text-center"
       : null;
 
+  const chosenTitle =
+    page === "home" && bgColor === "bg-section-blue"
+      ? "section-title2"
+      : page === "home" && bgColor === "bg-section-yellow"
+      ? "section-title2"
+      : page === "about" && bgColor === "bg-section-blue"
+      ? "section-sub-title"
+      : null;
+
+  const chosenParagraph =
+    page === "home" && bgColor === "bg-section-blue"
+      ? "section-paragraph-normal"
+      : page === "home" && bgColor === "bg-section-yellow"
+      ? "section-paragraph-normal"
+      : page === "about" && bgColor === "bg-section-blue"
+      ? "section-paragraph"
+      : null;
+
   const chosenHeight =
     bgColor === "bg-section-yellow" || "bg-section-blue-about"
       ? "max-h-516"
@@ -64,9 +82,9 @@ export default function Section({ bgColor, h1, p, page }: Props) {
     <div className={`w-full max-h-699 ${bgColor}`}>
       <div className="customContainer ">
         <div className={`${flexStyle} px-10 ${chosenHeight}`}>
-          <h2 className={`section-sub-title  ${chosenTextColor}`}>{h1}</h2>
+          <h2 className={`${chosenTitle}  ${chosenTextColor}`}>{h1}</h2>
           <p
-            className={`section-paragraph ${chosenTextColor} max-w-lg ${chosenTextAlign}`}
+            className={` ${chosenParagraph} ${chosenTextColor} max-w-lg ${chosenTextAlign}`}
           >
             {p}
           </p>
