@@ -52,7 +52,13 @@ export default function Form(
   const { register, handleSubmit } = useForm<IFormInput>();
   const [error, setError] = useState<String>("");
 
-  const handleFormButton = () => {
+  const handleFormButton = (form_data : any) => {
+    // Update values
+    props.dispatchForm({
+      type: "UPDATE_KEY_VALUES",
+      payload: form_data
+    })
+
     props.wizard.nextStep();
     window.scrollTo(0, 0);
   };
@@ -60,41 +66,6 @@ export default function Form(
   const handleBackButton = () => {
     props.wizard.previousStep();
     window.scrollTo(0, 0);
-  };
-
-  const onSubmit: SubmitHandler<IFormInput> = async (data: any) => {
-    let fetched_id: number = -1;
-
-    const headers: any = {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    };
-
-    // Add to header
-    if (user) {
-      await auth.currentUser?.getIdToken().then(async (token: string) => {
-        headers["authorization"] = `Bearer  ${token}`;
-      });
-    }
-
-    console.log(data);
-
-    //send to db
-    await fetch(
-      `http://localhost:5001/next-venture/europe-west1/api/public/${type}`,
-      {
-        method: "POST",
-        headers: headers,
-        body: JSON.stringify({ ...data, domains: ["asd.com"] }),
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => console.log(err));
-
-    /* login("niko@test.com", "123456"); */
   };
 
   return (
@@ -112,7 +83,7 @@ export default function Form(
                 }
               />
 
-              <form className="space-y-10  ">
+              <form onSubmit={handleSubmit(handleFormButton)} className="space-y-10">
                 <TextArea
                   title="What is your Business about?"
                   p="Let us know what you do. "
@@ -143,7 +114,6 @@ export default function Form(
                     color={"text-white"}
                     buttonText={"continue"}
                     type={"formBtn"}
-                    onClick={handleFormButton}
                   />
                 </div>
               </form>

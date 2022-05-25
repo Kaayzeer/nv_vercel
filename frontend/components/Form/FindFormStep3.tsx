@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 //react hook form
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -53,19 +53,10 @@ export default function FindFormStep3(
   const [error, setError] = useState<String>("");
   const [fetchedId, setFetchedId] = useState<string>("");
 
-  const handleFormButton = () => {
-    props.wizard.nextStep();
-    window.scrollTo(0, 0);
-  };
+  const hiddenStripeSubmit = useRef(null);
 
-  const handleBackButton = () => {
-    props.wizard.previousStep();
-    window.scrollTo(0, 0);
-  };
-
-  const onSubmit: SubmitHandler<IFormInput> = async (data: any) => {
-    let fetched_id: number = -1;
-
+  const handleFormButton = async (form_data: any) => {
+    let fetchedId = -1;
     const headers: any = {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -78,30 +69,48 @@ export default function FindFormStep3(
       });
     }
 
-    console.log(data);
-
-    //send to db
-    await fetch(
-      `http://localhost:5001/next-venture/europe-west1/api/public/${type}`,
-      {
-        method: "POST",
-        headers: headers,
-        body: JSON.stringify({ ...data, domains: ["asd.com"] }),
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        // if (!data.success) setError(data.message.details.join("\n"));
-
-        if (data.id) {
-          console.log(data.id);
-          setFetchedId(data.id);
+    // Exists already, use update route
+    if(props.form.fetchId){
+      // TODO
+    }
+    else{
+      //send to db
+      await fetch(
+        `http://localhost:5001/next-venture/europe-west1/api/public/sell`,
+        {
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify({ ...props.form, ...form_data, domains: ["asd.com"] }),
         }
-      })
-      .catch((err) => console.log(err));
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          // if (!data.success) setError(data.message.details.join("\n"));
 
-    /* login("niko@test.com", "123456"); */
+          if (data.id){
+            setFetchedId(data.id)
+            fetchedId = data.id;
+          }
+        })
+        .catch((err) => console.log(err));
+
+      /* login("niko@test.com", "123456"); */
+    }
+
+    props.dispatchForm({
+      type: "UPDATE_KEY_VALUES", 
+      payload: {...form_data, fetchedId}
+    })
+
+    // Fire submit on hidden form
+    // @ts-ignore
+    hiddenStripeSubmit.current.submit();
+  };
+
+  const handleBackButton = () => {
+    props.wizard.previousStep();
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -117,7 +126,7 @@ export default function FindFormStep3(
             }
           />
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
+          <form onSubmit={handleSubmit(handleFormButton)} className="space-y-10">
             <NameInput
               register={register}
               title={"Name*"}
@@ -163,10 +172,11 @@ export default function FindFormStep3(
                 type={"formBtn"}
                 onClick={handleFormButton}
               /> */}
-              {!fetchedId && <StripeCheckout fetchedId={fetchedId} />}
-              {fetchedId && <StripeCheckout fetchedId={fetchedId} />}
+              <FormButton color={"text-white"} buttonText={"Checkout"} type={"formBtn"} />
             </div>
           </form>
+
+          <form action={`http://localhost:5001/next-venture/europe-west1/api/payment/create-checkout-session?id=${fetchedId}`} method="POST" ref={hiddenStripeSubmit} />
         </div>
       </WizardLayout>
     </div>

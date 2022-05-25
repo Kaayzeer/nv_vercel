@@ -47,46 +47,12 @@ export default function FindFormStep2(
   const { user } = useAuthContext();
   const { register, handleSubmit } = useForm<IFormInput>();
 
-  const onSubmit: SubmitHandler<IFormInput> = async (data: any) => {
-    let fetched_id: number = -1;
+  const handleFormButton = (saved_data : any) => {
+    props.dispatchForm({
+      type: "UPDATE_KEY_VALUES",
+      payload: saved_data
+    })
 
-    const headers: any = {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    };
-
-    // Add to header
-    if (user) {
-      await auth.currentUser?.getIdToken().then(async (token: string) => {
-        headers["authorization"] = `Bearer  ${token}`;
-      });
-    }
-
-    console.log(data);
-
-    //send to db
-    await fetch(
-      `http://localhost:5001/next-venture/europe-west1/api/public/${type}`,
-      {
-        method: "POST",
-        headers: headers,
-        body: JSON.stringify({ ...data, domains: ["asd.com"] }),
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        // if (!data.success) setError(data.message.details.join("\n"));
-
-        if (data.id) {
-          console.log(data.id);
-        }
-      })
-      .catch((err) => console.log(err));
-
-    /* login("niko@test.com", "123456"); */
-  };
-  const handleFormButton = () => {
     props.wizard.nextStep();
     window.scrollTo(0, 0);
   };
@@ -109,7 +75,7 @@ export default function FindFormStep2(
             }
           />
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-10 ">
+          <form onSubmit={handleSubmit(handleFormButton)} className="space-y-10 ">
             <FormInput
               title={"What we like"}
               p={"Try to incorporate these words or ideas in the name."}
@@ -160,7 +126,6 @@ export default function FindFormStep2(
                 color={"text-white"}
                 buttonText={"continue"}
                 type={"formBtn"}
-                onClick={handleFormButton}
               />
             </div>
           </form>

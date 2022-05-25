@@ -13,6 +13,7 @@ const StripeCheckout = ({ fetchedId }: Props) => {
   /* const [fetchedId, setFetchedId] = useState<string>(""); */
 
   useEffect(() => {
+    // Check if ID is set
     // Check to see if this is a redirect back from Checkout
     if (success !== undefined || canceled !== undefined) {
       //const query = new URLSearchParams(window.location.search);
@@ -47,12 +48,6 @@ const StripeCheckout = ({ fetchedId }: Props) => {
           method="POST"
         >
           <section>
-            <div>
-              {/*  <Image
-                  src="https://stripe-camo.global.ssl.fastly.net/21f119e8587d8f9e6d68dee9530918d717a701493c26c3f6ab205c08edc9d994/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387853334a4852317043646b68564e565674626e563066475a735833526c6333526663585a795244647354314d7953457832646e68706433647554555a31556b67773030615972394a324479"
-                  layout="fill"
-                /> */}
-            </div>
             {fetchedId && (
               <button type="submit" role="link" className="formBtn text-white">
                 Checkout
