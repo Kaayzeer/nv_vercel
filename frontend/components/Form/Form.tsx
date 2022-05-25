@@ -11,7 +11,6 @@ import { useLogin } from "../../hooks/useLogin";
 import { auth } from "../../firebase/firebaseSetup";
 
 type Props = {
-  isFind: Boolean;
   isLogin: Boolean;
   type: "offer" | "buy" | "sell";
   onFetched: (id: string) => void;
@@ -25,7 +24,7 @@ interface IFormInput {
   password: string;
 }
 
-export default function Form({ isFind, isLogin, type, onFetched }: Props) {
+export default function Form({ isLogin, type, onFetched }: Props) {
   const { login } = useLogin();
   const { user } = useAuthContext();
   const { register, handleSubmit } = useForm<IFormInput>();
@@ -47,7 +46,7 @@ export default function Form({ isFind, isLogin, type, onFetched }: Props) {
     }
 
     console.log(data);
-    
+
     //send to db
     await fetch(
       `http://localhost:5001/next-venture/europe-west1/api/public/${type}`,
@@ -62,8 +61,8 @@ export default function Form({ isFind, isLogin, type, onFetched }: Props) {
         console.log(data);
         // if (!data.success) setError(data.message.details.join("\n"));
 
-        if(data.id){
-          console.log(data.id)
+        if (data.id) {
+          console.log(data.id);
           onFetched(data.id);
         }
       })
@@ -75,87 +74,86 @@ export default function Form({ isFind, isLogin, type, onFetched }: Props) {
   return (
     <>
       {error && <>{error}</>}
-      {isFind && (
-        <>
-          <div className="b py-16 bg-gray-50 px-4 sm:px-6 h-screen w-screen flex justify-center items-center">
-            <div className="mx-auto w-full max-w-2xl rounded-xl bg-white p-8 shadow">
-              <form
-                onSubmit={handleSubmit(onSubmit)}
-                className="grid grid-cols-6 gap-6"
-              >
-                <div className="col-span-6 ">
-                  <label
-                    className="block text-sm font-medium text-gray-700"
-                    htmlFor="firstname"
-                  >
-                    Förnamn
-                  </label>
-                  <input
-                    type="text"
-                    {...register("firstname", {
-                      required: true,
-                      maxLength: 20,
-                    })}
-                    autoComplete="given-name"
-                    className="block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2"
-                  />
-                </div>
-                <div className="col-span-6">
-                  <label
-                    className="block text-sm font-medium text-gray-700"
-                    htmlFor="surname"
-                  >
-                    Efternamn
-                  </label>
-                  <input
-                    type="text"
-                    {...register("surname", {
-                      required: true,
-                      maxLength: 20,
-                    })}
-                    autoComplete="family-name"
-                    className="block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2"
-                  />
-                </div>
-                <div className="col-span-6 ">
-                  <label
-                    className="block text-sm font-medium text-gray-700"
-                    htmlFor="phone"
-                  >
-                    Telefonnummer
-                  </label>
-                  <input
-                    type="number"
-                    {...register("phone", {
-                      required: true,
-                      minLength: 10,
-                      maxLength: 15,
-                    })}
-                    className="block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2"
-                  />
-                </div>
-                <div className="col-span-6 ">
-                  <label
-                    className="block text-sm font-medium text-gray-700"
-                    htmlFor="email"
-                  >
-                    E-mail
-                  </label>
-                  <input
-                    type="email"
-                    {...register("email")}
-                    className="block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2"
-                  />
-                </div>
 
-                <button className="block w-full" type="submit" value="Skicka">
-                  Skicka
-                </button>
-              </form>
-            </div>
+      <>
+        <div className="b py-16 bg-gray-50 px-4 sm:px-6 h-screen w-screen flex justify-center items-center">
+          <div className="mx-auto w-full max-w-2xl rounded-xl bg-white p-8 shadow">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="grid grid-cols-6 gap-6"
+            >
+              <div className="col-span-6 ">
+                <label
+                  className="block text-sm font-medium text-gray-700"
+                  htmlFor="firstname"
+                >
+                  Förnamn
+                </label>
+                <input
+                  type="text"
+                  {...register("firstname", {
+                    required: true,
+                    maxLength: 20,
+                  })}
+                  autoComplete="given-name"
+                  className="block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2"
+                />
+              </div>
+              <div className="col-span-6">
+                <label
+                  className="block text-sm font-medium text-gray-700"
+                  htmlFor="surname"
+                >
+                  Efternamn
+                </label>
+                <input
+                  type="text"
+                  {...register("surname", {
+                    required: true,
+                    maxLength: 20,
+                  })}
+                  autoComplete="family-name"
+                  className="block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2"
+                />
+              </div>
+              <div className="col-span-6 ">
+                <label
+                  className="block text-sm font-medium text-gray-700"
+                  htmlFor="phone"
+                >
+                  Telefonnummer
+                </label>
+                <input
+                  type="number"
+                  {...register("phone", {
+                    required: true,
+                    minLength: 10,
+                    maxLength: 15,
+                  })}
+                  className="block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2"
+                />
+              </div>
+              <div className="col-span-6 ">
+                <label
+                  className="block text-sm font-medium text-gray-700"
+                  htmlFor="email"
+                >
+                  E-mail
+                </label>
+                <input
+                  type="email"
+                  {...register("email")}
+                  className="block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2"
+                />
+              </div>
+
+              <button className="block w-full" type="submit" value="Skicka">
+                Skicka
+              </button>
+            </form>
           </div>
-        </>
-      )}
+        </div>
+      </>
 
       {isLogin && (
         <>

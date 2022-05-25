@@ -1,16 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
+import { useWizard } from "use-wizard";
+
+import WizardSteps from "../../components/Wizard/WizardSteps";
+import formReducer from "../../components/Wizard/formReducer";
 import FindFormStep1 from "../../components/Form/FindFormStep1";
 import FindFormStep2 from "../../components/Form/FindFormStep2";
+import FindFormStep3 from "../../components/Form/FindFormStep3";
 
 export interface ISellProps {}
 
 export default function Sell(props: ISellProps) {
-  const [isFind, setIsFind] = useState(false);
+  // This is how you create the wizard
+  const [step, wizard] = useWizard([
+    "name purpose",
+    "name preference",
+    "customer",
+    "payment",
+  ]);
 
+  // This is only used to store user inputs
+  const [form, dispatchForm] = useReducer(formReducer, {});
   return (
     <>
-    <FindFormStep1 />
-      <FindFormStep2 />
+      <WizardSteps {...{ step, wizard, form, dispatchForm }} />
     </>
   );
 }
