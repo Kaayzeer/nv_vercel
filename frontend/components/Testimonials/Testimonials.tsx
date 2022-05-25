@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
+
+// components
 import PortraitCard from "../Card/PortraitCard";
 // import Swiper JS
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper";
 // import Swiper styles
 import "swiper/css";
 import "swiper/css/bundle";
+import "swiper/css/autoplay";
 
 type Props = { bgColor: string };
 
@@ -12,16 +16,18 @@ export default function Testimonials({ bgColor }: Props) {
   const [isMobileWidth, setIsMobileWidth] = useState(
     typeof window !== "undefined" && window.innerWidth > 645
   );
+
+  // change jsx layout dynamically
   const updatePage = () => {
     setIsMobileWidth(window.innerWidth > 645);
   };
 
+  // combat sideeffect
   useEffect(() => {
     window.addEventListener("resize", updatePage);
     return () => window.removeEventListener("resize", updatePage);
   }, []);
 
-  const showSlider = () => {};
   return (
     <div className={`w-full ${bgColor}`}>
       <div className="customContainer capitalize px-10">
@@ -53,10 +59,16 @@ export default function Testimonials({ bgColor }: Props) {
           <>
             {/*  <h2 className="section-title mb-20 ">what our customers say</h2> */}
             <Swiper
+              autoplay={{
+                delay: 3000,
+                disableOnInteraction: false,
+              }}
               spaceBetween={50}
-              slidesPerView={3}
-              onSlideChange={() => console.log("slide change")}
-              onSwiper={(swiper) => console.log(swiper)}
+              slidesPerView={1.3}
+              modules={[Autoplay]}
+
+              // onSlideChange={() => console.log("slide change")}
+              // onSwiper={(swiper) => console.log(swiper)}
             >
               <SwiperSlide>
                 <PortraitCard />

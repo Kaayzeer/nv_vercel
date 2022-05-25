@@ -39,7 +39,7 @@ input[type="radio"] {
   margin: 5px auto;
   padding: 30px 50px;
   /* background-color: salmon; */
-  border-bottom: 1px solid #bbb;
+  /* border-bottom: 1px solid #bbb; */
 }
 
 .wizard-layout__navbar {
