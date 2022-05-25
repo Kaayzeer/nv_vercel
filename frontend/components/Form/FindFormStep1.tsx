@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+
+//lib
+import { branches } from "../../lib/branches";
 
 //react hook form
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -24,27 +27,26 @@ import { TStep } from "use-wizard/lib/cjs/useWizard/types/TStep";
 import WizardLayout from "../Wizard/WizardLayout";
 import FormButton from "../ui-components/Button/FormButton";
 
-/* type Props = {
-  step: TStep;
-  wizard: IWizard;
-  form: any;
-  dispatchForm: Function;
+type Props = {
+  type: "offer" | "buy" | "sell";
 };
- */
+
 interface IFormInput {
-  firstname: string;
-  surname: string;
-  phone: number;
-  email: string;
-  password: string;
+  business_desc: string;
+  business_type: string;
+  additional_details?: string;
+  country: string;
 }
 
-export default function Form(props: {
-  step: TStep;
-  wizard: IWizard;
-  form: any;
-  dispatchForm: Function;
-}) {
+export default function Form(
+  props: {
+    step: TStep;
+    wizard: IWizard;
+    form: any;
+    dispatchForm: Function;
+  },
+  { type }: Props
+) {
   const { login } = useLogin();
   const { user } = useAuthContext();
   const { register, handleSubmit } = useForm<IFormInput>();
@@ -58,6 +60,41 @@ export default function Form(props: {
   const handleBackButton = () => {
     props.wizard.previousStep();
     window.scrollTo(0, 0);
+  };
+
+  const onSubmit: SubmitHandler<IFormInput> = async (data: any) => {
+    let fetched_id: number = -1;
+
+    const headers: any = {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    };
+
+    // Add to header
+    if (user) {
+      await auth.currentUser?.getIdToken().then(async (token: string) => {
+        headers["authorization"] = `Bearer  ${token}`;
+      });
+    }
+
+    console.log(data);
+
+    //send to db
+    await fetch(
+      `http://localhost:5001/next-venture/europe-west1/api/public/${type}`,
+      {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify({ ...data, domains: ["asd.com"] }),
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => console.log(err));
+
+    /* login("niko@test.com", "123456"); */
   };
 
   return (
@@ -79,21 +116,25 @@ export default function Form(props: {
                 <TextArea
                   title="What is your Business about?"
                   p="Let us know what you do. "
+                  /* register={register} */
                 />
 
                 <Dropdown
                   title="Select your industry"
                   p="Choose your primary vertical."
+                  /* register={register} */
                 />
 
                 <Dropdown
                   title="Primary regions for the brand or business "
                   p="Where are you present?"
+                  /* register={register} */
                 />
 
                 <TextArea
                   title="Additional details "
                   p="Let us know what you think."
+                  /* register={register} */
                 />
 
                 <div className="px-4 py-40 mb-10 text-center sm:px-6 flex flex-col items-center">

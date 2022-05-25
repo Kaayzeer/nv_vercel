@@ -9,7 +9,7 @@ type Props = {
 
 export default function Button({ color, type, buttonText, onClick }: Props) {
   return (
-    <button className={`${type} ${color}`} onClick={onClick}>
+    <button className={`${type} ${color}`} type="submit" onClick={onClick}>
       {buttonText}
     </button>
   );

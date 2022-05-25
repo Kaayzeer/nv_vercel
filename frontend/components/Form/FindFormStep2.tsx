@@ -1,5 +1,15 @@
 import React, { useEffect } from "react";
 
+//react hook form
+import { useForm, SubmitHandler } from "react-hook-form";
+
+//hooks
+import { useAuthContext } from "../../hooks/useAuthContext";
+import { useLogin } from "../../hooks/useLogin";
+
+//firebase imports
+import { auth } from "../../firebase/firebaseSetup";
+
 //components
 import BackButton from "../ui-components/Button/BackButton";
 import Button from "../ui-components/Button/Button";
@@ -14,14 +24,68 @@ import { TStep } from "use-wizard/lib/cjs/useWizard/types/TStep";
 import WizardLayout from "../Wizard/WizardLayout";
 import FormButton from "../ui-components/Button/FormButton";
 
-type Props = {};
+type Props = {
+  type: "offer" | "buy" | "sell";
+};
 
-export default function FindFormStep2(props: {
-  step: TStep;
-  wizard: IWizard;
-  form: any;
-  dispatchForm: Function;
-}) {
+interface IFormInput {
+  firstname: string;
+  surname: string;
+  phone: number;
+  email: string;
+  password: string;
+}
+export default function FindFormStep2(
+  props: {
+    step: TStep;
+    wizard: IWizard;
+    form: any;
+    dispatchForm: Function;
+  },
+  { type }: Props
+) {
+  const { user } = useAuthContext();
+  const { register, handleSubmit } = useForm<IFormInput>();
+
+  const onSubmit: SubmitHandler<IFormInput> = async (data: any) => {
+    let fetched_id: number = -1;
+
+    const headers: any = {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    };
+
+    // Add to header
+    if (user) {
+      await auth.currentUser?.getIdToken().then(async (token: string) => {
+        headers["authorization"] = `Bearer  ${token}`;
+      });
+    }
+
+    console.log(data);
+
+    //send to db
+    await fetch(
+      `http://localhost:5001/next-venture/europe-west1/api/public/${type}`,
+      {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify({ ...data, domains: ["asd.com"] }),
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        // if (!data.success) setError(data.message.details.join("\n"));
+
+        if (data.id) {
+          console.log(data.id);
+        }
+      })
+      .catch((err) => console.log(err));
+
+    /* login("niko@test.com", "123456"); */
+  };
   const handleFormButton = () => {
     props.wizard.nextStep();
     window.scrollTo(0, 0);
@@ -45,23 +109,27 @@ export default function FindFormStep2(props: {
             }
           />
 
-          <form className="space-y-10  ">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-10 ">
             <FormInput
               title={"What we like"}
               p={"Try to incorporate these words or ideas in the name."}
               placeholder={"write what you like..."}
+              register={register}
+              inputType="text"
             />
 
             <FormInput
               title={"What we don't like"}
               p={"Try to avoid using these terms or ideas in the name."}
               placeholder={"write what you don't like..."}
+              register={register}
+              inputType="text"
             />
 
             <div className="relative">
               <Dropdown
                 title="maximum number of letters"
-                p="(Which is your primary industry?)"
+                p="Do not exceed this character count."
               />
               <div className="mt-6 md:mt-0 md:absolute md:bottom-2 md:right-20">
                 <RadioButton
@@ -75,7 +143,7 @@ export default function FindFormStep2(props: {
             <div className="relative">
               <Dropdown
                 title="maximum number of words"
-                p="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                p="Do not exceed this amount of terms."
               />
               <div className="mt-6 md:mt-0 md:absolute md:bottom-2 md:right-20">
                 <RadioButton

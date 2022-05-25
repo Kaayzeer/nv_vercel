@@ -70,7 +70,7 @@ input[type="radio"] {
 .wizard-layout-button-selected {
   border: none;
   cursor: pointer;
-  z-index: 10000;
+  z-index: 1;
   font-size: 0.8rem;
   background: rgb(98, 0, 255);
   padding: 0.5rem 3rem;
