@@ -13,7 +13,7 @@ import { auth } from "../../firebase/firebaseSetup";
 //components
 import BackButton from "../ui-components/Button/BackButton";
 import Button from "../ui-components/Button/Button";
-import Dropdown from "../ui-components/Dropdown/Dropdown";
+import DropdownFS2 from "../ui-components/Dropdown/DropDownFS2";
 import FormTitle from "../ui-components/FormTitle/FormTitle";
 import FormInput from "../ui-components/InputField/FormInput";
 import RadioButton from "../ui-components/RadioButton/RadioButton";
@@ -47,11 +47,11 @@ export default function FindFormStep2(
   const { user } = useAuthContext();
   const { register, handleSubmit } = useForm<IFormInput>();
 
-  const handleFormButton = (saved_data : any) => {
+  const handleFormButton = (saved_data: any) => {
     props.dispatchForm({
       type: "UPDATE_KEY_VALUES",
-      payload: saved_data
-    })
+      payload: saved_data,
+    });
 
     props.wizard.nextStep();
     window.scrollTo(0, 0);
@@ -75,7 +75,10 @@ export default function FindFormStep2(
             }
           />
 
-          <form onSubmit={handleSubmit(handleFormButton)} className="space-y-10 ">
+          <form
+            onSubmit={handleSubmit(handleFormButton)}
+            className="space-y-10 "
+          >
             <FormInput
               title={"What we like"}
               p={"Try to incorporate these words or ideas in the name."}
@@ -93,9 +96,10 @@ export default function FindFormStep2(
             />
 
             <div className="relative">
-              <Dropdown
+              <DropdownFS2
                 title="maximum number of letters"
                 p="Do not exceed this character count."
+                register
               />
               <div className="mt-6 md:mt-0 md:absolute md:bottom-2 md:right-20">
                 <RadioButton
@@ -107,9 +111,10 @@ export default function FindFormStep2(
               </div>
             </div>
             <div className="relative">
-              <Dropdown
+              <DropdownFS2
                 title="maximum number of words"
                 p="Do not exceed this amount of terms."
+                register
               />
               <div className="mt-6 md:mt-0 md:absolute md:bottom-2 md:right-20">
                 <RadioButton

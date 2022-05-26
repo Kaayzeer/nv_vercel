@@ -16,8 +16,8 @@ import { auth } from "../../firebase/firebaseSetup";
 
 //components
 import Button from "../ui-components/Button/Button";
-import Dropdown from "../ui-components/Dropdown/Dropdown";
-import TextArea from "../ui-components/TextArea/TextArea";
+import DropDownFS1 from "../ui-components/Dropdown/DropdownFS1";
+import TextAreaFS1 from "../ui-components/TextArea/TextAreaFS1";
 import FormTitle from "../ui-components/FormTitle/FormTitle";
 import BackButton from "../ui-components/Button/BackButton";
 
@@ -47,24 +47,25 @@ export default function Form(
   },
   { type }: Props
 ) {
-  const { login } = useLogin();
-  const { user } = useAuthContext();
   const { register, handleSubmit } = useForm<IFormInput>();
   const [error, setError] = useState<String>("");
 
-  const handleFormButton = (form_data : any) => {
+  const handleFormButton: SubmitHandler<IFormInput> = (form_data: any) => {
+    console.log(form_data);
     // Update values
     props.dispatchForm({
       type: "UPDATE_KEY_VALUES",
-      payload: form_data
-    })
+      payload: form_data,
+    });
 
+    // Go to next form
     props.wizard.nextStep();
     window.scrollTo(0, 0);
   };
 
+  //Go back to page
   const handleBackButton = () => {
-    props.wizard.previousStep();
+    /* props.wizard.previousStep(); */
     window.scrollTo(0, 0);
   };
 
@@ -83,29 +84,32 @@ export default function Form(
                 }
               />
 
-              <form onSubmit={handleSubmit(handleFormButton)} className="space-y-10">
-                <TextArea
+              <form
+                onSubmit={handleSubmit(handleFormButton)}
+                className="space-y-10"
+              >
+                <TextAreaFS1
                   title="What is your Business about?"
                   p="Let us know what you do. "
-                  /* register={register} */
+                  register={register}
                 />
 
-                <Dropdown
+                <DropDownFS1
                   title="Select your industry"
                   p="Choose your primary vertical."
-                  /* register={register} */
+                  register={register}
                 />
 
-                <Dropdown
+                <DropDownFS1
                   title="Primary regions for the brand or business "
                   p="Where are you present?"
-                  /* register={register} */
+                  register={register}
                 />
 
-                <TextArea
-                  title="Additional details "
+                <TextAreaFS1
+                  title="Additional details"
                   p="Let us know what you think."
-                  /* register={register} */
+                  register={register}
                 />
 
                 <div className="px-4 py-40 mb-10 text-center sm:px-6 flex flex-col items-center">

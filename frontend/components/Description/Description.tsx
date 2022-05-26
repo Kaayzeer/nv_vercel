@@ -3,6 +3,26 @@ import React from "react";
 
 type Props = {};
 
+const descriptionsteps = [
+  {
+    title: "Let us know your needs",
+    paragraph:
+      "Task us with your acquisition, naming project or sales request.",
+    image: "/icons/round-yellow-1.svg",
+  },
+  {
+    title: "Follow the process",
+    paragraph: "Get transparent weekly updates on the progress of your order. ",
+    image: "/icons/round-yellow-2.svg",
+  },
+  {
+    title: "Achieve your goals",
+    paragraph:
+      "Go about your business with a new name identity or fresh funds.. ",
+    image: "/icons/round-yellow-3.svg",
+  },
+];
+
 export default function Description({}: Props) {
   return (
     <div className="customContainer mt-16">
@@ -13,42 +33,19 @@ export default function Description({}: Props) {
           <Image src="/images/123.svg" height={100} width={850} />
         </div>
         <div className="flex-start lg:grid-col3 place-items-center">
-          <div className="flex-start md:flex-center -mt-64 px-4">
-            <span className="-ml-2 lg:hidden">
-              <Image src="/icons/round-yellow-1.svg" height={50} width={50} />
-            </span>
-            <h3 className="section-sub-title2 md:section-sub-title capitalize">
-              Choose your plan
-            </h3>
-            <p className="section-paragraph-normal text-left md:text-center text-sm ">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-          </div>
-          <div className="flex-start md:flex-center -mt-64 px-4">
-            <span className="-ml-2 lg:hidden ">
-              <Image src="/icons/round-yellow-2.svg" height={50} width={50} />
-            </span>
-            <h3 className="section-sub-title2 md:section-sub-title capitalize">
-              Target your needs
-            </h3>
-            <p className="section-paragraph-normal text-left md:text-center text-sm">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-          </div>
-          <div className="flex-start md:flex-center -mt-64 px-4">
-            <span className="-ml-2 lg:hidden">
-              <Image src="/icons/round-yellow-3.svg" height={50} width={50} />
-            </span>
-            <h3 className="section-sub-title2 md:section-sub-title capitalize">
-              Reach your goals
-            </h3>
-            <p className="section-paragraph-normal text-left md:text-center text-sm">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-          </div>
+          {descriptionsteps.map((descriptionStep, idx) => (
+            <div key={idx} className="flex-start md:flex-center -mt-64 px-4">
+              <span className="-ml-2 lg:hidden">
+                <Image src={descriptionStep.image} height={50} width={50} />
+              </span>
+              <h3 className="section-sub-title2 md:section-sub-title capitalize">
+                {descriptionStep.title}
+              </h3>
+              <p className="section-paragraph-normal text-left md:text-center text-sm ">
+                {descriptionStep.paragraph}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </div>

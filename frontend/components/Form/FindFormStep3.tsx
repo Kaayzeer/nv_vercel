@@ -55,7 +55,9 @@ export default function FindFormStep3(
 
   const hiddenStripeSubmit = useRef(null);
 
-  const handleFormButton = async (form_data: any) => {
+  const handleFormButton: SubmitHandler<IFormInput> = async (
+    form_data: any
+  ) => {
     let fetchedId = -1;
     const headers: any = {
       Accept: "application/json",
@@ -70,17 +72,20 @@ export default function FindFormStep3(
     }
 
     // Exists already, use update route
-    if(props.form.fetchId){
+    if (props.form.fetchId) {
       // TODO
-    }
-    else{
+    } else {
       //send to db
       await fetch(
         `http://localhost:5001/next-venture/europe-west1/api/public/sell`,
         {
           method: "POST",
           headers: headers,
-          body: JSON.stringify({ ...props.form, ...form_data, domains: ["asd.com"] }),
+          body: JSON.stringify({
+            ...props.form,
+            ...form_data,
+            domains: ["asd.com"],
+          }),
         }
       )
         .then((res) => res.json())
@@ -88,8 +93,8 @@ export default function FindFormStep3(
           console.log(data);
           // if (!data.success) setError(data.message.details.join("\n"));
 
-          if (data.id){
-            setFetchedId(data.id)
+          if (data.id) {
+            setFetchedId(data.id);
             fetchedId = data.id;
           }
         })
@@ -99,9 +104,9 @@ export default function FindFormStep3(
     }
 
     props.dispatchForm({
-      type: "UPDATE_KEY_VALUES", 
-      payload: {...form_data, fetchedId}
-    })
+      type: "UPDATE_KEY_VALUES",
+      payload: { ...form_data, fetchedId },
+    });
 
     // Fire submit on hidden form
     // @ts-ignore
@@ -126,7 +131,10 @@ export default function FindFormStep3(
             }
           />
 
-          <form onSubmit={handleSubmit(handleFormButton)} className="space-y-10">
+          <form
+            onSubmit={handleSubmit(handleFormButton)}
+            className="space-y-10"
+          >
             <NameInput
               register={register}
               title={"Name*"}
@@ -172,11 +180,19 @@ export default function FindFormStep3(
                 type={"formBtn"}
                 onClick={handleFormButton}
               /> */}
-              <FormButton color={"text-white"} buttonText={"Checkout"} type={"formBtn"} />
+              <FormButton
+                color={"text-white"}
+                buttonText={"Checkout"}
+                type={"formBtn"}
+              />
             </div>
           </form>
 
-          <form action={`http://localhost:5001/next-venture/europe-west1/api/payment/create-checkout-session?id=${fetchedId}`} method="POST" ref={hiddenStripeSubmit} />
+          <form
+            action={`http://localhost:5001/next-venture/europe-west1/api/payment/create-checkout-session?id=${fetchedId}`}
+            method="POST"
+            ref={hiddenStripeSubmit}
+          />
         </div>
       </WizardLayout>
     </div>

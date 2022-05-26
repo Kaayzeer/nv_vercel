@@ -6,12 +6,7 @@ type Props = {
   linkHref: any;
   color: string;
   buttonText: string;
-  type:
-    | "btnPrimary"
-    | "btnOutlined"
-    | "btnSecondary"
-    | "btnTertiary"
-    | "formBtn";
+  type: string;
   /* onClick: () => void */
 };
 

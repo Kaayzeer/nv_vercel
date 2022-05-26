@@ -10,6 +10,7 @@ type Props = {
 };
 
 export default function Section({ bgColor, h1, p, page }: Props) {
+  //------- make component reusable ---------------
   const flexStyle =
     page === "home" && bgColor === "bg-section-blue"
       ? "flex-center + -mt-40 md:-mt-0"
@@ -60,8 +61,6 @@ export default function Section({ bgColor, h1, p, page }: Props) {
       ? "text-white"
       : null;
 
-  /* const lineHeight = page === "about" ? "leading-9" : null; */
-
   const viewButton =
     bgColor === "bg-section-yellow" ? (
       <Button
@@ -78,6 +77,8 @@ export default function Section({ bgColor, h1, p, page }: Props) {
         type="btnTertiary"
       />
     ) : null;
+
+  /* -------------------- */
   return (
     <div className={`w-full max-h-699 ${bgColor}`}>
       <div className="customContainer ">

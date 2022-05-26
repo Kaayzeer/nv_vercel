@@ -7,6 +7,8 @@ type Props = {
 };
 /* + -mb-20 +  md:-mb-0 pb-8 */
 export default function Banner({ page }: Props) {
+  /* ----------make component reusable---------- */
+
   const layoutStyle =
     page === "home"
       ? "bg-banner-background + bg-center mb-20 sm:mb-10 md:mb-0 "
@@ -15,7 +17,7 @@ export default function Banner({ page }: Props) {
       : null;
 
   const title =
-    (page === "home" && "slagkraftig rubrik") ||
+    (page === "home" && "GET THAT DOMAIN") ||
     (page === "about" &&
       "THE DOMAIN AFTERMARKET AGENCY WITH TRANSPARENT, COST-EFFECTIVE PROCESS.");
 
@@ -32,6 +34,8 @@ export default function Banner({ page }: Props) {
       : page === "home"
       ? "text-left leading-7 md:text-center md:leading-2xLoose"
       : null;
+
+  /* ----------------------------- */
   return (
     <>
       <div className={`w-full ${layoutStyle} bg-cover bg-no-repeat `}>
@@ -41,14 +45,14 @@ export default function Banner({ page }: Props) {
             {page === "home" && (
               <>
                 <p className="section-paragraph-italic">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Hire an experienced acquisition agent and find out if the
+                  domain name you need can be yours.
                 </p>
 
                 <Button
                   linkHref="/about"
                   color="text-white"
-                  buttonText="read more"
+                  buttonText="Let’s go"
                   type="btnPrimary"
                 />
               </>

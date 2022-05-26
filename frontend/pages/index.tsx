@@ -13,7 +13,7 @@ const HomePage = () => {
       <Section
         bgColor="bg-section-blue"
         h1="services"
-        p="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+        p="Buy taken domains. Find a brand name. Sell domain assets."
         page="home"
       />
       <div className="aspect-[1090/100] bg-center  bg-cover bg-no-repeat bg-[url('/icons/bgbluecloud.svg')]"></div>
@@ -23,7 +23,7 @@ const HomePage = () => {
       <Section
         bgColor="bg-section-yellow"
         h1="get to know us"
-        p="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+        p="We are experienced domain name agents and help clients all over the world to navigate and utilize the domain aftermarket."
         page="home"
       />
       <Testimonials bgColor="bg-white" />

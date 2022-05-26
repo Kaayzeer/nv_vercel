@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 import { useWizard } from "use-wizard";
 
 import WizardSteps from "../../components/Wizard/WizardSteps";
@@ -6,7 +6,6 @@ import formReducer from "../../components/Wizard/formReducer";
 import FindFormStep1 from "../../components/Form/FindFormStep1";
 import FindFormStep2 from "../../components/Form/FindFormStep2";
 import FindFormStep3 from "../../components/Form/FindFormStep3";
-import { useEffect } from "react";
 
 export interface ISellProps {}
 
@@ -19,14 +18,12 @@ export default function Sell(props: ISellProps) {
     "payment",
   ]);
 
-
-
   // This is only used to store user inputs
   const [form, dispatchForm] = useReducer(formReducer, {});
 
   useEffect(() => {
     console.log(form);
-  }, [form])
+  }, [form]);
   return (
     <>
       <WizardSteps {...{ step, wizard, form, dispatchForm }} />
