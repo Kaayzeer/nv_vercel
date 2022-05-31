@@ -21,9 +21,9 @@ export default function Sell(props: ISellProps) {
   // This is only used to store user inputs
   const [form, dispatchForm] = useReducer(formReducer, {});
 
-  useEffect(() => {
+  /*   useEffect(() => {
     console.log(form);
-  }, [form]);
+  }, [form]); */
   return (
     <>
       <WizardSteps {...{ step, wizard, form, dispatchForm }} />

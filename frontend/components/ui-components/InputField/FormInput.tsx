@@ -6,6 +6,7 @@ type Props = {
   placeholder: string;
   inputType: string;
   register: any;
+  type: "keywords" | "names_disliked" | "phone" | "email" | "company";
 };
 
 export default function FormInput({
@@ -14,19 +15,26 @@ export default function FormInput({
   placeholder,
   register,
   inputType,
+  type,
 }: Props) {
   const registerType =
-    inputType === "number"
+    type === "keywords"
+      ? "keywords"
+      : type === "names_disliked"
+      ? "names_disliked"
+      : type === "phone"
       ? "phone"
-      : inputType === "email"
+      : type === "email"
       ? "email"
-      : inputType === "text"
+      : type === "company"
       ? "company"
-      : null;
+      : type === "password"
+      ? "password"
+      : undefined;
 
   return (
     <div className="space-y-3 ">
-      <label className="block li-title capitalize" htmlFor="firstname">
+      <label className="block li-title capitalize" htmlFor={registerType}>
         {title}
       </label>
       <p className="section-sub-paragraph text-gray-600 capitalize">{p}</p>
@@ -35,6 +43,9 @@ export default function FormInput({
         {...register(registerType, {
           required: true,
           maxLength: 20,
+          pattern:
+            (registerType === "phone" && /^\d{10}$/) ||
+            (registerType === "password" && /^[a-zA-Z0-9]{3,30}$/),
         })}
         placeholder={placeholder}
         autoComplete="given-name"

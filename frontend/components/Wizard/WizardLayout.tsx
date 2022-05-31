@@ -2,7 +2,13 @@ import WizardNavbar from "./WizardNavbar";
 import { IWizard } from "use-wizard/lib/cjs/useWizard/types/IWizard";
 import { TStep } from "use-wizard/lib/cjs/useWizard/types/TStep";
 
-export default (props: { step: TStep; wizard: IWizard; children: any }) => {
+export default (props: {
+  step: TStep;
+  wizard: IWizard;
+  children: any;
+  dispatchForm: Function;
+  form: any;
+}) => {
   return (
     <>
       <WizardNavbar {...props} />

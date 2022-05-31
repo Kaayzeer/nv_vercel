@@ -4,26 +4,29 @@ type Props = {
   title: string;
   p: string;
   register: any;
+  type: "about_business" | "additional_details";
 };
 
-export default function TextAreaFS1({ title, p, register }: Props) {
+export default function TextArea({ title, p, register, type }: Props) {
   const registerFilter =
-    title === "What is your Business about?"
+    type === "about_business"
       ? "business_desc"
-      : "Additional details";
+      : type === "additional_details"
+      ? "additional_details"
+      : undefined;
 
   return (
     <div className="space-y-3">
-      <label htmlFor={registerFilter} className="block li-title capitalize">
+      <label htmlFor={type} className="block li-title capitalize">
         {title}
       </label>
       <p className="section-sub-paragraph text-gray-600 capitalize">{p}</p>
       <div className="mt-1">
         <textarea
-          id={registerFilter}
-          name={registerFilter}
+          id={type}
+          name={type}
           {...register(registerFilter, {
-            required: false,
+            required: true,
             maxLength: 400,
           })}
           rows={3}

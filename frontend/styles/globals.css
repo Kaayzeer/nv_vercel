@@ -23,9 +23,10 @@ ol {
   list-style: decimal-leading-zero;
 }
 
-input[type="radio"] {
+/* input[type="checkbox"] {
   border: 3px solid #d8d8d8;
-}
+  border-radius: 50%;
+} */
 
 /* Wizard styling */
 
@@ -52,6 +53,7 @@ input[type="radio"] {
   align-items: center;
   max-width: 1140px;
   width: 100%;
+  padding: 1.3rem 0rem;
   margin: 0 auto;
   border-top-left-radius: 9px;
   border-bottom-left-radius: 9px;
@@ -72,8 +74,10 @@ input[type="radio"] {
   cursor: pointer;
   z-index: 1;
   font-size: 0.8rem;
+
   background: rgb(98, 0, 255);
-  padding: 0.5rem 3rem;
+  color: white;
+  padding: 0.6rem 3rem;
 }
 
 .wizard-layout__navbar__button:active {

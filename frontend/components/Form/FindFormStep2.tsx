@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 //react hook form
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -13,7 +13,7 @@ import { auth } from "../../firebase/firebaseSetup";
 //components
 import BackButton from "../ui-components/Button/BackButton";
 import Button from "../ui-components/Button/Button";
-import DropdownFS2 from "../ui-components/Dropdown/DropDownFS2";
+import Dropdown from "../ui-components/Dropdown/DropDown";
 import FormTitle from "../ui-components/FormTitle/FormTitle";
 import FormInput from "../ui-components/InputField/FormInput";
 import RadioButton from "../ui-components/RadioButton/RadioButton";
@@ -23,31 +23,52 @@ import { IWizard } from "use-wizard/lib/cjs/useWizard/types/IWizard";
 import { TStep } from "use-wizard/lib/cjs/useWizard/types/TStep";
 import WizardLayout from "../Wizard/WizardLayout";
 import FormButton from "../ui-components/Button/FormButton";
-
-type Props = {
-  type: "offer" | "buy" | "sell";
-};
+import DropDownRadioLTR from "../ui-components/Dropdown/DropDownRadioLTR";
+import DropDownRadioWords from "../ui-components/Dropdown/DropDownRadioWords";
 
 interface IFormInput {
-  firstname: string;
-  surname: string;
-  phone: number;
-  email: string;
-  password: string;
+  names_disliked?: string[];
+  keywords: string[];
+  maximum_letters: string | number | boolean;
+  maximum_words: string | number | boolean;
+  no_letters: boolean;
+  no_words: boolean;
 }
-export default function FindFormStep2(
-  props: {
-    step: TStep;
-    wizard: IWizard;
-    form: any;
-    dispatchForm: Function;
-  },
-  { type }: Props
-) {
-  const { user } = useAuthContext();
-  const { register, handleSubmit } = useForm<IFormInput>();
+export default function FindFormStep2(props: {
+  step: TStep;
+  wizard: IWizard;
+  form: any;
+  dispatchForm: Function;
+}) {
+  const { register, handleSubmit, watch, unregister } = useForm<IFormInput>({
+    defaultValues: {
+      names_disliked: [],
+      keywords: [],
+      maximum_letters: 0,
+      maximum_words: 0,
+      no_letters: false,
+      no_words: false,
+    },
+  });
 
-  const handleFormButton = (saved_data: any) => {
+  const wordCheckbox = watch("no_words");
+
+  console.log("no_words", wordCheckbox);
+
+  const letterCheckbox = watch("no_letters");
+  console.log("no_letters", letterCheckbox);
+
+  useEffect(() => {
+    if (wordCheckbox) {
+      unregister("maximum_words");
+    }
+    if (letterCheckbox) {
+      unregister("maximum_letters");
+    }
+  }, [letterCheckbox, wordCheckbox, unregister]);
+
+  const handleFormButton: SubmitHandler<IFormInput> = (saved_data: any) => {
+    console.log(saved_data);
     props.dispatchForm({
       type: "UPDATE_KEY_VALUES",
       payload: saved_data,
@@ -85,6 +106,7 @@ export default function FindFormStep2(
               placeholder={"write what you like..."}
               register={register}
               inputType="text"
+              type="keywords"
             />
 
             <FormInput
@@ -93,38 +115,17 @@ export default function FindFormStep2(
               placeholder={"write what you don't like..."}
               register={register}
               inputType="text"
+              type="names_disliked"
             />
 
-            <div className="relative">
-              <DropdownFS2
-                title="maximum number of letters"
-                p="Do not exceed this character count."
-                register
-              />
-              <div className="mt-6 md:mt-0 md:absolute md:bottom-2 md:right-20">
-                <RadioButton
-                  id={"no-letter-preference"}
-                  htmlFor={"no-letter-preference"}
-                  name={"no-preference-of-letter"}
-                  title={"I dont have a preference"}
-                />
-              </div>
-            </div>
-            <div className="relative">
-              <DropdownFS2
-                title="maximum number of words"
-                p="Do not exceed this amount of terms."
-                register
-              />
-              <div className="mt-6 md:mt-0 md:absolute md:bottom-2 md:right-20">
-                <RadioButton
-                  id={"no-word-preference"}
-                  htmlFor={"no-word-preference"}
-                  name={"no-preference-of-word"}
-                  title={"I dont have a preference"}
-                />
-              </div>
-            </div>
+            <DropDownRadioLTR
+              register={register}
+              letterCheckbox={letterCheckbox}
+            />
+            <DropDownRadioWords
+              register={register}
+              wordCheckbox={wordCheckbox}
+            />
             <div className="px-4 py-40 mb-10 text-center sm:px-6 flex flex-col items-center">
               <BackButton title={"Go back"} onClick={handleBackButton} />
               <FormButton

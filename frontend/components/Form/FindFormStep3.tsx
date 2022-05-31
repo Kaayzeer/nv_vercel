@@ -33,7 +33,7 @@ interface IFormInput {
   surname: string;
   phone: number;
   email: string;
-  password: string;
+  company: string;
 }
 
 export default function FindFormStep3(
@@ -58,6 +58,7 @@ export default function FindFormStep3(
   const handleFormButton: SubmitHandler<IFormInput> = async (
     form_data: any
   ) => {
+    console.log(form_data);
     let fetchedId = -1;
     const headers: any = {
       Accept: "application/json",
@@ -99,10 +100,9 @@ export default function FindFormStep3(
           }
         })
         .catch((err) => console.log(err));
-
-      /* login("niko@test.com", "123456"); */
     }
 
+    // Save form info
     props.dispatchForm({
       type: "UPDATE_KEY_VALUES",
       payload: { ...form_data, fetchedId },
@@ -136,9 +136,9 @@ export default function FindFormStep3(
             className="space-y-10"
           >
             <NameInput
-              register={register}
               title={"Name*"}
               p={"Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
+              register={register}
             />
 
             <FormInput
@@ -147,6 +147,7 @@ export default function FindFormStep3(
               placeholder={"ifyllt redan"}
               inputType={"email"}
               register={register}
+              type="email"
             />
 
             <FormInput
@@ -155,6 +156,7 @@ export default function FindFormStep3(
               placeholder={"ifyllt redan"}
               inputType={"number"}
               register={register}
+              type="phone"
             />
 
             <FormInput
@@ -163,6 +165,7 @@ export default function FindFormStep3(
               placeholder={"Company name"}
               inputType={"text"}
               register={register}
+              type="company"
             />
             <div className="pt-6 ">
               <RadioButton
@@ -170,6 +173,7 @@ export default function FindFormStep3(
                 htmlFor={"check-policy"}
                 name={"check-policy"}
                 title={"Här skriver vi något om att godkänna vilkor och POLICY"}
+                register={register}
               />
             </div>
             <div className="px-4 py-40 mb-10 text-center sm:px-6 flex flex-col items-center">

@@ -23,7 +23,7 @@ export default (props: {
       return <FindFormStep3 {...props} />;
 
     case "payment":
-      return <StripeCheckout />;
+      return <StripeCheckout fetchedId={""} />;
 
     default:
       return <>Step does not exist</>;

@@ -16,8 +16,8 @@ import { auth } from "../../firebase/firebaseSetup";
 
 //components
 import Button from "../ui-components/Button/Button";
-import DropDownFS1 from "../ui-components/Dropdown/DropdownFS1";
-import TextAreaFS1 from "../ui-components/TextArea/TextAreaFS1";
+import DropDown from "../ui-components/Dropdown/DropDown";
+import TextArea from "../ui-components/TextArea/TextArea";
 import FormTitle from "../ui-components/FormTitle/FormTitle";
 import BackButton from "../ui-components/Button/BackButton";
 
@@ -88,28 +88,32 @@ export default function Form(
                 onSubmit={handleSubmit(handleFormButton)}
                 className="space-y-10"
               >
-                <TextAreaFS1
+                <TextArea
                   title="What is your Business about?"
                   p="Let us know what you do. "
                   register={register}
+                  type="about_business"
                 />
 
-                <DropDownFS1
+                <DropDown
                   title="Select your industry"
                   p="Choose your primary vertical."
                   register={register}
+                  type="industry"
                 />
 
-                <DropDownFS1
+                <DropDown
                   title="Primary regions for the brand or business "
                   p="Where are you present?"
                   register={register}
+                  type="region"
                 />
 
-                <TextAreaFS1
+                <TextArea
                   title="Additional details"
                   p="Let us know what you think."
                   register={register}
+                  type="additional_details"
                 />
 
                 <div className="px-4 py-40 mb-10 text-center sm:px-6 flex flex-col items-center">
