@@ -122,7 +122,6 @@ export default function FindFormStep3(
     <div className="w-full pt-40 ">
       <WizardLayout {...props}>
         <div className="customContainer px-4 py-5 md:px-0 md:py-0  space-y-10">
-          <div className="wizard-layout__question">customer</div>
           <FormTitle
             step={"step 3"}
             title={"Who are you?"}

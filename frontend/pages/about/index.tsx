@@ -9,7 +9,10 @@ export interface IAboutProps {}
 export default function About(props: IAboutProps) {
   return (
     <div>
-      <Banner page="about" />
+      <Banner
+        page="about"
+        title="THE DOMAIN AFTERMARKET AGENCY WITH TRANSPARENT, COST-EFFECTIVE PROCESS."
+      />
       <AboutDescription />
       <AboutQuestions />
       <Section

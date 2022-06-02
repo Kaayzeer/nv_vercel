@@ -87,7 +87,6 @@ export default function FindFormStep2(props: {
     <div className="w-full pt-40 ">
       <WizardLayout {...props}>
         <div className="customContainer px-4 py-5 md:px-0 md:py-0  space-y-10">
-          <div className="wizard-layout__question">name preference</div>
           <FormTitle
             step={"step 2"}
             title={"What kind of name do you want?"}

@@ -9,7 +9,13 @@ import Section from "../components/ui-components/Section/Section";
 const HomePage = () => {
   return (
     <>
-      <Banner page="home" />
+      <Banner
+        page="home"
+        title="get that domain"
+        subTitle={
+          "Hire an experienced acquisition agent and find out if the domain name you need can be yours."
+        }
+      />
       <Section
         bgColor="bg-section-blue"
         h1="services"

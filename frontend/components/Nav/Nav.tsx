@@ -6,6 +6,7 @@ import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import { useRouter } from "next/router";
 
 import Image from "next/image";
+import Button from "../ui-components/Button/Button";
 
 const navigation = [
   { name: "Home", href: "/", current: true },
@@ -105,9 +106,12 @@ export default function Nav(props: IHeaderProps) {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <button type="button" className="loginBtn">
-                  Login
-                </button>
+                <Button
+                  color={"text-black"}
+                  buttonText={"LOGIN"}
+                  type={"loginBtn"}
+                  linkHref={"/login"}
+                />
 
                 {/* Profile dropdown */}
                 <Menu as="div" className="ml-3 relative">

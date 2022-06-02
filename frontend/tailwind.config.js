@@ -9,6 +9,7 @@ module.exports = {
         "hero-pattern": "url('../public/images/hikingMountains.svg')",
         "banner-background": "url('../public/images/homeBannerBg.png')",
         "about-background": "url('../public/images/aboutBG.png')",
+        "login-background": "url('../public/images/LoginPage.png')",
         "footer-background": "url('../public/images/bgFooter.svg')",
         "footer-background-sm": "url('../public/images/bgFooterSm.svg')",
         "section-blue-about":
@@ -27,6 +28,8 @@ module.exports = {
         "form-btn-blueOne": "#3E42AE",
         "form-btn-blueTwo": "#181B64",
         "radio-border-color": "#D8D8D8",
+        "sign-in-btn": "#FFD43D",
+        "sign-in-input-bg": "#F4F4F4",
       },
       lineHeight: {
         "extra-loose": "54px",
@@ -35,6 +38,7 @@ module.exports = {
       boxShadow: {
         "3xl": "-7px 6px 52px rgba(0, 0, 0, 0.08)",
         btnPrimary: "0px 4px 28px rgba(0, 0, 0, 0.1);",
+        signInCard: "4px 5px 56px -2px rgba(0, 0, 0, 0.08);",
       },
       height: {
         500: "34rem",
