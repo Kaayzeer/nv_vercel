@@ -5,7 +5,7 @@ type Props = {};
 
 export default function Description({}: Props) {
   return (
-    <div className="w-full max-h-699 bg-section-blue-about">
+    <div className="w-full max-h-699 bg-section-blue-about -mt-1">
       <div className="customContainer ">
         <div className="grid-col1 md:grid-col2 ">
           <div className=" md:flex-start  md:w-2/3 max-h-699 px-8 py-8">

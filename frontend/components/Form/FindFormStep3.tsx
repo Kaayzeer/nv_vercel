@@ -48,9 +48,12 @@ export default function FindFormStep3(
   const { login } = useLogin();
   const { user } = useAuthContext();
 
-  const { register, handleSubmit } = useForm<IFormInput>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormInput>();
 
-  const [error, setError] = useState<String>("");
   const [fetchedId, setFetchedId] = useState<string>("");
 
   const hiddenStripeSubmit = useRef(null);
@@ -58,7 +61,11 @@ export default function FindFormStep3(
   const handleFormButton: SubmitHandler<IFormInput> = async (
     form_data: any
   ) => {
+    console.log("hej");
     console.log(form_data);
+
+    console.log(errors);
+
     let fetchedId = -1;
     const headers: any = {
       Accept: "application/json",
@@ -110,7 +117,7 @@ export default function FindFormStep3(
 
     // Fire submit on hidden form
     // @ts-ignore
-    hiddenStripeSubmit.current.submit();
+    /*  hiddenStripeSubmit.current.submit(); */
   };
 
   const handleBackButton = () => {
@@ -140,6 +147,15 @@ export default function FindFormStep3(
               register={register}
             />
 
+            <div className="flex text-left space-x-6">
+              {errors.firstname && (
+                <p className="error ">{errors.firstname.message}</p>
+              )}
+              {errors.surname && (
+                <p className="error ">{errors.surname.message}</p>
+              )}
+            </div>
+
             <FormInput
               title={"Email*"}
               p={"This is your registered email."}
@@ -148,7 +164,7 @@ export default function FindFormStep3(
               register={register}
               type="email"
             />
-
+            {errors.email && <p className="error">{errors.email.message}</p>}
             <FormInput
               title={"Phone*"}
               p={"This is your registered phone number."}
@@ -157,7 +173,7 @@ export default function FindFormStep3(
               register={register}
               type="phone"
             />
-
+            {errors.phone && <p className="error">{errors.phone.message}</p>}
             <FormInput
               title={"Organisation"}
               p={"Do you represent a company? Yes No. "}
@@ -166,6 +182,9 @@ export default function FindFormStep3(
               register={register}
               type="company"
             />
+            {errors.company && (
+              <p className="error">{errors.company.message}</p>
+            )}
             <div className="pt-6 ">
               <RadioButton
                 id={"check-policy"}
@@ -177,12 +196,7 @@ export default function FindFormStep3(
             </div>
             <div className="px-4 py-40 mb-10 text-center sm:px-6 flex flex-col items-center">
               <BackButton title={"Go back"} onClick={handleBackButton} />
-              {/* <FormButton
-                color={"text-white"}
-                buttonText={"continue"}
-                type={"formBtn"}
-                onClick={handleFormButton}
-              /> */}
+
               <FormButton
                 color={"text-white"}
                 buttonText={"Checkout"}
@@ -191,11 +205,11 @@ export default function FindFormStep3(
             </div>
           </form>
 
-          <form
+          {/*   <form
             action={`http://localhost:5001/next-venture/europe-west1/api/payment/create-checkout-session?id=${fetchedId}`}
             method="POST"
             ref={hiddenStripeSubmit}
-          />
+          /> */}
         </div>
       </WizardLayout>
     </div>

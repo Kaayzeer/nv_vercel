@@ -32,6 +32,21 @@ export default function FormInput({
       ? "password"
       : undefined;
 
+  const autoComplete =
+    type === "keywords"
+      ? "on"
+      : type === "names_disliked"
+      ? "on"
+      : type === "phone"
+      ? "tel-national"
+      : type === "email"
+      ? "email"
+      : type === "company"
+      ? "organization"
+      : type === "password"
+      ? "current-password"
+      : "on";
+
   return (
     <div className="space-y-3 ">
       <label className="block li-title capitalize" htmlFor={registerType}>
@@ -41,14 +56,14 @@ export default function FormInput({
       <input
         type={inputType}
         {...register(registerType, {
-          required: true,
+          required: "This field is required",
           maxLength: 20,
           pattern:
             (registerType === "phone" && /^\d{10}$/) ||
             (registerType === "password" && /^[a-zA-Z0-9]{3,30}$/),
         })}
         placeholder={placeholder}
-        autoComplete="given-name"
+        autoComplete={autoComplete}
         className="block w-full border-solid border border-black py-3 px-4 placeholder-gray-500  rounded-lg focus:outline-none focus:ring-2"
       />
     </div>

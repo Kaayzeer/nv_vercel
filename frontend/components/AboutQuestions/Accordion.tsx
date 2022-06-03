@@ -11,49 +11,41 @@ import {
 // Demo styles, see 'Styles' section below for some notes on use.
 import "react-accessible-accordion/dist/fancy-example.css";
 
+const questionsList = [
+  {
+    question: "Hur gör man för att... ?",
+    answer:
+      "Exercitation in fugiat est ut ad ea cupidatat ut incupidata toccaecat ut occaecat consequat est minim minim esse tempor laborum consequat esse adipisicing eu reprehenderit enim.",
+  },
+
+  {
+    question: "Vad betyder det när man...?",
+    answer:
+      "Exercitation in fugiat est ut ad ea cupidatat ut incupidata toccaecat ut occaecat consequat est minim minim esse tempor laborum consequat esse adipisicing eu reprehenderit enim.",
+  },
+
+  {
+    question: "Varför har jag blivit....?",
+    answer:
+      "Exercitation in fugiat est ut ad ea cupidatat ut incupidata toccaecat ut occaecat consequat est minim minim esse tempor laborum consequat esse adipisicing eu reprehenderit enim.",
+  },
+];
+
 type Props = {};
 
 export default function Dropdown({}: Props) {
   return (
     <Accordion allowZeroExpanded>
-      <AccordionItem>
-        <AccordionItemHeading>
-          <AccordionItemButton>Hur gör man för att....?</AccordionItemButton>
-        </AccordionItemHeading>
-        <AccordionItemPanel>
-          <p>
-            Exercitation in fugiat est ut ad ea cupidatat ut in cupidatat
-            occaecat ut occaecat consequat est minim minim esse tempor laborum
-            consequat esse adipisicing eu reprehenderit enim.
-          </p>
-        </AccordionItemPanel>
-      </AccordionItem>
-
-      <AccordionItem>
-        <AccordionItemHeading>
-          <AccordionItemButton>Vad betyder det när man...?</AccordionItemButton>
-        </AccordionItemHeading>
-        <AccordionItemPanel>
-          <p>
-            In ad velit in ex nostrud dolore cupidatat consectetur ea in ut
-            nostrud velit in irure cillum tempor laboris sed adipisicing eu esse
-            duis nulla non.
-          </p>
-        </AccordionItemPanel>
-      </AccordionItem>
-
-      <AccordionItem>
-        <AccordionItemHeading>
-          <AccordionItemButton>Varför har jag blivit....?</AccordionItemButton>
-        </AccordionItemHeading>
-        <AccordionItemPanel>
-          <p>
-            Exercitation in fugiat est ut ad ea cupidatat ut in cupidatat
-            occaecat ut occaecat consequat est minim minim esse tempor laborum
-            consequat esse adipisicing eu reprehenderit enim.
-          </p>
-        </AccordionItemPanel>
-      </AccordionItem>
+      {questionsList.map((list, idx) => (
+        <AccordionItem key={idx}>
+          <AccordionItemHeading>
+            <AccordionItemButton>{list.question}</AccordionItemButton>
+          </AccordionItemHeading>
+          <AccordionItemPanel>
+            <p>{list.answer}</p>
+          </AccordionItemPanel>
+        </AccordionItem>
+      ))}
     </Accordion>
   );
 }

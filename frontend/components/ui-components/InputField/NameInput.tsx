@@ -17,7 +17,7 @@ export default function FormInputHalf({ title, p, register }: Props) {
         <input
           type="text"
           {...register("firstname", {
-            required: true,
+            required: "This field is required",
             maxLength: 20,
           })}
           autoComplete="given-name"
@@ -29,10 +29,10 @@ export default function FormInputHalf({ title, p, register }: Props) {
         <input
           type="text"
           {...register("surname", {
-            required: true,
+            required: "This field is required",
             maxLength: 20,
           })}
-          autoComplete="given-name"
+          autoComplete="family-name"
           placeholder="Surname"
           className="block w-full border-solid border border-black py-3 px-4 placeholder-gray-500  rounded-lg focus:outline-none focus:ring-2"
         />

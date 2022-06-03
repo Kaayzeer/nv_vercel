@@ -40,7 +40,13 @@ export default function FindFormStep2(props: {
   form: any;
   dispatchForm: Function;
 }) {
-  const { register, handleSubmit, watch, unregister } = useForm<IFormInput>({
+  const {
+    register,
+    handleSubmit,
+    watch,
+    unregister,
+    formState: { errors },
+  } = useForm<IFormInput>({
     defaultValues: {
       names_disliked: [],
       keywords: [],
@@ -53,10 +59,12 @@ export default function FindFormStep2(props: {
 
   const wordCheckbox = watch("no_words");
 
-  console.log("no_words", wordCheckbox);
-
   const letterCheckbox = watch("no_letters");
-  console.log("no_letters", letterCheckbox);
+
+  /*   console.log("no_words", wordCheckbox);
+  console.log("no_letters", letterCheckbox); */
+
+  console.log(errors);
 
   useEffect(() => {
     if (wordCheckbox) {
@@ -107,7 +115,9 @@ export default function FindFormStep2(props: {
               inputType="text"
               type="keywords"
             />
-
+            {errors.keywords && (
+              <p className="error">{(errors.keywords as any).message}</p>
+            )}
             <FormInput
               title={"What we don't like"}
               p={"Try to avoid using these terms or ideas in the name."}
@@ -116,7 +126,9 @@ export default function FindFormStep2(props: {
               inputType="text"
               type="names_disliked"
             />
-
+            {errors.names_disliked && (
+              <p className="error">{(errors.names_disliked as any).message}</p>
+            )}
             <DropDownRadioLTR
               register={register}
               letterCheckbox={letterCheckbox}

@@ -146,6 +146,10 @@ ol {
     @apply bg-sign-in-btn rounded-xl py-5 px-16 md:px-20 capitalize text-sm md:text-lg font-bold shadow-btnPrimary cursor-pointer tracking-wider mt-4 text-center;
   }
 
+  .error {
+    @apply text-red-600 p-4 w-full  rounded-lg;
+  }
+
   /* html tags */
   .section-title {
     @apply font-bold text-3xl 2xl:text-5xl uppercase;

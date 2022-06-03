@@ -31,8 +31,6 @@ export default function Form({ isLogin, type, onFetched }: Props) {
   const [error, setError] = useState<String>("");
 
   const onSubmit: SubmitHandler<IFormInput> = async (data: any) => {
-    let fetched_id: number = -1;
-
     const headers: any = {
       Accept: "application/json",
       "Content-Type": "application/json",

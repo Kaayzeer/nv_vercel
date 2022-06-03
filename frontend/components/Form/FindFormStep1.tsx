@@ -47,8 +47,11 @@ export default function Form(
   },
   { type }: Props
 ) {
-  const { register, handleSubmit } = useForm<IFormInput>();
-  const [error, setError] = useState<String>("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormInput>();
 
   const handleFormButton: SubmitHandler<IFormInput> = (form_data: any) => {
     console.log(form_data);
@@ -68,6 +71,8 @@ export default function Form(
     /* props.wizard.previousStep(); */
     window.scrollTo(0, 0);
   };
+
+  console.log(errors);
 
   return (
     <>
@@ -93,7 +98,9 @@ export default function Form(
                   register={register}
                   type="about_business"
                 />
-
+                {errors.business_desc && (
+                  <p className="error">{errors.business_desc.message}</p>
+                )}
                 <DropDown
                   title="Select your industry"
                   p="Choose your primary vertical."
@@ -114,7 +121,9 @@ export default function Form(
                   register={register}
                   type="additional_details"
                 />
-
+                {errors.additional_details && (
+                  <p className="error">{errors.additional_details.message}</p>
+                )}
                 <div className="px-4 py-40 mb-10 text-center sm:px-6 flex flex-col items-center">
                   <BackButton title={"Go back"} onClick={handleBackButton} />
                   <FormButton

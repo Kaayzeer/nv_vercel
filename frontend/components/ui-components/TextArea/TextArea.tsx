@@ -26,13 +26,13 @@ export default function TextArea({ title, p, register, type }: Props) {
           id={type}
           name={type}
           {...register(registerFilter, {
-            required: true,
+            required: "This is field is required",
             maxLength: 400,
           })}
           rows={3}
           className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 p-8 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
           placeholder="Describe your business"
-          defaultValue={""}
+          autoComplete="on"
         />
       </div>
     </div>

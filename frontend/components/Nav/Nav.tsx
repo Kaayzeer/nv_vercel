@@ -8,15 +8,6 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import Button from "../ui-components/Button/Button";
 
-const navigation = [
-  { name: "Home", href: "/", current: true },
-  { name: "Buy", href: "/buy", current: false },
-  { name: "Sell", href: "/sell", current: false },
-  { name: "Find", href: "/find", current: false },
-  { name: "Testimonials", href: "/testimonials", current: false },
-  { name: "About", href: "/about", current: false },
-];
-
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
@@ -24,11 +15,21 @@ function classNames(...classes: any) {
 export interface IHeaderProps {}
 
 export default function Nav(props: IHeaderProps) {
-  const router = useRouter();
-
   const [navBackground, setNavBackground] = useState(false);
   const navRef = useRef<boolean | undefined>();
   navRef.current = navBackground;
+
+  const router = useRouter();
+  console.log(router.query.slug);
+
+  const navigation = [
+    { name: "Home", href: "/", current: true },
+    { name: "Buy", href: "/buy", current: false },
+    { name: "Sell", href: "/sell", current: false },
+    { name: "Find", href: "/find", current: false },
+    { name: "Testimonials", href: "/testimonials", current: false },
+    { name: "About", href: "/about", current: false },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
