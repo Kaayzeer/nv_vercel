@@ -10,6 +10,9 @@ module.exports = {
         "banner-background": "url('../public/images/homeBannerBg.png')",
         "about-background": "url('../public/images/aboutBG.png')",
         "login-background": "url('../public/images/LoginPage.png')",
+        "find-background": "url('../public/images/findBackground.svg')",
+        "sell-background": "url('../public/images/sellBackground.svg')",
+        "buy-background": "url('../public/images/buyBackground.svg')",
         "footer-background": "url('../public/images/bgFooter.svg')",
         "footer-background-sm": "url('../public/images/bgFooterSm.svg')",
         "section-blue-about":
@@ -23,6 +26,8 @@ module.exports = {
         "loyal-blue": "#41448F",
         "section-blue": "#181B64",
         "section-yellow": "#FFD986",
+        "section-yellow2": "#FFE586",
+        "section-green": "#0E321C",
         "testimonial-grey": " #5A5A5A",
         "nav-background": "rgba(255, 255, 255, 0.9)",
         "form-btn-blueOne": "#3E42AE",
@@ -30,6 +35,7 @@ module.exports = {
         "radio-border-color": "#D8D8D8",
         "sign-in-btn": "#FFD43D",
         "sign-in-input-bg": "#F4F4F4",
+        "pages-background": "#FAFAFA",
       },
       lineHeight: {
         "extra-loose": "54px",
@@ -43,10 +49,14 @@ module.exports = {
       height: {
         500: "34rem",
       },
+
       maxHeight: {
         699: "699px",
         516: "516px",
         1531: "1531px",
+      },
+      minHeight: {
+        699: "699px",
       },
       maxWidth: {
         266: "266px",

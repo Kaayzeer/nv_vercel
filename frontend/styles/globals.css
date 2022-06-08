@@ -23,6 +23,13 @@ ol {
   list-style: decimal-leading-zero;
 }
 
+.image {
+  object-fit: contain;
+  width: 100% !important;
+  position: relative !important;
+  height: unset !important;
+}
+
 /* Wizard styling */
 
 .section {
@@ -134,6 +141,11 @@ ol {
     flex justify-between py-5 px-10 max-w-266 w-5/6;
   }
 
+  .btnFourthiary {
+    @apply bg-gradient-to-r from-royal-blue to-loyal-blue hover:from-loyal-blue hover:to-royal-blue  rounded-xl  uppercase text-sm font-bold shadow-btnPrimary cursor-pointer tracking-wider mt-4
+    flex justify-between py-5 px-10 max-w-266 w-5/6;
+  }
+
   .loginBtn {
     @apply bg-gradient-to-r from-royal-yellow to-loyal-yellow uppercase text-xs font-bold cursor-pointer tracking-wider rounded-xl py-2 px-7 hover:text-white  focus:ring-white;
   }
@@ -146,13 +158,17 @@ ol {
     @apply bg-sign-in-btn rounded-xl py-5 px-16 md:px-20 capitalize text-sm md:text-lg font-bold shadow-btnPrimary cursor-pointer tracking-wider mt-4 text-center;
   }
 
+  .pagesBtn {
+    @apply bg-gradient-to-r from-royal-yellow to-loyal-yellow  rounded-xl py-5 px-16 md:px-20 uppercase text-sm md:text-lg font-bold shadow-btnPrimary cursor-pointer tracking-wider mt-4 text-center;
+  }
+
   .error {
     @apply text-red-600 p-4 w-full  rounded-lg;
   }
 
   /* html tags */
   .section-title {
-    @apply font-bold text-3xl 2xl:text-5xl uppercase;
+    @apply font-bold text-3xl md:text-5xl uppercase;
   }
 
   .section-title2 {
@@ -165,6 +181,10 @@ ol {
 
   .section-sub-title2 {
     @apply font-bold text-sm uppercase;
+  }
+
+  .BSFsection-sub-title {
+    @apply font-bold text-2xl capitalize;
   }
 
   .section-paragraph-normal {
@@ -187,6 +207,10 @@ ol {
     @apply font-normal text-sm;
   }
 
+  .section-sub-paragraph-italic {
+    @apply font-normal text-sm italic;
+  }
+
   .section-sub-paragraphMediumBold {
     @apply font-medium text-sm;
   }
@@ -198,6 +222,10 @@ ol {
   .li-paragraph {
     @apply font-bold text-sm md:text-xl leading-7 md:leading-9 uppercase;
   }
+  .li-paragraph2 {
+    @apply font-normal text-sm md:text-lg leading-7 md:leading-9 capitalize;
+  }
+
   /* utilities */
   .customContainer {
     @apply max-w-[1140px] w-full mx-auto;

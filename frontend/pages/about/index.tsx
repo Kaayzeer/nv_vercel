@@ -1,7 +1,7 @@
 import * as React from "react";
 import AboutQuestions from "../../components/AboutQuestions/AboutQuestions";
 import Banner from "../../components/Banner/Banner";
-import AboutDescription from "../../components/Description/AboutDescription";
+import Description from "../../components/Description/Description";
 import Section from "../../components/ui-components/Section/Section";
 
 export interface IAboutProps {}
@@ -13,7 +13,11 @@ export default function About(props: IAboutProps) {
         page="about"
         title="THE DOMAIN AFTERMARKET AGENCY WITH TRANSPARENT, COST-EFFECTIVE PROCESS."
       />
-      <AboutDescription />
+      <Description
+        page="about"
+        bgColor="bg-section-blue-about"
+        textColor="text-white"
+      />
       <AboutQuestions />
       <Section
         bgColor={"bg-section-blue"}

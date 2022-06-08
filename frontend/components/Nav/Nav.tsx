@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
-import { useRouter } from "next/router";
+import Link from "next/link";
 
 import Image from "next/image";
 import Button from "../ui-components/Button/Button";
@@ -19,14 +19,11 @@ export default function Nav(props: IHeaderProps) {
   const navRef = useRef<boolean | undefined>();
   navRef.current = navBackground;
 
-  const router = useRouter();
-  console.log(router.query.slug);
-
   const navigation = [
     { name: "Home", href: "/", current: true },
-    { name: "Buy", href: "/buy", current: false },
-    { name: "Sell", href: "/sell", current: false },
-    { name: "Find", href: "/find", current: false },
+    { name: "Buy", href: "/page/buy", current: false },
+    { name: "Sell", href: "/page/sell", current: false },
+    { name: "Find", href: "/page/find", current: false },
     { name: "Testimonials", href: "/testimonials", current: false },
     { name: "About", href: "/about", current: false },
   ];
@@ -43,8 +40,6 @@ export default function Nav(props: IHeaderProps) {
       document.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  const handleClick = () => {};
 
   return (
     <Disclosure
@@ -70,13 +65,6 @@ export default function Nav(props: IHeaderProps) {
               </div>
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start ">
                 <div className="flex-shrink-0 flex items-center">
-                  {/*   <Image
-                    className="block lg:hidden h-8 w-auto"
-                    src="/../static/images/nextVentureLogo.png"
-                    alt="venture-logo"
-                    width={40}
-                    height={30}
-                  /> */}
                   <Image
                     className="hidden lg:block h-8 w-auto"
                     src="/images/nextLogo.svg"
@@ -88,25 +76,24 @@ export default function Nav(props: IHeaderProps) {
                 <div className="hidden sm:block sm:ml-auto ">
                   <div className="flex space-x-4 mr-10">
                     {navigation.map((item) => (
-                      <a
-                        key={item.name}
-                        onClick={handleClick}
-                        href={item.href}
-                        className={classNames(
-                          item.current
-                            ? " text-black-400"
-                            : "text-black-400 hover:underline decoration-blue-800",
-                          "px-3 py-2 rounded-md text-sm font-medium"
-                        )}
-                        aria-current={item.current ? "page" : undefined}
-                      >
-                        {item.name}
-                      </a>
+                      <Link key={item.name} href={item.href}>
+                        <a
+                          className={classNames(
+                            item.current
+                              ? " text-black-400"
+                              : "text-black-400 hover:underline decoration-blue-800",
+                            "px-3 py-2 rounded-md text-sm font-medium"
+                          )}
+                          aria-current={item.current ? "page" : undefined}
+                        >
+                          {item.name}
+                        </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
               </div>
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+              <div className="hidden md:flex absolute inset-y-0 right-0  items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <Button
                   color={"text-black"}
                   buttonText={"LOGIN"}
@@ -200,6 +187,12 @@ export default function Nav(props: IHeaderProps) {
                   {item.name}
                 </Disclosure.Button>
               ))}
+              <Button
+                color={"text-black"}
+                buttonText={"LOGIN"}
+                type={"loginBtn"}
+                linkHref={"/login"}
+              />
             </div>
           </Disclosure.Panel>
         </>

@@ -1,51 +1,85 @@
 import Image from "next/image";
 import React from "react";
 
-type Props = {};
+//library
+import { descriptionSteps } from "../../lib/descriptionSteps";
 
-const descriptionsteps = [
-  {
-    title: "Let us know your needs",
-    paragraph:
-      "Task us with your acquisition, naming project or sales request.",
-    image: "/icons/round-yellow-1.svg",
-  },
-  {
-    title: "Follow the process",
-    paragraph: "Get transparent weekly updates on the progress of your order. ",
-    image: "/icons/round-yellow-2.svg",
-  },
-  {
-    title: "Achieve your goals",
-    paragraph:
-      "Go about your business with a new name identity or fresh funds.. ",
-    image: "/icons/round-yellow-3.svg",
-  },
-];
+type Props = {
+  page: "about" | "find" | "buy" | "sell";
+  bgColor: string;
+  textColor: string;
+};
 
-export default function Description({}: Props) {
+export default function Description({ page, bgColor, textColor }: Props) {
   return (
-    <div className="customContainer mt-16">
-      <div className="flex-start w-full ">
-        <h2 className="section-title mx-auto my-20 lg:mx-0">how it works</h2>
-
-        <div className="flex-center hidden lg:flex">
-          <Image src="/images/123.svg" height={100} width={850} />
-        </div>
-        <div className="flex-start lg:grid-col3 place-items-center">
-          {descriptionsteps.map((descriptionStep, idx) => (
-            <div key={idx} className="flex-start md:flex-center -mt-64 px-4">
-              <span className="-ml-2 lg:hidden">
-                <Image src={descriptionStep.image} height={50} width={50} />
-              </span>
-              <h3 className="section-sub-title2 md:section-sub-title capitalize">
-                {descriptionStep.title}
-              </h3>
-              <p className="section-paragraph-normal text-left md:text-center text-sm ">
-                {descriptionStep.paragraph}
+    <div
+      className={`w-full  min-h-699 ${bgColor}  ${
+        page === "about" ? "-mt-1" : "mt-0"
+      }`}
+    >
+      <div className="customContainer ">
+        <div className="grid-col1 md:grid-col2 ">
+          <div
+            className={` md:flex-start  ${
+              page === "about" ? "md:w-2/3" : "md:w-full"
+            } min-h-699 px-8 py-8`}
+          >
+            <h3
+              className={`${
+                page === "about" ? "section-sub-title" : "BSFsection-sub-title"
+              } ${
+                page === "about" ? "text-royal-yellow" : textColor
+              }  leading-9`}
+            >
+              {descriptionSteps[page].title}
+            </h3>
+            <p
+              className={`section-sub-paragraph ${textColor} leading-7 md:leading-9`}
+            >
+              {descriptionSteps[page].subTitle}
+            </p>
+            {page !== "about" && (
+              <p className="section-sub-paragraph  leading-7 md:leading-9">
+                {descriptionSteps[page].subTitle2}
               </p>
-            </div>
-          ))}
+            )}
+          </div>
+          <div
+            className={` md:flex-start  ${textColor} min-h-500 ${
+              page === "about" && "px-12 mt-8 pb-40 md:pb-0"
+            }
+            ${page !== "about" && "px-8 pb-10 -mt-28 md:-mt-0"}
+            `}
+          >
+            {page === "about" ? (
+              <ol className="space-y-10 ">
+                <li className="pl-5">
+                  <h3 className="li-title capitalize ">our mission</h3>
+                  <p className="li-paragraph ">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  </p>
+                </li>
+                <li className="pl-5 ">
+                  <h3 className="li-title capitalize ">our mission</h3>
+                  <p className="li-paragraph ">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  </p>
+                </li>
+                <li className="pl-5 ">
+                  <h3 className="li-title capitalize ">our mission</h3>
+                  <p className="li-paragraph ">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  </p>
+                </li>
+              </ol>
+            ) : (
+              <>
+                <p className="section-sub-paragraph-italic leading-7 md:leading-9">
+                  {descriptionSteps[page].subTitle3}
+                </p>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>

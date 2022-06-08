@@ -45,9 +45,9 @@ export default function Footer({}: Props) {
   }, []);
   return (
     <>
-      <div className="w-full max-h-699 bg-footer-background-sm md:bg-footer-background bg-center bg-cover bg-no-repeat relative overflow-hidden">
+      <div className="w-full min-h-699 bg-footer-background-sm md:bg-footer-background bg-center bg-cover bg-no-repeat relative overflow-hidden">
         <div className="customContainer  ">
-          <div className=" flex flex-wrap sm:flex-nowrap h-screen px-8 ">
+          <div className=" flex flex-wrap sm:flex-nowrap px-8 ">
             {footerInfo.map((info, idx) => (
               <div
                 key={idx}
@@ -61,22 +61,47 @@ export default function Footer({}: Props) {
             ))}
           </div>
         </div>
-        {isDesktopWidth && (
-          <div className="absolute flex flex-row bottom-5 right-10 2xl:right-40 md: gap-10 xl:gap-20 ">
+        {/* {isDesktopWidth && ( */}
+        <div className="absolute flex flex-row bottom-5 right-10 2xl:right-40 md: gap-10 xl:gap-20 ">
+          <span className=" w-4 h-4 md:w-8 md:h-8">
             <Image src="/icons/instagramIcon.svg" height={30} width={30} />
-            <Image src="/icons/facebookIcon.svg" height={32} width={32} />
-            <Image src="/icons/twitterIcon.svg" height={26} width={32} />
-            <Image src="/icons/linkedInIcon.svg" height={28} width={27} />
-          </div>
-        )}
-        {!isDesktopWidth && (
+          </span>
+          <span className=" w-4 h-4 md:w-8 md:h-8">
+            <Image
+              className=" w-4 h-4 md:w-8 md:h-8"
+              src="/icons/facebookIcon.svg"
+              height={32}
+              width={32}
+            />
+          </span>
+
+          <span className=" w-4 h-4 md:w-8 md:h-8">
+            <Image
+              className=" w-4 h-4 md:w-8 md:h-8"
+              src="/icons/twitterIcon.svg"
+              height={26}
+              width={32}
+            />
+          </span>
+
+          <span className=" w-4 h-4 md:w-8 md:h-8">
+            <Image
+              className=" w-4 h-4 md:w-8 md:h-8"
+              src="/icons/linkedInIcon.svg"
+              height={28}
+              width={27}
+            />
+          </span>
+        </div>
+        {/* )} */}
+        {/* {!isDesktopWidth && (
           <div className="absolute flex flex-row bottom-5 right-10 2xl:right-40 md: gap-10 xl:gap-20 ">
             <Image src="/icons/instagramIcon.svg" height={17} width={17} />
             <Image src="/icons/facebookIcon.svg" height={17} width={17} />
             <Image src="/icons/twitterIcon.svg" height={19} width={15} />
             <Image src="/icons/linkedInIcon.svg" height={17} width={17} />
           </div>
-        )}
+        )} */}
       </div>
     </>
   );

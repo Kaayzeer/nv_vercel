@@ -1,46 +1,55 @@
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
 import Image from "next/image";
 import Button from "../ui-components/Button/Button";
 import LoginForm from "../Form/LoginForm";
 
 //customStyles
 import { customStyles } from "./customStyles";
+import PriceCard from "../Card/PriceCard";
+
+//dynamic rendering for  "find" | "buy" | "sell" pages
+import { QueryPages } from "../../functions/queryPages";
 
 type Props = {
-  page: "home" | "about" | "login";
+  page: "home" | "about" | "login" | "find" | "buy" | "sell" | "";
   title: string;
   subTitle?: string;
 };
 
 export default function Banner({ page, title, subTitle }: Props) {
+  const router = useRouter();
+
   return (
     <>
       <div
         className={`w-full ${
           customStyles(page).layoutStyle
-        } bg-cover bg-no-repeat relative`}
+        } bg-cover bg-no-repeat relative -mb-3`}
       >
         <div className="customContainer">
           <div className={` ${customStyles(page).flexStyle}  w-full px-10`}>
             <h1 className={`section-title ${customStyles(page).titleStyle}`}>
               {title.toUpperCase()}
             </h1>
-            {page === "home" && (
-              <>
-                <p className="section-paragraph-italic">{subTitle}</p>
-
-                <Button
-                  linkHref="/about"
-                  color="text-white"
-                  buttonText="Let’s go"
-                  type="btnPrimary"
-                />
-              </>
+            {subTitle && (
+              <p
+                className={`${
+                  page === "home"
+                    ? "section-paragraph-italic mb-0"
+                    : "section-paragraph-italic mb-40"
+                }  `}
+              >
+                {subTitle}
+              </p>
             )}
-            {page === "login" && (
-              <>
-                <p className="section-paragraph mb-40 ">{subTitle}</p>
-              </>
+            {page === "home" && (
+              <Button
+                linkHref="/about"
+                color="text-white"
+                buttonText="Let’s go"
+                type="btnPrimary"
+              />
             )}
           </div>
         </div>
@@ -50,15 +59,14 @@ export default function Banner({ page, title, subTitle }: Props) {
           </div>
         )}
 
-        {/*     <LoginForm
-          emailLabel={"email"}
-          passwordLabel={"password"}
-          email={""}
-          password={""}
-        /> */}
+        {page && (page === "find" || page === "sell" || page === "buy") && (
+          <div className="-mt-96  mx-5 md:m-auto sm:-mt-0 sm:mb-0 w-full md:w-1/2 md:mr-20 2xl:mr-0">
+            <PriceCard
+              page={QueryPages(router).queryPage as "find" | "buy" | "sell"}
+            />
+          </div>
+        )}
       </div>
     </>
   );
 }
-
-/* absolute right-1/4 top-1/4  translate-x-1/2 translate-y-1/2 */
