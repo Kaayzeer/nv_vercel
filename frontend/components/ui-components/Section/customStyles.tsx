@@ -19,11 +19,8 @@ export const customStyles = (page: string) => {
       : page === "sell"
       ? "text-white"
       : "";
-  //-----------------------------------------------------//
 
   return { bgColor, chosenTextColor };
-
-  /* -------------------- */
 };
 
 const sectionCustomStyles = (page: string, bgColor?: string) => {
@@ -99,8 +96,6 @@ const sectionCustomStyles = (page: string, bgColor?: string) => {
         type="btnTertiary"
       />
     ) : null;
-
-  //-----------------------------------------------------//
 
   return {
     flexStyle,

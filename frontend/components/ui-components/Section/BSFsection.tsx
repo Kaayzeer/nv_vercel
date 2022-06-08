@@ -101,8 +101,8 @@ export default function Section({ h1, p, page }: Props) {
                 {p}
               </p>
             </div>
-            <div className="flex sm:block w-5/6 px-8 pb-20">
-              <div className="w-3/4 h-full">
+            <div className="flex sm:block w-5/6 px-8 pb-20 ">
+              <div className="h-full">
                 <Image
                   src={`/images/${page.toString()}MobileExplainer.svg`}
                   height={712}
@@ -110,9 +110,9 @@ export default function Section({ h1, p, page }: Props) {
                 />
               </div>
 
-              <div className=" h-full w-5/6 flex flex-col ml-4 ">
+              <div className=" h-full w-5/6 flex flex-col ml-4 p-1">
                 <>
-                  <ul className="flex flex-col justify-evenly">
+                  <ul className="flex flex-col justify-between ">
                     {explainerSteps[page].title.map((title, idx) => (
                       <li
                         key={idx}
@@ -141,19 +141,22 @@ export default function Section({ h1, p, page }: Props) {
 
       {page === "find" && (
         <div
-          className={`aspect-[1090/100] -mt-1 bg-center  bg-cover bg-no-repeat bg-[url('/images/findPageCloud.svg')]`}
+          className={`aspect-[1090/100] bg-center  bg-cover bg-no-repeat bg-[url('/images/findPageCloud.svg')]`}
+          style={{ marginTop: "-10px" }}
         ></div>
       )}
 
       {page === "sell" && (
         <div
-          className={`aspect-[1090/100] -mt-1 bg-center  bg-cover bg-no-repeat bg-[url('/images/sellPageCloud.svg')]`}
+          className={`aspect-[1090/100] bg-center  bg-cover bg-no-repeat bg-[url('/images/sellPageCloud.svg')]`}
+          style={{ marginTop: "-10px" }}
         ></div>
       )}
 
       {page === "buy" && (
         <div
-          className={`aspect-[1090/100] -mt-1 bg-center  bg-cover bg-no-repeat bg-[url('/images/buyPageCloud.svg')]`}
+          className={`aspect-[1090/100] bg-center  bg-cover bg-no-repeat bg-[url('/images/buyPageCloud.svg')]`}
+          style={{ marginTop: "-10px" }}
         ></div>
       )}
     </>
