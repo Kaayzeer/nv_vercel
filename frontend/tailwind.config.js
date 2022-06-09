@@ -67,6 +67,9 @@ module.exports = {
       width: {
         546: "546px",
       },
+      zIndex: {
+        100: "100",
+      },
       variants: {
         background: ["responsive", "hover", "focus", "group-hover"],
       },
