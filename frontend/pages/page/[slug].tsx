@@ -1,23 +1,23 @@
-import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+/* import { useRouter } from "next/router"; */
+import React from "react";
 
-//components
+/* //components
 import Banner from "../../components/Banner/Banner";
 import BSFsection from "../../components/ui-components/Section/BSFsection";
 import Description from "../../components/Description/Description";
 import Section from "../../components/ui-components/Section/Section";
 
 //Dynamic styles
-import { QueryPages } from "../../functions/queryPages";
+import { QueryPages } from "../../functions/queryPages"; */
 
 type Props = {};
 
 export default function Page({}: Props) {
-  const router = useRouter();
+  /*   const router = useRouter(); */
 
   return (
     <div className="relative">
-      <Banner
+      {/*      <Banner
         page={
           QueryPages(router).queryPage as
             | ""
@@ -54,7 +54,7 @@ export default function Page({}: Props) {
             | "buy"
             | "sell"
         }
-      />
+      /> */}
     </div>
   );
 }

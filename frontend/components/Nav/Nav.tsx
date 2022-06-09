@@ -21,9 +21,9 @@ export default function Nav(props: IHeaderProps) {
 
   const navigation = [
     { name: "Home", href: "/", current: true },
-    { name: "Buy", href: "/page/buy", current: false },
-    { name: "Sell", href: "/page/sell", current: false },
-    { name: "Find", href: "/page/find", current: false },
+    { name: "Buy", href: "/buy", current: false },
+    { name: "Sell", href: "/sell", current: false },
+    { name: "Find", href: "/find", current: false },
     { name: "Testimonials", href: "/testimonials", current: false },
     { name: "About", href: "/about", current: false },
   ];

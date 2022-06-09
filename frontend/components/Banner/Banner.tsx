@@ -8,8 +8,8 @@ import LoginForm from "../Form/LoginForm";
 import { customStyles } from "./customStyles";
 import PriceCard from "../Card/PriceCard";
 
-//dynamic rendering for  "find" | "buy" | "sell" pages
-import { QueryPages } from "../../functions/queryPages";
+/* //dynamic rendering for  "find" | "buy" | "sell" pages
+import { QueryPages } from "../../functions/queryPages"; */
 
 type Props = {
   page: "home" | "about" | "login" | "find" | "buy" | "sell" | "";
@@ -18,7 +18,7 @@ type Props = {
 };
 
 export default function Banner({ page, title, subTitle }: Props) {
-  const router = useRouter();
+  /*   const router = useRouter(); */
 
   return (
     <>
@@ -61,9 +61,7 @@ export default function Banner({ page, title, subTitle }: Props) {
 
         {page && (page === "find" || page === "sell" || page === "buy") && (
           <div className="-mt-96  mx-5 md:m-auto sm:-mt-0 sm:mb-0 w-full md:w-1/2 md:mr-20 2xl:mr-0">
-            <PriceCard
-              page={QueryPages(router).queryPage as "find" | "buy" | "sell"}
-            />
+            <PriceCard page={page as "find" | "buy" | "sell"} />
           </div>
         )}
       </div>

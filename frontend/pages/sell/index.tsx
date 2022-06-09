@@ -1,32 +1,42 @@
-import React, { useState, useReducer, useEffect } from "react";
-import { useWizard } from "use-wizard";
+import React from "react";
 
-import WizardSteps from "../../components/Wizard/WizardSteps";
-import formReducer from "../../components/Wizard/formReducer";
-import FindFormStep1 from "../../components/Form/FindFormStep1";
-import FindFormStep2 from "../../components/Form/FindFormStep2";
-import FindFormStep3 from "../../components/Form/FindFormStep3";
+//components
+import Banner from "../../components/Banner/Banner";
+import BSFsection from "../../components/ui-components/Section/BSFsection";
+import Description from "../../components/Description/Description";
+import Section from "../../components/ui-components/Section/Section";
 
 export interface ISellProps {}
 
 export default function Sell(props: ISellProps) {
-  // This is how you create the wizard
-  const [step, wizard] = useWizard([
-    "name purpose",
-    "name preference",
-    "customer",
-    "payment",
-  ]);
-
-  // This is only used to store user inputs
-  const [form, dispatchForm] = useReducer(formReducer, {});
-
-  /*   useEffect(() => {
-    console.log(form);
-  }, [form]); */
   return (
     <>
-      <WizardSteps {...{ step, wizard, form, dispatchForm }} />
+      <Banner
+        page={"sell"}
+        title={"monetize it"}
+        subTitle={
+          "Don’t sleep on valuable domain assets. Let us help you sell them and turn them into useful capital."
+        }
+      />
+      <BSFsection
+        h1={"sell your domain"}
+        p={
+          "The aftermarket is a strange place. We help you track down owners and find out if they are interested in selling. Negotiation, acquisition or transaction not included, but an optional next step."
+        }
+        page={"sell"}
+      />
+      <Description
+        page={"sell"}
+        bgColor={"bg-pages-background"}
+        textColor="text-black"
+      />
+
+      <Section
+        bgColor={"bg-white"}
+        h1={"want to know more"}
+        p={"Jump on a call or send us a message and we will be on the case."}
+        page={"sell"}
+      />
     </>
   );
 }

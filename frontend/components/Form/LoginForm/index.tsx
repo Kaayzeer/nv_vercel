@@ -35,7 +35,7 @@ export default function LoginForm({ emailLabel, passwordLabel }: Props) {
     console.log("email:", form_data.email);
     console.log("password: ", form_data.password);
 
-    /* login(form_data.email, form_data.password); */
+    login(form_data.email, form_data.password);
   };
 
   return (

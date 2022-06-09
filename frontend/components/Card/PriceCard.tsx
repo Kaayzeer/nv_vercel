@@ -32,7 +32,8 @@ const cards = {
 };
 
 export default function PriceCard({ page }: Props) {
-  console.log("PAGE", cards[page]);
+  /* console.log("PAGE", cards[page]); */
+  console.log(page);
   return (
     <>
       <div className="flex flex-col items-left justify-between max-w-lg p-10 2xl:p-20 w-full gap-10 bg-white rounded-lg shadow-signInCard">
@@ -47,8 +48,9 @@ export default function PriceCard({ page }: Props) {
             {cards[page].subTitle}
           </p>
         </div>
+
         <Button
-          linkHref="/sell"
+          linkHref={`${page}form`}
           color="text-black"
           buttonText={cards[page].buttonText}
           type={"pagesBtn"}

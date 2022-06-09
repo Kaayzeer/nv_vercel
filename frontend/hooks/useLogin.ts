@@ -27,6 +27,7 @@ export const useLogin = () => {
         console.log("success");
       })
       .catch((err) => {
+        console.log(err);
         console.error("login gick inte igenom");
         setError(err.message);
       });
