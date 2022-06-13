@@ -4,27 +4,27 @@ import React, { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 //hooks
-import { useAuthContext } from "../../hooks/useAuthContext";
-import { useLogin } from "../../hooks/useLogin";
+import { useAuthContext } from "../../../hooks/useAuthContext";
+import { useLogin } from "../../../hooks/useLogin";
 
 //firebase imports
-import { auth } from "../../firebase/firebaseSetup";
+import { auth } from "../../../firebase/firebaseSetup";
 
 //components
-import BackButton from "../ui-components/Button/BackButton";
-import Button from "../ui-components/Button/Button";
-import Dropdown from "../ui-components/Dropdown/DropDown";
-import FormTitle from "../ui-components/FormTitle/FormTitle";
-import FormInput from "../ui-components/InputField/FormInput";
-import RadioButton from "../ui-components/RadioButton/RadioButton";
+import BackButton from "../../ui-components/Button/BackButton";
+import Button from "../../ui-components/Button/Button";
+import Dropdown from "../../ui-components/Dropdown/DropDown";
+import FormTitle from "../../ui-components/FormTitle/FormTitle";
+import FormInput from "../../ui-components/InputField/FormInput";
+import RadioButton from "../../ui-components/RadioButton/RadioButton";
 
 //wizard
 import { IWizard } from "use-wizard/lib/cjs/useWizard/types/IWizard";
 import { TStep } from "use-wizard/lib/cjs/useWizard/types/TStep";
-import WizardLayout from "../Wizard/WizardLayout";
-import FormButton from "../ui-components/Button/FormButton";
-import DropDownRadioLTR from "../ui-components/Dropdown/DropDownRadioLTR";
-import DropDownRadioWords from "../ui-components/Dropdown/DropDownRadioWords";
+import WizardLayout from "../../Wizard/WizardLayout";
+import FormButton from "../../ui-components/Button/FormButton";
+import DropDownRadioLTR from "../../ui-components/Dropdown/DropDownRadioLTR";
+import DropDownRadioWords from "../../ui-components/Dropdown/DropDownRadioWords";
 
 interface IFormInput {
   names_disliked?: string[];

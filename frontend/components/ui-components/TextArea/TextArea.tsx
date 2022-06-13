@@ -4,7 +4,7 @@ type Props = {
   title: string;
   p: string;
   register: any;
-  type: "about_business" | "additional_details";
+  type: "about_business" | "additional_details" | "domain";
 };
 
 export default function TextArea({ title, p, register, type }: Props) {
@@ -13,6 +13,17 @@ export default function TextArea({ title, p, register, type }: Props) {
       ? "business_desc"
       : type === "additional_details"
       ? "additional_details"
+      : type === "domain"
+      ? "domain"
+      : undefined;
+
+  const placeholder =
+    type === "about_business"
+      ? "Describe your business"
+      : type === "additional_details"
+      ? "Write some details.."
+      : type === "domain"
+      ? "Type your domain name"
       : undefined;
 
   return (
@@ -31,7 +42,7 @@ export default function TextArea({ title, p, register, type }: Props) {
           })}
           rows={3}
           className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 p-8 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-          placeholder="Describe your business"
+          placeholder={placeholder}
           autoComplete="on"
         />
       </div>

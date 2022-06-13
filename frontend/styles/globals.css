@@ -32,11 +32,11 @@ ol {
 
 /* Wizard styling */
 
-.section {
+/* .section {
   width: 95%;
   max-width: 550px;
   margin: 30px auto;
-}
+} */
 
 .wizard-layout {
   margin: 5px auto;
@@ -53,7 +53,7 @@ ol {
   gap: 10px;
   align-items: center;
   max-width: 1140px;
-  width: 100%;
+  width: 95%;
 
   margin: 0 auto;
   border-radius: 9px;
@@ -65,9 +65,11 @@ ol {
   border: none;
   cursor: pointer;
   z-index: 1;
-  font-size: 0.8rem;
+  font-size: 1rem;
   padding: 0.5rem 3rem;
   flex: 1;
+  text-transform: capitalize;
+  letter-spacing: 0.02rem;
 }
 
 .wizard-layout-button-selected {
@@ -75,11 +77,13 @@ ol {
   border: none;
   cursor: pointer;
   z-index: 1;
-  font-size: 0.8rem;
+  font-size: 1rem;
   background: #181b64;
   color: white;
   padding: 0.4rem 3rem;
   border-radius: 9px;
+  text-transform: capitalize;
+  letter-spacing: 0.02rem;
 }
 
 .wizard-layout__navbar__button:active {
@@ -89,7 +93,7 @@ ol {
   outline: none;
 }
 
-.wizard-layout__question {
+/* .wizard-layout__question {
   padding: 5px 10px;
   font-size: 1.1rem;
   color: #444;
@@ -105,7 +109,7 @@ ol {
   height: 40px;
   padding: 15px 30px;
 }
-
+ */
 /* PROGRESS BAR */
 .progressbar {
   width: 400px;
@@ -159,7 +163,7 @@ ol {
   }
 
   .pagesBtn {
-    @apply bg-gradient-to-r from-royal-yellow to-loyal-yellow  rounded-xl py-5 px-16 md:px-20 uppercase text-sm md:text-lg font-bold shadow-btnPrimary cursor-pointer tracking-wider mt-4 text-center;
+    @apply bg-gradient-to-r from-royal-yellow to-loyal-yellow hover:from-loyal-yellow hover:to-royal-yellow  rounded-xl py-5 px-16 md:px-20 uppercase text-sm md:text-lg font-bold shadow-btnPrimary cursor-pointer tracking-wider mt-4 text-center;
   }
 
   .error {

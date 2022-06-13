@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment } from "react";
+
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import Link from "next/link";
@@ -108,9 +108,9 @@ export default function Nav(props: IHeaderProps) {
               enter="transition-right ease-linear duration-300"
               enterFrom="translate-x-full opacity-0"
               enterTo="translate-x-0 opacity-100"
-              leave={`${open && "transition-left ease-linear duration-300"}`}
-              leaveFrom={`${open && "translate-x-0 opacity-100"}`}
-              leaveTo={`${open && "opacity-0 translate-x-full"}`}
+              leave="transition-left ease-out duration-300"
+              leaveFrom="translate-x-0 opacity-100"
+              leaveTo="translate-x-full opacity-0"
               className="fixed top-0 right-0  bg-white h-screen w-4/5 rounded-l-3xl"
             >
               {/*     <div

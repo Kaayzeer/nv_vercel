@@ -50,7 +50,7 @@ export default function PriceCard({ page }: Props) {
         </div>
 
         <Button
-          linkHref={`${page}form`}
+          linkHref={`/${page}form`}
           color="text-black"
           buttonText={cards[page].buttonText}
           type={"pagesBtn"}

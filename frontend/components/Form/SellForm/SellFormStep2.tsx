@@ -4,25 +4,25 @@ import React, { useRef, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 //hooks
-import { useAuthContext } from "../../hooks/useAuthContext";
-import { useLogin } from "../../hooks/useLogin";
+import { useAuthContext } from "../../../hooks/useAuthContext";
+import { useLogin } from "../../../hooks/useLogin";
 
 //firebase imports
-import { auth } from "../../firebase/firebaseSetup";
+import { auth } from "../../../firebase/firebaseSetup";
 
 //components
-import BackButton from "../ui-components/Button/BackButton";
-import FormTitle from "../ui-components/FormTitle/FormTitle";
-import FormInput from "../ui-components/InputField/FormInput";
-import NameInput from "../ui-components/InputField/NameInput";
-import RadioButton from "../ui-components/RadioButton/RadioButton";
+import BackButton from "../../ui-components/Button/BackButton";
+import FormTitle from "../../ui-components/FormTitle/FormTitle";
+import FormInput from "../../ui-components/InputField/FormInput";
+import NameInput from "../../ui-components/InputField/NameInput";
+import RadioButton from "../../ui-components/RadioButton/RadioButton";
 
 //wizard imports
 import { IWizard } from "use-wizard/lib/cjs/useWizard/types/IWizard";
 import { TStep } from "use-wizard/lib/cjs/useWizard/types/TStep";
-import WizardLayout from "../Wizard/WizardLayout";
-import FormButton from "../ui-components/Button/FormButton";
-import StripeCheckout from "../stripeCheckout/stripeCheckout";
+import WizardLayout from "../../Wizard/WizardLayout";
+import FormButton from "../../ui-components/Button/FormButton";
+import StripeCheckout from "../../stripeCheckout/stripeCheckout";
 
 type Props = {
   type: "offer" | "buy" | "sell";
@@ -33,7 +33,6 @@ interface IFormInput {
   surname: string;
   phone: number;
   email: string;
-  company: string;
 }
 
 export default function FindFormStep3(
@@ -130,11 +129,9 @@ export default function FindFormStep3(
       <WizardLayout {...props}>
         <div className="customContainer px-4 py-5 md:px-0 md:py-0  space-y-10">
           <FormTitle
-            step={"step 3"}
+            step={"step 2"}
             title={"Who are you?"}
-            p={
-              "Tell us about yourself or the business you represent so that we can process your order. "
-            }
+            p={"Let us know your contact details so that we can get in touch. "}
           />
 
           <form
@@ -174,26 +171,7 @@ export default function FindFormStep3(
               type="phone"
             />
             {errors.phone && <p className="error">{errors.phone.message}</p>}
-            <FormInput
-              title={"Organisation"}
-              p={"Do you represent a company? Yes No. "}
-              placeholder={"Company name"}
-              inputType={"text"}
-              register={register}
-              type="company"
-            />
-            {errors.company && (
-              <p className="error">{errors.company.message}</p>
-            )}
-            <div className="pt-6 ">
-              <RadioButton
-                id={"check-policy"}
-                htmlFor={"check-policy"}
-                name={"check-policy"}
-                title={"Här skriver vi något om att godkänna vilkor och POLICY"}
-                register={register}
-              />
-            </div>
+
             <div className="px-4 py-40 mb-10 text-center sm:px-6 flex flex-col items-center">
               <BackButton title={"Go back"} onClick={handleBackButton} />
 

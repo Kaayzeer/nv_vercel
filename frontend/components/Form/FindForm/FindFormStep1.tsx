@@ -1,31 +1,20 @@
 import React, { useState, useEffect, useRef } from "react";
 
-//lib
-import { branches } from "../../lib/branches";
-
 //react hook form
 import { useForm, SubmitHandler } from "react-hook-form";
 
-//hooks
-//hooks
-import { useAuthContext } from "../../hooks/useAuthContext";
-import { useLogin } from "../../hooks/useLogin";
-
-//firebase imports
-import { auth } from "../../firebase/firebaseSetup";
-
 //components
-import Button from "../ui-components/Button/Button";
-import DropDown from "../ui-components/Dropdown/DropDown";
-import TextArea from "../ui-components/TextArea/TextArea";
-import FormTitle from "../ui-components/FormTitle/FormTitle";
-import BackButton from "../ui-components/Button/BackButton";
+import Button from "../../ui-components/Button/Button";
+import DropDown from "../../ui-components/Dropdown/DropDown";
+import TextArea from "../../ui-components/TextArea/TextArea";
+import FormTitle from "../../ui-components/FormTitle/FormTitle";
+import BackButton from "../../ui-components/Button/BackButton";
 
 //wizard imports
 import { IWizard } from "use-wizard/lib/cjs/useWizard/types/IWizard";
 import { TStep } from "use-wizard/lib/cjs/useWizard/types/TStep";
-import WizardLayout from "../Wizard/WizardLayout";
-import FormButton from "../ui-components/Button/FormButton";
+import WizardLayout from "../../Wizard/WizardLayout";
+import FormButton from "../../ui-components/Button/FormButton";
 
 type Props = {
   type: "offer" | "buy" | "sell";

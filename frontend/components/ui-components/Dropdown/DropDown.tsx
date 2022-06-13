@@ -8,7 +8,7 @@ type Props = {
   title: string;
   p: string;
   register: any;
-  type: "industry" | "region" | "letters" | "words";
+  type: "industry" | "region" | "letters" | "words" | "budget";
   wordCheckbox?: boolean;
   letterCheckbox?: boolean;
 };
@@ -30,6 +30,8 @@ export default function Dropdown({
       ? "maximum_letters"
       : type === "words"
       ? "maximum_words"
+      : type === "budget"
+      ? "budget"
       : "";
 
   const mapFrom =
