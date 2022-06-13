@@ -45,7 +45,7 @@ export default function Nav(props: IHeaderProps) {
   return (
     <Disclosure
       as="nav"
-      className={`absolute left-0 top-0 z-50 w-full  ${
+      className={`fixed left-0 top-0 z-50 w-full  ${
         navBackground ? "bg-white" : "bg-transparent"
       }`}
     >
