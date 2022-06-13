@@ -45,31 +45,19 @@ export default function Nav(props: IHeaderProps) {
   return (
     <Disclosure
       as="nav"
-      className={`fixed left-0 top-0 z-50 w-full  ${
+      className={`absolute left-0 top-0 z-50 w-full  ${
         navBackground ? "bg-white" : "bg-transparent"
       }`}
     >
-      {({ open }) => (
+      {({ open, close }) => (
         <>
-          <div
-            className={`max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 ${
-              open ? "hidden" : null
-            }`}
-          >
+          <div className={`max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 `}>
             <div className="relative flex items-center justify-between h-20">
               <div className="absolute inset-y-0 right-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
 
-                <Disclosure.Button
-                  className="inline-flex items-center justify-center p-2 rounded-md text-black-400 hover:text-white hover:bg-white-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-                  /* onClick={() => setIsShowing((isShowing) => !isShowing)} */
-                >
-                  <span className="sr-only">Open main menu</span>
-                  {open ? (
-                    <XIcon className="block h-6 w-6" aria-hidden="true" />
-                  ) : (
-                    <MenuIcon className="block h-6 w-6" aria-hidden="true" />
-                  )}
+                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-black-400 hover:text-white hover:bg-white-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                  <MenuIcon className="block h-6 w-6" aria-hidden="true" />
                 </Disclosure.Button>
               </div>
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start ">
@@ -113,24 +101,29 @@ export default function Nav(props: IHeaderProps) {
             </div>
           </div>
 
-          <Disclosure.Panel className="sm:hidden relative">
+          <Disclosure.Panel className="sm:hidden relative ">
             {/* Mobile menu button*/}
-            {/*  <Transition.Child
+            <Transition
               appear={true}
-              enter="transition-opacity duration-75"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="transition-opacity duration-150"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
-            > */}
-            <div className="absolute top-0 right-0 bg-white h-screen w-4/5 rounded-l-3xl">
+              enter="transition-right ease-linear duration-300"
+              enterFrom="translate-x-full opacity-0"
+              enterTo="translate-x-0 opacity-100"
+              leave={`${open && "transition-left ease-linear duration-300"}`}
+              leaveFrom={`${open && "translate-x-0 opacity-100"}`}
+              leaveTo={`${open && "opacity-0 translate-x-full"}`}
+              className="fixed top-0 right-0  bg-white h-screen w-4/5 rounded-l-3xl"
+            >
+              {/*     <div
+                className={` fixed top-0 right-0 z-100  bg-white h-screen w-4/5 rounded-l-3xl`}
+              > */}
               <Disclosure.Button className="absolute top-10 right-10">
                 <span className="sr-only">Open main menu</span>
 
-                <XIcon className="block h-8 w-8" aria-hidden="true" />
+                <XIcon className="block h-8 w-8" />
               </Disclosure.Button>
-              <div className="w-full h-full  flex-col flex items-left justify-center px-10 gap-6">
+              <div
+                className={` w-full h-full  flex-col flex items-left justify-center px-10 gap-6`}
+              >
                 {navigation.map((item) => (
                   <Disclosure.Button
                     key={item.name}
@@ -154,8 +147,8 @@ export default function Nav(props: IHeaderProps) {
                   />
                 </div>
               </div>
-            </div>
-            {/* </Transition.Child> */}
+              {/*  </div> */}
+            </Transition>
           </Disclosure.Panel>
         </>
       )}
