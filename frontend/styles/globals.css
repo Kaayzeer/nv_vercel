@@ -41,49 +41,64 @@ ol {
 .wizard-layout {
   margin: 5px auto;
   padding: 30px 50px;
-  /* background-color: salmon; */
-  /* border-bottom: 1px solid #bbb; */
 }
 
 .wizard-layout__navbar {
-  height: 30px;
+  height: 40px;
   display: flex;
-  background-color: rgba(196, 196, 196, 0.22);
-  justify-content: space-around;
-  gap: 10px;
   align-items: center;
-  max-width: 1140px;
-  width: 95%;
-
+  width: 90%;
   margin: 0 auto;
   border-radius: 9px;
   z-index: 100;
-  display: flex;
+  gap: 1px;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .wizard-layout-button {
+  transition: all 0.3s linear;
   border: none;
   cursor: pointer;
   z-index: 1;
+  background-color: rgba(196, 196, 196, 0.22);
   font-size: 1rem;
-  padding: 0.5rem 3rem;
-  flex: 1;
+  height: 100%;
+  width: 40px;
   text-transform: capitalize;
   letter-spacing: 0.02rem;
 }
 
 .wizard-layout-button-selected {
-  flex: 1;
-  border: none;
+  min-width: 150px;
+  width: 100%;
   cursor: pointer;
   z-index: 1;
   font-size: 1rem;
+  height: 100%;
   background: #181b64;
   color: white;
   padding: 0.4rem 3rem;
-  border-radius: 9px;
   text-transform: capitalize;
   letter-spacing: 0.02rem;
+}
+
+@media screen and (min-width: 769px) {
+  .wizard-layout__navbar {
+    background-color: rgba(196, 196, 196, 0.22);
+    justify-content: space-around;
+    max-width: 1140px;
+    width: 95%;
+    z-index: 100;
+  }
+  .wizard-layout-button {
+    padding: 0.5rem 3rem;
+    flex: 1;
+  }
+
+  .wizard-layout-button-selected {
+    flex: 1;
+  }
 }
 
 .wizard-layout__navbar__button:active {
