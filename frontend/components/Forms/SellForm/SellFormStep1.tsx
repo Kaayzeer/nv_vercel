@@ -6,13 +6,13 @@ import { useForm, SubmitHandler } from "react-hook-form";
 //components
 import FormInput from "../../ui-components/InputField/FormInput";
 import FormTitle from "../../ui-components/FormTitle/FormTitle";
-import BackButton from "../../ui-components/Button/BackButton";
+import BackButton from "../../ui-components/Button/ClickButton";
+import FormButton from "../../ui-components/Button/FormButton";
 
 //wizard imports
 import { IWizard } from "use-wizard/lib/cjs/useWizard/types/IWizard";
 import { TStep } from "use-wizard/lib/cjs/useWizard/types/TStep";
 import WizardLayout from "../../Wizard/WizardLayout";
-import FormButton from "../../ui-components/Button/FormButton";
 
 type Props = {
   type: "offer" | "buy" | "sell";

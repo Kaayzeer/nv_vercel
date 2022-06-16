@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import Image from "next/image";
-import Button from "../ui-components/Button/Button";
-import LoginForm from "../Form/LoginForm";
+import LinkButton from "../ui-components/Button/LinkButton";
+import LoginForm from "../Forms/LoginForm";
 
 //customStyles
 import { customStyles } from "./customStyles";
@@ -44,7 +44,7 @@ export default function Banner({ page, title, subTitle }: Props) {
               </p>
             )}
             {page === "home" && (
-              <Button
+              <LinkButton
                 linkHref="/about"
                 color="text-white"
                 buttonText="Let’s go"

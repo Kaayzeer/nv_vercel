@@ -1,4 +1,4 @@
-import Button from "../Button/Button";
+import Button from "../Button/LinkButton";
 
 export const customStyles = (page: string) => {
   //------- make BSFSection component reausable ---------------//

@@ -6,7 +6,7 @@ import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 
 import Image from "next/image";
-import Button from "../ui-components/Button/Button";
+import LinkButton from "../ui-components/Button/LinkButton";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
@@ -91,7 +91,7 @@ export default function Nav(props: IHeaderProps) {
                 </div>
               </div>
               <div className="hidden md:flex absolute inset-y-0 right-0  items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <Button
+                <LinkButton
                   color={"text-black"}
                   buttonText={"LOGIN"}
                   type={"loginBtn"}
@@ -139,7 +139,7 @@ export default function Nav(props: IHeaderProps) {
                   </Disclosure.Button>
                 ))}
                 <div>
-                  <Button
+                  <LinkButton
                     color={"text-black"}
                     buttonText={"LOGIN"}
                     type={"loginBtn"}

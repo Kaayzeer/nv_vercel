@@ -11,17 +11,18 @@ import { useLogin } from "../../../hooks/useLogin";
 import { auth } from "../../../firebase/firebaseSetup";
 
 //components
-import BackButton from "../../ui-components/Button/BackButton";
+import BackButton from "../../ui-components/Button/ClickButton";
 import FormTitle from "../../ui-components/FormTitle/FormTitle";
 import FormInput from "../../ui-components/InputField/FormInput";
 import NameInput from "../../ui-components/InputField/NameInput";
 import RadioButton from "../../ui-components/RadioButton/RadioButton";
+import FormButton from "../../ui-components/Button/FormButton";
 
 //wizard imports
 import { IWizard } from "use-wizard/lib/cjs/useWizard/types/IWizard";
 import { TStep } from "use-wizard/lib/cjs/useWizard/types/TStep";
 import WizardLayout from "../../Wizard/WizardLayout";
-import FormButton from "../../ui-components/Button/FormButton";
+
 import StripeCheckout from "../../stripeCheckout/stripeCheckout";
 
 type Props = {
@@ -140,7 +141,7 @@ export default function FindFormStep3(
           >
             <NameInput
               title={"Name*"}
-              p={"What is your name?"}
+              p={"Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
               register={register}
             />
 

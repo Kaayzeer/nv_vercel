@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import Form from "../../components/Form/Form";
+import Form from "../Forms/Form";
 
 type Props = {
   fetchedId: string;

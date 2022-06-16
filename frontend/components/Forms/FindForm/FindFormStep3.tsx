@@ -1,17 +1,16 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 //react hook form
 import { useForm, SubmitHandler } from "react-hook-form";
 
 //hooks
 import { useAuthContext } from "../../../hooks/useAuthContext";
-import { useLogin } from "../../../hooks/useLogin";
 
 //firebase imports
 import { auth } from "../../../firebase/firebaseSetup";
 
 //components
-import BackButton from "../../ui-components/Button/BackButton";
+import BackButton from "../../ui-components/Button/ClickButton";
 import FormTitle from "../../ui-components/FormTitle/FormTitle";
 import FormInput from "../../ui-components/InputField/FormInput";
 import NameInput from "../../ui-components/InputField/NameInput";
@@ -22,29 +21,37 @@ import { IWizard } from "use-wizard/lib/cjs/useWizard/types/IWizard";
 import { TStep } from "use-wizard/lib/cjs/useWizard/types/TStep";
 import WizardLayout from "../../Wizard/WizardLayout";
 import FormButton from "../../ui-components/Button/FormButton";
-import StripeCheckout from "../../stripeCheckout/stripeCheckout";
 
-type Props = {
-  type: "offer" | "buy" | "sell";
-};
+//stripe
+import {
+  Elements,
+  PaymentElement,
+  useStripe,
+  useElements,
+} from "@stripe/react-stripe-js";
+
+import { loadStripe } from "@stripe/stripe-js";
+
+// Make sure to call `loadStripe` outside of a component’s render to avoid
+// recreating the `Stripe` object on every render.
+const stripePromise = loadStripe(
+  "pk_test_51KrGGZBvHU5UmnutXtNMVaObe3AOOquIgSCCMaw7PNK6RisJXHrpXPmL9AzLt46T4GQCM64RkXxntxe6ggwiEJ6m00Fl0Kd2fh"
+);
 
 interface IFormInput {
   firstname: string;
   surname: string;
   phone: number;
   email: string;
+  company: string;
 }
 
-export default function FindFormStep3(
-  props: {
-    step: TStep;
-    wizard: IWizard;
-    form: any;
-    dispatchForm: Function;
-  },
-  { type }: Props
-) {
-  const { login } = useLogin();
+export default function FindFormStep3(props: {
+  step: TStep;
+  wizard: IWizard;
+  form: any;
+  dispatchForm: Function;
+}) {
   const { user } = useAuthContext();
 
   const {
@@ -57,9 +64,16 @@ export default function FindFormStep3(
 
   const hiddenStripeSubmit = useRef(null);
 
+  /*   const options = {
+    // passing the client secret obtained from the server
+    clientSecret: fetchedId,
+  }; */
+
   const handleFormButton: SubmitHandler<IFormInput> = async (
-    form_data: any
+    form_data: any,
+    e: any
   ) => {
+    e.preventDefault();
     console.log("hej");
     console.log(form_data);
 
@@ -116,7 +130,7 @@ export default function FindFormStep3(
 
     // Fire submit on hidden form
     // @ts-ignore
-    /*  hiddenStripeSubmit.current.submit(); */
+    hiddenStripeSubmit.current.submit();
   };
 
   const handleBackButton = () => {
@@ -129,9 +143,11 @@ export default function FindFormStep3(
       <WizardLayout {...props}>
         <div className="customContainer px-4 py-5 md:px-0 md:py-0  space-y-10">
           <FormTitle
-            step={"step 2"}
+            step={"step 3"}
             title={"Who are you?"}
-            p={"Let us know your contact details so that we can get in touch. "}
+            p={
+              "Tell us about yourself or the business you represent so that we can process your order. "
+            }
           />
 
           <form
@@ -171,7 +187,26 @@ export default function FindFormStep3(
               type="phone"
             />
             {errors.phone && <p className="error">{errors.phone.message}</p>}
-
+            <FormInput
+              title={"Organisation"}
+              p={"Do you represent a company? Yes No. "}
+              placeholder={"Company name"}
+              inputType={"text"}
+              register={register}
+              type="company"
+            />
+            {errors.company && (
+              <p className="error">{errors.company.message}</p>
+            )}
+            <div className="pt-6 ">
+              <RadioButton
+                id={"check-policy"}
+                htmlFor={"check-policy"}
+                name={"check-policy"}
+                title={"Här skriver vi något om att godkänna vilkor och POLICY"}
+                register={register}
+              />
+            </div>
             <div className="px-4 py-40 mb-10 text-center sm:px-6 flex flex-col items-center">
               <BackButton title={"Go back"} onClick={handleBackButton} />
 
@@ -183,11 +218,15 @@ export default function FindFormStep3(
             </div>
           </form>
 
-          {/*   <form
+          {/*      <Elements stripe={stripePromise} options={options}> */}
+
+          {/*    <PaymentElement className="bg-black" />
+          </Elements> */}
+          <form
             action={`http://localhost:5001/next-venture/europe-west1/api/payment/create-checkout-session?id=${fetchedId}`}
             method="POST"
             ref={hiddenStripeSubmit}
-          /> */}
+          />
         </div>
       </WizardLayout>
     </div>

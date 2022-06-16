@@ -5,7 +5,7 @@ type Props = {
   p: string;
   placeholder: string;
   inputType: string;
-  register: any;
+  register?: any;
   type: "keywords" | "names_disliked" | "phone" | "email" | "company";
 };
 

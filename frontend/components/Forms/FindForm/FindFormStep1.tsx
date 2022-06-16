@@ -4,11 +4,11 @@ import React, { useState, useEffect, useRef } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 //components
-import Button from "../../ui-components/Button/Button";
+
 import DropDown from "../../ui-components/Dropdown/DropDown";
 import TextArea from "../../ui-components/TextArea/TextArea";
 import FormTitle from "../../ui-components/FormTitle/FormTitle";
-import BackButton from "../../ui-components/Button/BackButton";
+import BackButton from "../../ui-components/Button/ClickButton";
 
 //wizard imports
 import { IWizard } from "use-wizard/lib/cjs/useWizard/types/IWizard";
@@ -21,8 +21,10 @@ type Props = {
 };
 
 interface IFormInput {
-  domain: string;
-  budget: number;
+  business_desc: string;
+  business_type: string;
+  additional_details?: string;
+  country: string;
 }
 
 export default function Form(
@@ -69,9 +71,9 @@ export default function Form(
             <div className="customContainer px-4 py-5 md:px-0 md:py-0  space-y-10">
               <FormTitle
                 step={`step 1`}
-                title={"What domain do you want?"}
+                title={"What do you need to name?"}
                 p={
-                  "Before Next Venture starts to research your domain acquisition to find out if the domain you need can be purchased, we need some information."
+                  "Tell us about the use case in mind so that we can present a selection of suitable brand name domains. "
                 }
               />
 
@@ -79,20 +81,37 @@ export default function Form(
                 onSubmit={handleSubmit(handleFormButton)}
                 className="space-y-10"
               >
-                <TextArea title="" p="" register={register} type="domain" />
-                {errors.domain && (
-                  <p className="error">{errors.domain.message}</p>
-                )}
-
-                <DropDown
-                  title="How much are you prepared to spend?."
-                  p="Let us know a preliminary budget so we can assess the acquisition project and plan the negotiation."
+                <TextArea
+                  title="What is your Business about?"
+                  p="Let us know what you do. "
                   register={register}
-                  type="budget"
+                  type="about_business"
+                />
+                {errors.business_desc && (
+                  <p className="error">{errors.business_desc.message}</p>
+                )}
+                <DropDown
+                  title="Select your industry"
+                  p="Choose your primary vertical."
+                  register={register}
+                  type="industry"
                 />
 
-                {errors.budget && (
-                  <p className="error">{errors.budget.message}</p>
+                <DropDown
+                  title="Primary regions for the brand or business "
+                  p="Where are you present?"
+                  register={register}
+                  type="region"
+                />
+
+                <TextArea
+                  title="Additional details"
+                  p="Let us know what you think."
+                  register={register}
+                  type="additional_details"
+                />
+                {errors.additional_details && (
+                  <p className="error">{errors.additional_details.message}</p>
                 )}
                 <div className="px-4 py-40 mb-10 text-center sm:px-6 flex flex-col items-center">
                   <BackButton title={"Go back"} onClick={handleBackButton} />

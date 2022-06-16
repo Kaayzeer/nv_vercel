@@ -3,20 +3,11 @@ import React, { useEffect, useState } from "react";
 //react hook form
 import { useForm, SubmitHandler } from "react-hook-form";
 
-//hooks
-import { useAuthContext } from "../../../hooks/useAuthContext";
-import { useLogin } from "../../../hooks/useLogin";
-
-//firebase imports
-import { auth } from "../../../firebase/firebaseSetup";
-
 //components
-import BackButton from "../../ui-components/Button/BackButton";
-import Button from "../../ui-components/Button/Button";
-import Dropdown from "../../ui-components/Dropdown/DropDown";
+import BackButton from "../../ui-components/Button/ClickButton";
+
 import FormTitle from "../../ui-components/FormTitle/FormTitle";
 import FormInput from "../../ui-components/InputField/FormInput";
-import RadioButton from "../../ui-components/RadioButton/RadioButton";
 
 //wizard
 import { IWizard } from "use-wizard/lib/cjs/useWizard/types/IWizard";

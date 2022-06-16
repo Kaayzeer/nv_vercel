@@ -7,7 +7,6 @@ type Props = {
   color: string;
   buttonText: string;
   type: string;
-  /* onClick: () => void */
 };
 
 export default function Button({ linkHref, color, type, buttonText }: Props) {

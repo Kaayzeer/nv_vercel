@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../ui-components/Button/Button";
+import LinkButton from "../ui-components/Button/LinkButton";
 
 type Props = {
   page: "find" | "buy" | "sell";
@@ -49,7 +49,7 @@ export default function PriceCard({ page }: Props) {
           </p>
         </div>
 
-        <Button
+        <LinkButton
           linkHref={`/${page}form`}
           color="text-black"
           buttonText={cards[page].buttonText}

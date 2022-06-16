@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
-import Button from "../../ui-components/Button/Button";
+
+//components
+import FormButton from "../../ui-components/Button/FormButton";
 
 //hooks
 import { useLogin } from "../../../hooks/useLogin";
 import { useAuthContext } from "../../../hooks/useAuthContext";
-//firebase imports
-import { auth } from "../../../firebase/firebaseSetup";
 
 //react-hook-form
 import { useForm, SubmitHandler } from "react-hook-form";
-import FormButton from "../../ui-components/Button/FormButton";
 
 type IFormInput = {
   email: string;

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import Button from "../ui-components/Button/Button";
+import Button from "../ui-components/Button/LinkButton";
 
 const cardsInfo = [
   {

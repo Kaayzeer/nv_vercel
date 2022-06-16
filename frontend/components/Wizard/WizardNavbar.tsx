@@ -23,7 +23,7 @@ export default (props: {
   const formSteps = {
     findform: ["name purpose", "name preference", "customer", "payment"],
 
-    buyform: ["buy", "customer", "payment", "transaction"],
+    buyform: ["buy", "customer", "payment"],
 
     sellform: ["sell project", "contact details", "payment"],
   };

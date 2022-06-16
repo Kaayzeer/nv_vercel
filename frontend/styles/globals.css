@@ -32,12 +32,6 @@ ol {
 
 /* Wizard styling */
 
-/* .section {
-  width: 95%;
-  max-width: 550px;
-  margin: 30px auto;
-} */
-
 .wizard-layout {
   margin: 5px auto;
   padding: 30px 50px;
@@ -89,7 +83,6 @@ ol {
     justify-content: space-around;
     max-width: 1140px;
     width: 95%;
-    z-index: 100;
   }
   .wizard-layout-button {
     padding: 0.5rem 3rem;
@@ -108,25 +101,8 @@ ol {
   outline: none;
 }
 
-/* .wizard-layout__question {
-  padding: 5px 10px;
-  font-size: 1.1rem;
-  color: #444;
-  height: 50px;
-}
-
-.wizard-layout__content {
-  padding: 5px 30px;
-  height: 60px;
-}
-
-.wizard-layout__buttons {
-  height: 40px;
-  padding: 15px 30px;
-}
- */
 /* PROGRESS BAR */
-.progressbar {
+/* .progressbar {
   width: 400px;
   height: 10px;
   background-color: white;
@@ -137,7 +113,7 @@ ol {
   width: 33.3%;
   height: 100%;
   background-color: rgb(98, 0, 255);
-}
+} */
 
 /* Wizard styling */
 
@@ -170,7 +146,7 @@ ol {
   }
 
   .formBtn {
-    @apply bg-form-btn hover:from-form-btn-blueTwo hover:to-form-btn-blueOne rounded-lg py-4 px-32 md:px-52 uppercase text-sm font-normal shadow-btnPrimary cursor-pointer tracking-wider mt-4 max-w-xs md:max-w-546;
+    @apply bg-form-btn hover:from-form-btn-blueTwo hover:to-form-btn-blueOne rounded-lg py-4  uppercase text-sm font-normal shadow-btnPrimary cursor-pointer tracking-wider mt-4 max-w-xs md:max-w-546 w-full text-center;
   }
 
   .signInBtn {
