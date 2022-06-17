@@ -3,6 +3,8 @@ import { useWizard } from "use-wizard";
 
 import WizardSteps from "../../components/Wizard/WizardSteps";
 import formReducer from "../../components/Wizard/formReducer";
+
+//components
 import GetStarted from "../../components/Modals/GetStarted";
 
 type Props = {};

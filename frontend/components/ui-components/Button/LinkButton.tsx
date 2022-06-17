@@ -16,7 +16,7 @@ export default function Button({ linkHref, color, type, buttonText }: Props) {
 
   return (
     <Link href={linkHref}>
-      <a className={`${type} ${color} `}>
+      <a className={`${type} ${color}`}>
         {buttonText}
         {icon}
       </a>

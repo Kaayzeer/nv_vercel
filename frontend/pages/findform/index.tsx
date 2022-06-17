@@ -4,9 +4,15 @@ import { useWizard } from "use-wizard";
 import WizardSteps from "../../components/Wizard/WizardSteps";
 import formReducer from "../../components/Wizard/formReducer";
 
+//components
+import GetStarted from "../../components/Modals/GetStarted";
+
 type Props = {};
 
 export default function index({}: Props) {
+  //Modal toggler
+  const [showModal, setShowModal] = useState(true);
+
   // This is how you create the wizard
   const [step, wizard] = useWizard([
     "name purpose",
@@ -24,6 +30,7 @@ export default function index({}: Props) {
 
   return (
     <>
+      {showModal && <GetStarted setShowModal={setShowModal} />}
       <WizardSteps {...{ step, wizard, form, dispatchForm }} />
     </>
   );

@@ -29,9 +29,6 @@ export default function DropDownRadioLTR({ register, letterCheckbox }: Props) {
       )}
       <div className="mt-6 md:mt-0 md:absolute md:bottom-2 md:right-20">
         <RadioButton
-          id={"no-letter-preference"}
-          htmlFor={"no-letter-preference"}
-          name={"no-preference-of-letter"}
           title={"I dont have a preference"}
           type="no_letters"
           register={register}

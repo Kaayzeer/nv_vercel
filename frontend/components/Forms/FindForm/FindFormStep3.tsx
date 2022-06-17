@@ -31,6 +31,7 @@ import {
 } from "@stripe/react-stripe-js";
 
 import { loadStripe } from "@stripe/stripe-js";
+import Link from "next/link";
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
@@ -200,13 +201,12 @@ export default function FindFormStep3(props: {
             )}
             <div className="pt-6 ">
               <RadioButton
-                id={"check-policy"}
-                htmlFor={"check-policy"}
-                name={"check-policy"}
-                title={"Här skriver vi något om att godkänna vilkor och POLICY"}
+                type={"policy"}
+                title={"Här skriver vi något om att godkänna vilkor och"}
                 register={register}
               />
             </div>
+
             <div className="px-4 py-40 mb-10 text-center sm:px-6 flex flex-col items-center">
               <BackButton title={"Go back"} onClick={handleBackButton} />
 

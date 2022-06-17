@@ -45,7 +45,7 @@ export default function Footer({}: Props) {
   }, []);
   return (
     <footer>
-      <div className="w-full min-h-699 bg-footer-background-sm md:bg-footer-background bg-center bg-cover bg-no-repeat relative overflow-hidden">
+      <div className="w-full min-h-699 bg-footer-background-sm sm:bg-footer-background bg-center bg-cover bg-no-repeat relative overflow-hidden">
         <div className="customContainer  ">
           <div className=" flex flex-wrap sm:flex-nowrap px-8 ">
             {footerInfo.map((info, idx) => (

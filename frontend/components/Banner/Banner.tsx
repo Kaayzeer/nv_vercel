@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import Image from "next/image";
+import { FaExclamationTriangle } from "react-icons/fa";
 import LinkButton from "../ui-components/Button/LinkButton";
 import LoginForm from "../Forms/LoginForm";
 
@@ -12,7 +13,7 @@ import PriceCard from "../Card/PriceCard";
 import { QueryPages } from "../../functions/queryPages"; */
 
 type Props = {
-  page: "home" | "about" | "login" | "find" | "buy" | "sell" | "";
+  page: "home" | "about" | "login" | "find" | "buy" | "sell" | "404";
   title: string;
   subTitle?: string;
 };
@@ -28,14 +29,14 @@ export default function Banner({ page, title, subTitle }: Props) {
         } bg-cover bg-no-repeat relative -mb-3`}
       >
         <div className="customContainer">
-          <div className={` ${customStyles(page).flexStyle}  w-full px-10`}>
+          <div className={` ${customStyles(page).flexStyle}  w-full px-10 `}>
             <h1 className={`section-title ${customStyles(page).titleStyle}`}>
               {title.toUpperCase()}
             </h1>
             {subTitle && (
               <p
                 className={`${
-                  page === "home"
+                  page === "home" || page === "404"
                     ? "section-paragraph-italic mb-0"
                     : "section-paragraph-italic mb-40"
                 }  `}
@@ -49,6 +50,14 @@ export default function Banner({ page, title, subTitle }: Props) {
                 color="text-white"
                 buttonText="Let’s go"
                 type="btnPrimary"
+              />
+            )}
+            {page === "404" && (
+              <LinkButton
+                linkHref="/"
+                color="text-white"
+                buttonText="back to home"
+                type="formBtn"
               />
             )}
           </div>

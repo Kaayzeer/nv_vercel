@@ -1,11 +1,9 @@
 import React from "react";
+import Link from "next/link";
 
 type Props = {
-  id: string;
-  htmlFor: string;
-  name: string;
   title: string;
-  type?: "no_letters" | "no_words";
+  type?: "no_letters" | "no_words" | "policy";
   register: any;
 
   /*   selected?: boolean;
@@ -16,9 +14,6 @@ type Props = {
 };
 
 export default function RadioButton({
-  id,
-  htmlFor,
-  name,
   title,
   type,
   register,
@@ -33,13 +28,15 @@ Props) {
       ? "no_letters"
       : type === "no_words"
       ? "no_words"
+      : type === "policy"
+      ? "policy"
       : "unchecked";
 
   return (
     <div className="flex items-center ">
       <input
-        id={id}
-        name={name}
+        id={type}
+        name={type}
         type="checkbox"
         className="h-4 w-4 md:h-8 md:w-8 border-2 border-solid border-radio-border-color rounded-full"
         /*  onClick={(e) => updateState(e)}
@@ -49,11 +46,21 @@ Props) {
         })}
       />
       <label
-        htmlFor={htmlFor}
+        htmlFor={type}
         className="ml-3 block section-sub-paragraph text-gray-700"
       >
         {title}
       </label>
+      {type === "policy" && (
+        <Link href={"/policy"}>
+          <a
+            className={"underline uppercase ml-1"}
+            /* aria-current={item.current ? "page" : undefined} */
+          >
+            policy
+          </a>
+        </Link>
+      )}
     </div>
   );
 }

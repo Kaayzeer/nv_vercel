@@ -1,5 +1,5 @@
 export const customStyles = (
-  page: "home" | "about" | "login" | "find" | "buy" | "sell" | ""
+  page: "home" | "about" | "login" | "find" | "buy" | "sell" | "404"
 ) => {
   /* ----------make component reusable---------- */
 
@@ -16,6 +16,8 @@ export const customStyles = (
       ? "bg-buy-background + bg-center flex flex-wrap md:flex-nowrap "
       : page === "sell"
       ? "bg-sell-background + bg-center flex flex-wrap md:flex-nowrap "
+      : page === "404"
+      ? "bg-buy-background + bg-center flex flex-wrap md:flex-nowrap "
       : null;
 
   const flexStyle =
@@ -31,6 +33,8 @@ export const customStyles = (
       ? "flex-start mx-auto md:w-3/5 "
       : page === "sell"
       ? "flex-start mx-auto md:w-3/5 "
+      : page === "404"
+      ? "flex-center mx-auto md:w-1/3"
       : null;
 
   const titleStyle =
@@ -46,6 +50,8 @@ export const customStyles = (
       ? "text-left leading-7 md:text-center md:leading-2xLoose"
       : page === "sell"
       ? "text-left leading-7 md:text-center md:leading-2xLoose"
+      : page === "404"
+      ? "text-center leading-extra-loose"
       : null;
 
   /* ----------------------------- */
