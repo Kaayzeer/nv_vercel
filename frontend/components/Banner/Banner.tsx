@@ -8,6 +8,7 @@ import LoginForm from "../Forms/LoginForm";
 //customStyles
 import { customStyles } from "./customStyles";
 import PriceCard from "../Card/PriceCard";
+import SearchWlm from "../SearchWlm";
 
 /* //dynamic rendering for  "find" | "buy" | "sell" pages
 import { QueryPages } from "../../functions/queryPages"; */
@@ -60,6 +61,7 @@ export default function Banner({ page, title, subTitle }: Props) {
                 type="formBtn"
               />
             )}
+            {page === "find" && <SearchWlm />}
           </div>
         </div>
         {page === "login" && (

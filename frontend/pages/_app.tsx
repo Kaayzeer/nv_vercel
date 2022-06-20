@@ -9,6 +9,13 @@ function MyApp({ Component, pageProps }: AppProps) {
     <AuthContextProvider>
       <Layout title="" description="" keywords="">
         <Component {...pageProps} />
+        <script
+          type="text/javascript"
+          id="hs-script-loader"
+          async
+          defer
+          src="//js-eu1.hs-scripts.com/25969894.js"
+        ></script>
       </Layout>
     </AuthContextProvider>
   );

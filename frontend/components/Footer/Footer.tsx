@@ -61,7 +61,7 @@ export default function Footer({}: Props) {
             ))}
           </div>
         </div>
-        {/* {isDesktopWidth && ( */}
+
         <div className="absolute flex flex-row bottom-5 right-10 2xl:right-40 md: gap-10 xl:gap-20 ">
           <span className=" w-4 h-4 md:w-8 md:h-8">
             <Image src="/icons/instagramIcon.svg" height={30} width={30} />
@@ -93,15 +93,24 @@ export default function Footer({}: Props) {
             />
           </span>
         </div>
-        {/* )} */}
-        {/* {!isDesktopWidth && (
-          <div className="absolute flex flex-row bottom-5 right-10 2xl:right-40 md: gap-10 xl:gap-20 ">
-            <Image src="/icons/instagramIcon.svg" height={17} width={17} />
-            <Image src="/icons/facebookIcon.svg" height={17} width={17} />
-            <Image src="/icons/twitterIcon.svg" height={19} width={15} />
-            <Image src="/icons/linkedInIcon.svg" height={17} width={17} />
+        <div className="absolute bottom-0 w-1/4 md:w-full md:bottom-1 left-5  ">
+          <div
+            className="trustpilot-widget "
+            data-locale="sv-SE"
+            data-template-id="56278e9abfbbba0bdcd568bc"
+            data-businessunit-id="62ac621a4c0c5d7003a877b7"
+            data-style-height="52px"
+            data-style-width="100%"
+          >
+            <a
+              href="https://se.trustpilot.com/review/weknowit.se"
+              target="_blank"
+              rel="noopener"
+            >
+              Trustpilot
+            </a>
           </div>
-        )} */}
+        </div>
       </div>
     </footer>
   );

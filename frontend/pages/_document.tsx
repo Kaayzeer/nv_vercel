@@ -14,6 +14,13 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;900&family=Poppins:wght@300;400;500;700&display=swap"
           rel="stylesheet"
         />
+        {/*  <!-- TrustBox script --> */}
+        <script
+          type="text/javascript"
+          src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
+          async
+        ></script>
+        {/* <!-- End TrustBox script --> */}
       </Head>
       <body>
         <Main />
