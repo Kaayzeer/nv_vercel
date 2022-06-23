@@ -6,6 +6,7 @@ import formReducer from "../../components/Wizard/formReducer";
 
 //components
 import GetStarted from "../../components/Modals/GetStarted";
+import Layout from "../../components/Layout/Layout";
 
 type Props = {};
 
@@ -24,9 +25,9 @@ export default function index({}: Props) {
   }, [form]);
 
   return (
-    <>
+    <Layout title={""} description={""} keywords={""}>
       {showModal && <GetStarted setShowModal={setShowModal} />}
       <WizardSteps {...{ step, wizard, form, dispatchForm }} />
-    </>
+    </Layout>
   );
 }

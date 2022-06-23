@@ -2,13 +2,14 @@ import * as React from "react";
 import AboutQuestions from "../../components/AboutQuestions/AboutQuestions";
 import Banner from "../../components/Banner/Banner";
 import Description from "../../components/Description/Description";
+import Layout from "../../components/Layout/Layout";
 import Section from "../../components/ui-components/Section/Section";
 
 export interface IAboutProps {}
 
 export default function About(props: IAboutProps) {
   return (
-    <div>
+    <Layout title={""} description={""} keywords={""}>
       <Banner
         page="about"
         title="THE DOMAIN AFTERMARKET AGENCY WITH TRANSPARENT, COST-EFFECTIVE PROCESS."
@@ -25,6 +26,6 @@ export default function About(props: IAboutProps) {
         p={"Lorem ipsum dolor sit amet, consectetur adipiscing elit"}
         page={"about"}
       />
-    </div>
+    </Layout>
   );
 }

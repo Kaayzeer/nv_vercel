@@ -4,12 +4,13 @@ import React from "react";
 import Banner from "../components/Banner/Banner";
 import InfoCard from "../components/Card/InfoCard";
 import HomeDescription from "../components/Description/HomeDescription";
+import Layout from "../components/Layout/Layout";
 import Testimonials from "../components/Testimonials/Testimonials";
 import Section from "../components/ui-components/Section/Section";
 
 const HomePage = () => {
   return (
-    <>
+    <Layout title={""} description={""} keywords={""}>
       <Banner
         page="home"
         title="get that domain"
@@ -34,7 +35,7 @@ const HomePage = () => {
         page="home"
       />
       <Testimonials bgColor="bg-white" />
-    </>
+    </Layout>
   );
 };
 

@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 
+//next
+import { useRouter } from "next/router";
+
 //components
 import FormButton from "../../ui-components/Button/FormButton";
 
@@ -23,6 +26,7 @@ type Props = {
 export default function LoginForm({ emailLabel, passwordLabel }: Props) {
   const { login } = useLogin();
   const { user } = useAuthContext();
+  const router = useRouter();
 
   const {
     register,
@@ -35,8 +39,11 @@ export default function LoginForm({ emailLabel, passwordLabel }: Props) {
     console.log("password: ", form_data.password);
 
     login(form_data.email, form_data.password);
+    if (user) {
+      router.push(`/login/${user.uid}`);
+    }
   };
-
+  console.log(user);
   return (
     <div className="flex max-w-lg bg-white rounded-lg shadow-signInCard">
       <form

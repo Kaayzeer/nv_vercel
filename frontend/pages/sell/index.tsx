@@ -5,12 +5,13 @@ import Banner from "../../components/Banner/Banner";
 import BSFsection from "../../components/ui-components/Section/BSFsection";
 import Description from "../../components/Description/Description";
 import Section from "../../components/ui-components/Section/Section";
+import Layout from "../../components/Layout/Layout";
 
 export interface ISellProps {}
 
 export default function Sell(props: ISellProps) {
   return (
-    <>
+    <Layout title={""} description={""} keywords={""}>
       <Banner
         page={"sell"}
         title={"monetize it"}
@@ -37,6 +38,6 @@ export default function Sell(props: ISellProps) {
         p={"Jump on a call or send us a message and we will be on the case."}
         page={"sell"}
       />
-    </>
+    </Layout>
   );
 }

@@ -3,6 +3,7 @@ import React from "react";
 //components
 import Banner from "../../components/Banner/Banner";
 import Description from "../../components/Description/Description";
+import Layout from "../../components/Layout/Layout";
 import BSFsection from "../../components/ui-components/Section/BSFsection";
 import Section from "../../components/ui-components/Section/Section";
 
@@ -10,7 +11,7 @@ export interface IFindProps {}
 
 export default function Find(props: IFindProps) {
   return (
-    <>
+    <Layout title={""} description={""} keywords={""}>
       <Banner
         page={"find"}
         title={"pick and choose"}
@@ -37,6 +38,6 @@ export default function Find(props: IFindProps) {
         p={"Jump on a call or send us a message and we will be on the case."}
         page={"find"}
       />
-    </>
+    </Layout>
   );
 }
