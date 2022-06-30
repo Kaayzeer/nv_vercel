@@ -86,6 +86,22 @@ export default function Banner({ page, title, subTitle }: Props) {
             <PriceCard page={page as "find" | "buy" | "sell"} />
           </div>
         )} */}
+        {page === "home" && (
+          <>
+            <img
+              className="absolute top-10 left-0  md:left-20 md:top-20 md:w-96  w-2/3"
+              src={"/images/birds.svg"}
+            />
+            <img
+              className="md:w-full min-h-16 object-cover absolute bottom-0 left-0"
+              src={"/images/homePageClouds.svg"}
+            />
+            <img
+              className="absolute xl:h-4/5 bottom-0 right-0"
+              src={"/images/adventurer.svg"}
+            />
+          </>
+        )}
       </div>
     </>
   );

@@ -28,7 +28,7 @@ const sectionCustomStyles = (page: string, bgColor?: string) => {
 
   const flexStyle =
     page === "home" && bgColor === "bg-section-blue"
-      ? "flex-center + -mt-40 md:-mt-0"
+      ? "flex-center"
       : page === "home"
       ? "flex-start"
       : "flex-center";

@@ -8,6 +8,7 @@ module.exports = {
       backgroundImage: {
         "hero-pattern": "url('../public/images/hikingMountains.svg')",
         "banner-background": "url('../public/images/homeBannerBg.png')",
+        "banner-gradient": "url('../public/images/bannerGradientBg.png')",
         "about-background": "url('../public/images/aboutBG.png')",
         "login-background": "url('../public/images/LoginPage.png')",
         "find-background": "url('../public/images/findBackground.svg')",

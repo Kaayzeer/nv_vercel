@@ -5,17 +5,17 @@ export const customStyles = (
 
   const layoutStyle =
     page === "home"
-      ? "bg-banner-background + bg-center  mb-20 sm:mb-10 md:mb-0 "
+      ? "bg-banner-gradient + bg-center md:mb-0 "
       : page === "about"
       ? "bg-about-background + bg-bottom"
       : page === "login"
       ? "bg-login-background + bg-center flex flex-wrap md:flex-nowrap "
       : page === "find"
-      ? "bg-find-background  + bg-center flex flex-wrap md:flex-nowrap "
+      ? "bg-find-background  + bg-center flex flex-wrap md:flex-nowrap  "
       : page === "buy"
-      ? "bg-buy-background + bg-center flex flex-wrap md:flex-nowrap "
+      ? "bg-buy-background + bg-center flex flex-wrap md:flex-nowrap  "
       : page === "sell"
-      ? "bg-sell-background + bg-center flex flex-wrap md:flex-nowrap "
+      ? "bg-sell-background + bg-center flex flex-wrap md:flex-nowrap  "
       : page === "404"
       ? "bg-buy-background + bg-center flex flex-wrap md:flex-nowrap "
       : null;

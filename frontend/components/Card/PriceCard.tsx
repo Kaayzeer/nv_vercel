@@ -36,7 +36,7 @@ export default function PriceCard({ page }: Props) {
   console.log(page);
   return (
     <>
-      <div className="flex flex-col items-left justify-between max-w-lg p-10 2xl:p-20 w-full gap-10 bg-white rounded-lg shadow-signInCard">
+      <div className="flex flex-col items-left justify-between mx-auto md:mx-0 -mt-60 md:mt-0 max-w-lg p-10 2xl:p-20 w-full gap-10 bg-white rounded-lg shadow-signInCard">
         <h2 className="section-title lowercase text-4xl">
           {cards[page].price}
         </h2>
