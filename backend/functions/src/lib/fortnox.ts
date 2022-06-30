@@ -39,6 +39,108 @@ export const createFinancialYear = async() => {
 }
 
 /**
+ * Create Offer
+ */
+ export const createOffer = async(amount: number, description: string) => {
+    const authToken = await fortnoxAuthToken()
+
+    let customer_id = undefined;
+
+    if(authToken){
+
+        // TODO: Send to right customer number
+
+        // Create if not exists
+        await fetch(`https://api.fortnox.se/3/offers/`,{
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${authToken}`,
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify(
+                {
+                    "Offer": {
+                      "CustomerNumber": "1",
+                      "OfferRows": [
+                        {
+                            "Price": amount,
+                            "Quantity": 1,
+                            "Description": description
+                        }
+                      ]
+                    }
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Get customer ID
+            if(data.Offers)
+                customer_id = data.Customer.DocumentNumber
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
+    return customer_id;
+}
+
+/**
+ * Get Offer PDF
+ */
+export const getOfferPDF = async(id : string) => {
+    const authToken = await fortnoxAuthToken()
+
+    let pdf = undefined;
+
+    if(authToken){
+        await fetch(`https://api.fortnox.se/3/offers/${id}/print`,{
+            method: "PUT",
+            headers: {
+                Authorization: `Bearer ${authToken}`,
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            }
+        })
+        .then((fortnox_pdf) => {
+            pdf = fortnox_pdf;
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
+    return pdf;
+}
+
+export const sendOfferPDF = async(id : string) => {
+    const authToken = await fortnoxAuthToken()
+
+    if(authToken){
+        await fetch(`https://api.fortnox.se/3/offers/${id}/email`,{
+            method: "PUT",
+            headers: {
+                Authorization: `Bearer ${authToken}`,
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            // Todo: Fix mail here
+            body: JSON.stringify({
+                EmailAddressTo: "",
+                EmailSubject: "Next-Venture Offert #",
+                EmailBody: ""
+            })
+        })
+        .catch(err => {
+            console.log(err)
+        })
+        return true;
+    }
+    return false;
+}
+
+/**
  * Creates customer in Fortnox
  */
 export const createCustomer = async(forename : string, surname: string, email: string) => {

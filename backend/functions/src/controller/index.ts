@@ -4,10 +4,6 @@ import * as admin from "firebase-admin";
 import {UserPasswordJoiSchema} from "../validation-schema/user"
 import { createFortnoxSalesForceUser } from "../lib/user";
 
-export async function testController(req: Request, res: Response){
-    return res.status(200).send({message: "Succesfully registered new user", status: "success"});
-}
-
 export async function registerUser(req: Request, res: Response) {
     const {firstname, surname, email, phone, password, re_password} : RegisterUser = req.body;
 
