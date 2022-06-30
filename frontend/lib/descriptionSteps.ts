@@ -3,18 +3,23 @@ export const descriptionSteps = {
     title: "Our mission",
     subTitle:
       "The professional domain aftermarket agency with transparent, cost-effective process.",
-    list: {
-      title: [
-        "Domain name acquisitions",
-        "Naming projects",
-        "Domain name sales",
-      ],
-      subTitle: [
-        "We are experienced aftermarket professionals and can acquire taken domains for your business.",
-        "We work with you from a domain perspective and curate a selection of brand name prospects.",
-        "We assess if your dormant domain assets can be sold and guide you through the best way forward.",
-      ],
-    },
+    list: [
+      {
+        title: "Domain name acquisitions",
+        subTitle:
+          "We are experienced aftermarket professionals and can acquire taken domains for your business.",
+      },
+      {
+        title: "Naming projects",
+        subTitle:
+          "We work with you from a domain perspective and curate a selection of brand name prospects.",
+      },
+      {
+        title: "Domain name sales",
+        subTitle:
+          "We assess if your dormant domain assets can be sold and guide you through the best way forward.",
+      },
+    ],
   },
 
   find: {

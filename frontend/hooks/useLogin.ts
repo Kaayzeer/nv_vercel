@@ -1,5 +1,8 @@
 import { useState } from "react";
 
+//next
+import { useRouter } from "next/router";
+
 //hooks
 import { useAuthContext } from "./useAuthContext";
 
@@ -14,6 +17,7 @@ export const useLogin = () => {
   const [error, setError] = useState(null);
   const [message, setMessage] = useState("");
   const { dispatch } = useAuthContext();
+  const router = useRouter();
 
   //login user
   const login = (email: string, password: string) => {
@@ -24,11 +28,14 @@ export const useLogin = () => {
       .then((res) => {
         //send to useReducer in AuthContext
         dispatch({ type: "LOGIN", payload: res.user });
-        console.log("success");
+        console.log("success login in :", res);
+
+        //Route to AccountPage
+        router.push(`/login/${res.user.uid}`);
       })
       .catch((err) => {
-        console.log(err);
-        console.error("login gick inte igenom");
+        console.log("error while tryin to log in :", err.message);
+
         setError(err.message);
       });
   };

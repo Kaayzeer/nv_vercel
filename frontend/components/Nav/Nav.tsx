@@ -1,12 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
-/* This example requires Tailwind CSS v2.0+ */
 
+// headless-ui
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
-import Link from "next/link";
 
+//next
+import Link from "next/link";
+import { useRouter } from "next/router";
 import Image from "next/image";
+
+//components
 import LinkButton from "../ui-components/Button/LinkButton";
+
+//hooks
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
@@ -17,8 +24,13 @@ export interface IHeaderProps {}
 export default function Nav(props: IHeaderProps) {
   const [navBackground, setNavBackground] = useState(false);
   const [isShowing, setIsShowing] = useState(false);
+
   const navRef = useRef<boolean | undefined>();
   navRef.current = navBackground;
+
+  const { user } = useAuthContext();
+
+  const router = useRouter();
 
   const navigation = [
     { name: "Home", href: "/", current: true },
@@ -42,10 +54,14 @@ export default function Nav(props: IHeaderProps) {
     };
   }, []);
 
+  /*  ${
+    navBackground ? "bg-white" : "bg-transparent"
+  } */
+
   return (
     <Disclosure
       as="nav"
-      className={`fixed left-0 top-0 z-50 w-full  ${
+      className={`fixed left-0 top-0 z-50 w-full ${
         navBackground ? "bg-white" : "bg-transparent"
       }`}
     >
@@ -62,13 +78,24 @@ export default function Nav(props: IHeaderProps) {
               </div>
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start ">
                 <div className="flex-shrink-0 flex items-center mr-auto px-1 sm:px-0 sm:m-0">
-                  <Image
-                    className="hidden lg:block h-8 w-auto"
-                    src="/images/nextLogo.svg"
-                    alt="venture-logo"
-                    width={75}
-                    height={45}
-                  />
+                  {!user && (
+                    <Image
+                      className="hidden lg:block h-8 w-auto"
+                      src="/images/nextLogo.svg"
+                      alt="venture-logo"
+                      width={75}
+                      height={45}
+                    />
+                  )}
+                  {/*  {user && (
+                    <Image
+                      className="hidden lg:block h-8 w-auto"
+                      src="/icons/whiteLogo.png"
+                      alt="venture-logo"
+                      width={75}
+                      height={45}
+                    />
+                  )} */}
                 </div>
                 <div className="hidden sm:block sm:ml-auto ">
                   <div className="flex space-x-4 mr-10">
@@ -91,12 +118,22 @@ export default function Nav(props: IHeaderProps) {
                 </div>
               </div>
               <div className="hidden md:flex absolute inset-y-0 right-0  items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <LinkButton
-                  color={"text-black"}
-                  buttonText={"LOGIN"}
-                  type={"loginBtn"}
-                  linkHref={"/login"}
-                />
+                {!user && (
+                  <LinkButton
+                    color={"text-black"}
+                    buttonText={"LOGIN"}
+                    type={"loginBtn"}
+                    linkHref={"/login"}
+                  />
+                )}
+                {user && (
+                  <LinkButton
+                    color={"text-black"}
+                    buttonText={"my account"}
+                    type={"loginBtn"}
+                    linkHref={`/login/${user.uid}`}
+                  />
+                )}
               </div>
             </div>
           </div>

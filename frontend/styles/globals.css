@@ -211,7 +211,7 @@ ol {
   }
 
   .li-title {
-    @apply font-bold text-base md:text-2xl leading-7 md:leading-9 uppercase;
+    @apply font-bold text-base md:text-2xl leading-7 md:leading-9;
   }
 
   .li-paragraph {

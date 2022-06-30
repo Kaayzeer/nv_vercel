@@ -32,8 +32,8 @@ export default function Testimonials({ bgColor }: Props) {
     <div className={`w-full ${bgColor}`}>
       <div className="customContainer capitalize px-10">
         {isDesktopWidth && (
-          <div className="flex-start">
-            <h2 className="section-title md:-ml-10 2xl:-ml-40 mb-10 ">
+          <div className="py-40">
+            <h2 className="section-title  mb-10 ">
               words from partners and clients
             </h2>
             <div className="md:grid-col2 gap-40 w-full">

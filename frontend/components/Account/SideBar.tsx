@@ -18,13 +18,15 @@ export default function SideBar({ item, handleClick }: Props) {
       <button
         className={classNames(
           item.current
-            ? "text-white capitalize"
-            : "text-white hover:underline decoration-blue-800",
-          "px-3 py-2 rounded-md text-sm font-medium capitalize"
+            ? "text-white font-normal capitalize"
+            : "text-gray-300 hover:underline decoration-white",
+          "px-3 py-2 rounded-md text-sm font-normal capitalize"
         )}
         onClick={() => handleClick(item.name)}
       >
-        <span className="hidden sm:block">{item.name}</span>
+        <span className="transition-all duration-75 ease-linear hidden sm:block">
+          {item.name}
+        </span>
       </button>
     </>
   );

@@ -27,8 +27,8 @@ type Props = {};
 
 export default function InfoCard({}: Props) {
   return (
-    <div className="w-full 2xl:w-2/3 2xl:mx-auto">
-      <div className="lg:grid-col3  place-items-center -mt-40 px-4 md:px-0">
+    <div className="w-full 2xl:w-2/3 2xl:mx-auto customContainer">
+      <div className="lg:grid-col3  place-items-center -mt-40 px-4 md:px-0 gap-5">
         {cardsInfo.map((cardInfo, idx) => (
           <div
             key={idx}

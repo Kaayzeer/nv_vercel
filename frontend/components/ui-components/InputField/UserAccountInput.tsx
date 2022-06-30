@@ -27,7 +27,7 @@ export default function FormInputHalf({
             required: "This field required",
           })}
           autoComplete="email"
-          className="mt-1 py-4 w-full max-w-md bg-sign-in-input-bg  sm:text-sm gray-300 rounded-lg border-0"
+          className="mt-1 py-4 w-full md:max-w-md bg-sign-in-input-bg  sm:text-sm gray-300 rounded-lg border-0"
         />
       </div>
       <div className="flex flex-col">
@@ -45,7 +45,7 @@ export default function FormInputHalf({
             pattern: /^[a-zA-Z0-9]{3,30}$/,
           })}
           autoComplete="current-password"
-          className="mt-1 py-4 w-full max-w-md bg-sign-in-input-bg  sm:text-sm gray-300 rounded-lg border-0"
+          className="mt-1 py-4 w-full md:max-w-md bg-sign-in-input-bg  sm:text-sm gray-300 rounded-lg border-0"
         />
       </div>
     </div>

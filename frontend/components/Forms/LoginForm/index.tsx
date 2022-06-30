@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-//next
-import { useRouter } from "next/router";
-
 //components
 import FormButton from "../../ui-components/Button/FormButton";
 
@@ -25,8 +22,6 @@ type Props = {
 
 export default function LoginForm({ emailLabel, passwordLabel }: Props) {
   const { login } = useLogin();
-  const { user } = useAuthContext();
-  const router = useRouter();
 
   const {
     register,
@@ -34,16 +29,16 @@ export default function LoginForm({ emailLabel, passwordLabel }: Props) {
     formState: { errors },
   } = useForm<IFormInput>();
 
-  const handleFormButton: SubmitHandler<IFormInput> = (form_data: any) => {
+  const handleFormButton: SubmitHandler<IFormInput> = async (
+    form_data: any
+  ) => {
     console.log("email:", form_data.email);
     console.log("password: ", form_data.password);
 
+    // LoginHook with routing to accountpage
     login(form_data.email, form_data.password);
-    if (user) {
-      router.push(`/login/${user.uid}`);
-    }
   };
-  console.log(user);
+
   return (
     <div className="flex max-w-lg bg-white rounded-lg shadow-signInCard">
       <form

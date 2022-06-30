@@ -29,16 +29,16 @@ export default function HomeDescription({}: Props) {
       <div className="flex-start w-full ">
         <h2 className="section-title mx-auto my-20 lg:mx-0">how it works</h2>
 
-        <div className="flex-center hidden lg:flex">
+        <div className="mx-auto hidden lg:flex">
           <Image src="/images/123.svg" height={100} width={850} />
         </div>
-        <div className="flex-start lg:grid-col3 place-items-center">
+        <div className="lg:grid-col3 place-items-center">
           {descriptionsteps.map((descriptionStep, idx) => (
-            <div key={idx} className="flex-start md:flex-center -mt-64 px-4">
+            <div key={idx} className=" px-4">
               <span className="-ml-2 lg:hidden">
                 <Image src={descriptionStep.image} height={50} width={50} />
               </span>
-              <h3 className="section-sub-title2 md:section-sub-title capitalize">
+              <h3 className="section-sub-title2 md:section-sub-title capitalize text-center">
                 {descriptionStep.title}
               </h3>
               <p className="section-paragraph-normal text-left md:text-center text-sm ">

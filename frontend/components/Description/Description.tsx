@@ -34,7 +34,7 @@ export default function Description({ page, bgColor, textColor }: Props) {
               {descriptionSteps[page].title}
             </h3>
             <p
-              className={`section-sub-paragraph ${textColor} leading-7 md:leading-9`}
+              className={`section-sub-paragraphBold ${textColor} leading-7 md:leading-9`}
             >
               {descriptionSteps[page].subTitle}
             </p>
@@ -45,7 +45,7 @@ export default function Description({ page, bgColor, textColor }: Props) {
             )}
           </div>
           <div
-            className={` md:flex-start  ${textColor} min-h-500 ${
+            className={` flex-start ${textColor} min-h-500 ${
               page === "about" && "px-12 mt-8 pb-40 md:pb-0"
             }
             ${page !== "about" && "px-8 pb-10 -mt-28 md:-mt-0"}
@@ -53,24 +53,13 @@ export default function Description({ page, bgColor, textColor }: Props) {
           >
             {page === "about" ? (
               <ol className="space-y-10 ">
-                <li className="pl-5">
-                  <h3 className="li-title capitalize ">our mission</h3>
-                  <p className="li-paragraph ">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  </p>
-                </li>
-                <li className="pl-5 ">
-                  <h3 className="li-title capitalize ">our mission</h3>
-                  <p className="li-paragraph ">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  </p>
-                </li>
-                <li className="pl-5 ">
-                  <h3 className="li-title capitalize ">our mission</h3>
-                  <p className="li-paragraph ">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  </p>
-                </li>
+                {descriptionSteps[page].list.map((list, idx) => (
+                  <li key={idx} className="pl-5">
+                    <h3 className="li-title capitalize ">{list.title}</h3>
+
+                    <p className="li-paragraph2">{list.subTitle}</p>
+                  </li>
+                ))}
               </ol>
             ) : (
               <>

@@ -5,7 +5,7 @@ export const customStyles = (
 
   const layoutStyle =
     page === "home"
-      ? "bg-banner-background + bg-center mb-20 sm:mb-10 md:mb-0 "
+      ? "bg-banner-background + bg-center  mb-20 sm:mb-10 md:mb-0 "
       : page === "about"
       ? "bg-about-background + bg-bottom"
       : page === "login"
@@ -26,13 +26,13 @@ export const customStyles = (
       : page === "home"
       ? "flex-start + md:w-3/5"
       : page === "login"
-      ? "flex-start mx-auto md:w-3/5 "
+      ? "flex-start mx-auto "
       : page === "find"
-      ? "flex-start mx-auto md:w-4/5 "
+      ? "flex-start mx-auto  "
       : page === "buy"
-      ? "flex-start mx-auto md:w-3/5 "
+      ? "flex-start mx-auto"
       : page === "sell"
-      ? "flex-start mx-auto md:w-3/5 "
+      ? "flex-start mx-auto"
       : page === "404"
       ? "flex-center mx-auto md:w-1/3"
       : null;

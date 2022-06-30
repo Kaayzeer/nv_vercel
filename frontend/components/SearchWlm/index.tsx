@@ -14,6 +14,7 @@ export default function index({}: Props) {
   return (
     <form method="POST" onSubmit={handleSubmit}>
       <input
+        className="mt-1 py-4 w-full md:max-w-md bg-sign-in-input-bg  sm:text-sm gray-300 rounded-lg border-0"
         type="text"
         onChange={(e) => setSearch(e.target.value)}
         value={search}

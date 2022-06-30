@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 
+import { useRouter } from "next/router";
+import Image from "next/image";
+
 //components
 import SideBar from "../../components/Account/SideBar";
 import AccountLayout from "../../components/Layout/AccountLayout";
@@ -19,6 +22,9 @@ import OrderHistory from "../../components/Account/OrderHistory";
 //react-hook-form
 import { useForm, SubmitHandler } from "react-hook-form";
 
+//hooks
+import { useLogout } from "../../hooks/useLogout";
+
 type Props = {};
 
 type IFormInput = {
@@ -26,35 +32,19 @@ type IFormInput = {
   phone: string;
 };
 
-const sideBarInfo = [
-  {
-    name: "your orders",
-    icon: "/icons/envelopeIcon.svg",
-    current: true,
-  },
-  {
-    name: "personal info",
-    icon: "/icons/personIcon.svg",
-    current: false,
-  },
-  {
-    name: "order history",
-    icon: "/icons/orderIcon.svg",
-    current: false,
-  },
-  {
-    name: "sign out",
-    icon: "/icons/signOutIcon.svg",
-    current: false,
-  },
-];
-
 export default function ({}: Props) {
   //Sidebarpages states
   const [orderView, setOrderView] = useState(false);
   const [infoView, setinfoView] = useState(false);
   const [historyView, setHistoryView] = useState(false);
 
+  //Get the logout function
+  const { logout, error } = useLogout();
+
+  //use to sign out user
+  const router = useRouter();
+
+  //Form validation
   const {
     register,
     handleSubmit,
@@ -80,7 +70,35 @@ export default function ({}: Props) {
     if (e === "order history") {
       setHistoryView(true);
     } else setHistoryView(false);
+
+    if (e === "sign out") {
+      logout();
+      router.push("/");
+    }
   };
+
+  const sideBarInfo = [
+    {
+      name: "your orders",
+      icon: "/icons/envelopeIcon.svg",
+      current: orderView,
+    },
+    {
+      name: "personal info",
+      icon: "/icons/personIcon.svg",
+      current: infoView,
+    },
+    {
+      name: "order history",
+      icon: "/icons/orderIcon.svg",
+      current: historyView,
+    },
+    {
+      name: "sign out",
+      icon: "/icons/signOutIcon.svg",
+      current: false,
+    },
+  ];
 
   const handleUserFormButton: SubmitHandler<IFormInput> = (form_data: any) => {
     console.log("email:", form_data.email);
@@ -101,14 +119,25 @@ export default function ({}: Props) {
     console.log("password: ", form_data.password);
   };
 
+  /* transition-all duration-75 ease-linear */
+
   return (
     <AccountLayout title={""} description={""} keywords={""}>
       <div className="w-full flex py-56 md:py-44 md:pl-60 md:pr-20 h-full">
         {/* ------- SideBar -------- */}
-        <div className="fixed  top-20 w-full py-3 md:py-0 md:w-auto md:top-0 md:left-0 md:min-w-16  md:rounded-r-3xl bg-section-blue">
+        <div className="fixed top-20 w-full py-3 md:py-0 md:w-auto md:top-0 md:left-0 md:min-w-16  md:rounded-r-3xl bg-section-blue ">
+          <div className="flex px-8 w-full mt-4">
+            <Image
+              className="h-8 w-auto"
+              src="/icons/whiteLogo.png"
+              alt="venture-logo"
+              width={75}
+              height={45}
+            />
+          </div>
           <div className="flex items-center justify-between md:flex-start md:gap-10 md:mx-auto md:text-left md:mr-10">
             {sideBarInfo.map((item, idx) => (
-              <div className="flex pl-4 " key={idx}>
+              <div className="flex mx-auto md:mx-0 md:pl-4 " key={idx}>
                 <SideBar item={item} handleClick={handleClick} />
               </div>
             ))}
@@ -117,7 +146,7 @@ export default function ({}: Props) {
         </div>
 
         {orderView && (
-          <div className="w-full  md:px-24">
+          <div className="w-full px-4 sm:px-12 lg:px-24">
             <AccountTitle
               title={"Your orders"}
               subTitle={
@@ -126,19 +155,11 @@ export default function ({}: Props) {
             />
             <OrderCard />
             <OrderCard />
-            <OrderCard />
-            <OrderCard />
-            <OrderCard />
-            <OrderCard />
-            <OrderCard />
-            <OrderCard />
-            <OrderCard />
-            <OrderCard />
           </div>
         )}
 
         {infoView && (
-          <div className="w-full  md:px-24">
+          <div className="w-full px-10 md:px-24 ">
             <AccountTitle
               title={"Emma Rosenlind"}
               subTitle={
@@ -157,7 +178,7 @@ export default function ({}: Props) {
             </form>
 
             <hr className="bg-sign-in-input-bg h-2 w-full my-20"></hr>
-            <section className="grid grid-cols-2 gap-20">
+            <section className="grid  lg:grid-cols-2 gap-20">
               <div className="grid-rows-1 ">
                 <AccountSubTitle
                   subTitle={"Business/organisation"}
