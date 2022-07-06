@@ -105,7 +105,7 @@ export default function Footer({}: Props) {
             <a
               href="https://se.trustpilot.com/review/weknowit.se"
               target="_blank"
-              rel="noopener"
+              rel="noreferrer"
             >
               Trustpilot
             </a>

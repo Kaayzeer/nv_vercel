@@ -4,12 +4,12 @@ import React, { createContext, useReducer, useEffect, ReactNode } from "react";
 import { auth } from "../firebase/firebaseSetup";
 import { onAuthStateChanged } from "firebase/auth";
 
-type User = {
+/* type User = {
   firstname: string;
   surname: string;
   email: string;
   phone: string;
-} | null;
+} | null; */
 
 // create context
 export const AuthContext = createContext<any>(null);

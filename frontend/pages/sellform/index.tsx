@@ -10,7 +10,7 @@ import Layout from "../../components/Layout/Layout";
 
 type Props = {};
 
-export default function index({}: Props) {
+export default function SellForm({}: Props) {
   //Modal toggler
   const [showModal, setShowModal] = useState(true);
 

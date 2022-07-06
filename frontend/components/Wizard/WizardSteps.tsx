@@ -15,12 +15,12 @@ import { useRouter } from "next/router";
 import SellFormStep1 from "../Forms/SellForm/SellFormStep1";
 import SellFormStep2 from "../Forms/SellForm/SellFormStep2";
 
-export default (props: {
+function WizardSteps(props: {
   step: TStep;
   wizard: IWizard;
   form: any;
   dispatchForm: Function;
-}) => {
+}) {
   const router = useRouter();
   const route = router.route.substring(1);
 
@@ -58,4 +58,6 @@ export default (props: {
     default:
       return <>Step does not exist</>;
   }
-};
+}
+
+export default WizardSteps;

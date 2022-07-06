@@ -37,7 +37,7 @@ export default function GetStarted({ setShowModal }: Props) {
     >
       <div className=" h-full flex justify-center">
         <form
-          className="w-full m-auto bg-white p-12 rounded-2xl md:w-1/2"
+          className="w-full m-auto bg-white p-12 rounded-2xl md:w-1/2 "
           onSubmit={handleSubmit(handleFormButton)}
         >
           <FormTitle
@@ -63,13 +63,14 @@ export default function GetStarted({ setShowModal }: Props) {
             type={"phone"}
             register={register}
           />
-
-          <FormButton
-            onClick={() => setShowModal(false)}
-            color={"text-white"}
-            buttonText={"continue"}
-            type={"formBtn"}
-          />
+          <div className="text-center">
+            <FormButton
+              onClick={() => setShowModal(false)}
+              color={"text-white"}
+              buttonText={"continue"}
+              type={"formBtn"}
+            />
+          </div>
         </form>
       </div>
     </div>

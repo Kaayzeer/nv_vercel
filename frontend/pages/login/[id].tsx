@@ -32,7 +32,7 @@ type IFormInput = {
   phone: string;
 };
 
-export default function ({}: Props) {
+export default function Login({}: Props) {
   //Sidebarpages states
   const [orderView, setOrderView] = useState(false);
   const [infoView, setinfoView] = useState(false);

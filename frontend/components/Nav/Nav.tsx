@@ -30,8 +30,6 @@ export default function Nav(props: IHeaderProps) {
 
   const { user } = useAuthContext();
 
-  const router = useRouter();
-
   const navigation = [
     { name: "Home", href: "/", current: true },
     { name: "Buy", href: "/buy", current: false },

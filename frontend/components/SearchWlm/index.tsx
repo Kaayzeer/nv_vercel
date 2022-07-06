@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 type Props = {};
 
-export default function index({}: Props) {
+export default function SearchWlm({}: Props) {
   const [search, setSearch] = useState<string>("");
 
   const handleSubmit = (e: any) => {

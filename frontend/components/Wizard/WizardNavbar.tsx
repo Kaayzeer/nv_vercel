@@ -4,12 +4,12 @@ import { TStep } from "use-wizard/lib/cjs/useWizard/types/TStep";
 import { useRouter } from "next/router";
 import useResizeWindow from "../../hooks/useResize";
 
-export default (props: {
+function WizardNavbar(props: {
   step: TStep;
   wizard: IWizard;
   dispatchForm: Function;
   form: any;
-}) => {
+}) {
   const [selected, setSelected] = useState<null | boolean>(null);
   //layout breakpoints
   const { width } = useResizeWindow();
@@ -37,7 +37,6 @@ export default (props: {
     /*     console.log(props.wizard.stepIndex());
     console.log(e);
     console.log(props.step); */
-
     props.wizard.goToStep(e);
   };
 
@@ -60,7 +59,9 @@ export default (props: {
         ))}
     </nav>
   );
-};
+}
+
+export default WizardNavbar;
 
 /* const [complete, setComplete] = useState<boolean>(false); */
 

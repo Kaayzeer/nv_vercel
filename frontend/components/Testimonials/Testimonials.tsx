@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 
 // components
 import PortraitCard from "../Card/PortraitCard";
+
+//hooks
+import useResizeWindow from "../../hooks/useResize";
+
 // import Swiper JS
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
@@ -13,26 +17,17 @@ import "swiper/css/autoplay";
 type Props = { bgColor: string };
 
 export default function Testimonials({ bgColor }: Props) {
-  const [isDesktopWidth, setIsDesktopWidth] = useState(
-    typeof window !== "undefined" && window.innerWidth > 645
-  );
+  //layout breakpoints
 
-  // change jsx layout dynamically
-  const updatePage = () => {
-    setIsDesktopWidth(window.innerWidth > 645);
-  };
+  const { width } = useResizeWindow();
 
-  // combat sideeffect
-  useEffect(() => {
-    window.addEventListener("resize", updatePage);
-    return () => window.removeEventListener("resize", updatePage);
-  }, []);
+  const view = width >= 645;
 
   return (
     <div className={`w-full ${bgColor}`}>
       <div className="customContainer capitalize px-10">
-        {isDesktopWidth && (
-          <div className="py-40">
+        {view && (
+          <section className="py-40">
             <h2 className="section-title  mb-10 ">
               words from partners and clients
             </h2>
@@ -47,25 +42,25 @@ export default function Testimonials({ bgColor }: Props) {
                   Trustworthy professionals!
                 </h3>
                 <p className="section-paragraph">
-                  “We have collaborated with Next Venture on numerous domain
+                  We have collaborated with Next Venture on numerous domain
                   brokering projects. Each and every experience has been
                   productive and positive because Sten and his team are
-                  trustworthy and courteous professionals." - Bill Sweetman,
-                  President, Name Ninja”
+                  trustworthy and courteous professionals. - Bill Sweetman,
+                  President, Name Ninja
                 </p>
                 <p className="section-paragraph">
                   We truly appreciate working with Sten and Next Venture on
                   domain brokering projects. Sten has extensive knowledge within
                   the domain aftermarket, and is very reliable, responsive and
                   solution-oriented. We give Sten our warmest recommendations!
-                  -Marcus Glaad, COO & Partner, Dotkeeper
+                  -Marcus Glaad, COO and Partner, Dotkeeper
                 </p>
               </div>
             </div>
-          </div>
+          </section>
         )}
 
-        {!isDesktopWidth && (
+        {!view && (
           <>
             <h2 className="section-title mt-10 mb-20 ">
               what our customers say
@@ -97,19 +92,19 @@ export default function Testimonials({ bgColor }: Props) {
                 It was a great experience!
               </h3>
               <p className="section-paragraph">
-                “We have collaborated with Next Venture on numerous domain
+                We have collaborated with Next Venture on numerous domain
                 brokering projects. Each and every experience has been
                 productive and positive because Sten and his team are
-                trustworthy and courteous professionals." - Bill Sweetman,
-                President, Name Ninja”
+                trustworthy and courteous professionals. - Bill Sweetman,
+                President, Name Ninja
               </p>
 
               <p className="section-paragraph mb-10">
-                "We truly appreciate working with Sten and Next Venture on
-                domain brokering projects. Sten has extensive knowledge within
-                the domain aftermarket, and is very reliable, responsive and
-                solution-oriented. We give Sten our warmest recommendations!"
-                -Marcus Glaad, COO & Partner, Dotkeeper
+                We truly appreciate working with Sten and Next Venture on domain
+                brokering projects. Sten has extensive knowledge within the
+                domain aftermarket, and is very reliable, responsive and
+                solution-oriented. We give Sten our warmest recommendations!
+                -Marcus Glaad, COO and Partner, Dotkeeper
               </p>
             </div>
           </>
