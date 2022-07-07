@@ -11,9 +11,9 @@ module.exports = {
         "banner-gradient": "url('../public/images/bannerGradientBg.png')",
         "about-background": "url('../public/images/aboutBG.png')",
         "login-background": "url('../public/images/LoginPage.png')",
-        "find-background": "url('../public/images/findBackground.svg')",
-        "sell-background": "url('../public/images/sellBackground.svg')",
-        "buy-background": "url('../public/images/buyBackground.svg')",
+        "find-background": "url('../public/images/FindBackground.svg')",
+        "sell-background": "url('../public/images/SellBackground.svg')",
+        "buy-background": "url('../public/images/BuyBackground.svg')",
         "footer-background": "url('../public/images/bgFooter.svg')",
         "footer-background-sm": "url('../public/images/bgFooterSm.svg')",
         "section-blue-about":
