@@ -1,63 +1,80 @@
 import Image from "next/image";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 
 type Props = {};
 
-const Customers = [
+const customers = [
   {
-    picture:
-      "https://tailus.io/sources/blocks/grid-cards/preview/images/avatars/first_user.webp",
-    name: "namn på företag",
-    service: "tjänst på företag",
+    img: "/images/marcusGTestimonial.svg",
+    name: "Marcus Glaad",
+    service: "-Dotkeeper AB",
   },
   {
-    picture:
-      "https://tailus.io/sources/blocks/grid-cards/preview/images/avatars/first_user.webp",
-    name: "namn på företag",
-    service: "tjänst på företag",
+    img: "/images/billSTestimonial.svg",
+    name: "Bill Sweetman",
+    service: "-Name Ninja LLC",
   },
   {
-    picture:
-      "https://tailus.io/sources/blocks/grid-cards/preview/images/avatars/first_user.webp",
-    name: "namn på företag",
-    service: "tjänst på företag",
+    img: "/images/enidBTestimonial.svg",
+    name: "Enid Bachman",
+    service: "-CEO Wanderganic",
   },
 ];
 
 export default function PortraitCard({}: Props) {
-  const [background, setBackground] = useState<string | null>(null);
-  const [checked, setChecked] = useState(false);
-
-  const clickedCard = () => {
-    setChecked((prevValue) => !prevValue);
-    if (checked === true) {
-      setBackground("shadow-3xl");
-    } else {
-      setBackground("");
-    }
-  };
+  const [index, setIndex] = useState<number | null>(null);
 
   return (
     <div
-      onClick={clickedCard}
-      className={`${background} p-6 gap-x-4 w-full mx-auto rounded-xl flex items-center space-x-4 cursor-pointer`}
+      className={`w-full h-full mx-auto rounded-xl flex flex-col items-center justify-around space-y-4  cursor-pointer`}
     >
-      <div className="shrink-0">
-        <img
-          className="rounded-full"
-          src="https://tailus.io/sources/blocks/grid-cards/preview/images/avatars/first_user.webp"
-          alt="user avatar"
-          height="87"
-          width="87"
-          loading="lazy"
-        />
-      </div>
-      <div>
-        <h3 className="text-xl font-bold text-black">För efternamn</h3>
-        <p className="text-lg font-normal testimonial-grey">
-          Tjänst på företag
-        </p>
-      </div>
+      {customers.map((customer, idx) => (
+        <div
+          key={idx}
+          className={`flex items-center gap-6 py-5 px-10  ${
+            idx === index && "shadow-3xl"
+          } `}
+          onClick={() => setIndex(idx)}
+        >
+          <div className="shrink-0">
+            <img
+              className="rounded-full"
+              src={customer.img}
+              alt="user avatar"
+              height="87"
+              width="87"
+              loading="lazy"
+            />
+          </div>
+          <div>
+            <h3 className="text-xl font-bold text-black">{customer.name}</h3>
+            <p className="text-md font-normal testimonial-grey">
+              {customer.service}
+            </p>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
+
+/*       {customers.map((customer) => (
+        <>
+          <div className="shrink-0">
+            <img
+              className="rounded-full"
+              src={customer.img}
+              alt="user avatar"
+              height="87"
+              width="87"
+              loading="lazy"
+            />
+          </div>
+          <div>
+            <h3 className="text-xl font-bold text-black">{customer.name}</h3>
+            <p className="text-lg font-normal testimonial-grey">
+              {customer.service}
+            </p>
+          </div>
+        </>
+      ))} */

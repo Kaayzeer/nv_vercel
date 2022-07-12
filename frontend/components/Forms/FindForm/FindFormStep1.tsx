@@ -3,12 +3,16 @@ import React, { useState, useEffect, useRef } from "react";
 //react hook form
 import { useForm, SubmitHandler } from "react-hook-form";
 
+//next router
+import { useRouter } from "next/router";
+
 //components
 
 import DropDown from "../../ui-components/Dropdown/DropDown";
 import TextArea from "../../ui-components/TextArea/TextArea";
 import FormTitle from "../../ui-components/FormTitle/FormTitle";
 import BackButton from "../../ui-components/Button/ClickButton";
+import GetStarted from "../../../components/Modals/GetStarted";
 
 //wizard imports
 import { IWizard } from "use-wizard/lib/cjs/useWizard/types/IWizard";
@@ -22,9 +26,11 @@ type Props = {
 
 interface IFormInput {
   business_desc: string;
-  business_type: string;
   additional_details?: string;
-  country: string;
+  industry: string;
+  region: string;
+  phone: number | string;
+  email: string;
 }
 
 export default function Form(
@@ -33,9 +39,16 @@ export default function Form(
     wizard: IWizard;
     form: any;
     dispatchForm: Function;
+    formOneValues: any;
+    setFormOneValues: Function;
   },
   { type }: Props
 ) {
+  //Modal toggler
+  const [showModal, setShowModal] = useState(true);
+
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -44,6 +57,7 @@ export default function Form(
 
   const handleFormButton: SubmitHandler<IFormInput> = (form_data: any) => {
     console.log(form_data);
+    props.setFormOneValues({ ...form_data });
     // Update values
     props.dispatchForm({
       type: "UPDATE_KEY_VALUES",
@@ -55,19 +69,25 @@ export default function Form(
     window.scrollTo(0, 0);
   };
 
-  //Go back to page
+  //Go back to find page
   const handleBackButton = () => {
-    /* props.wizard.previousStep(); */
+    router.push("/find");
     window.scrollTo(0, 0);
   };
-
-  console.log(errors);
 
   return (
     <>
       <>
         <div className="w-full pt-40 ">
           <WizardLayout {...props}>
+            {!props.formOneValues.email && showModal && (
+              <GetStarted
+                setShowModal={setShowModal}
+                register={register}
+                handleFormButton={handleFormButton}
+                handleSubmit={handleSubmit}
+              />
+            )}
             <div className="customContainer px-4 py-5 md:px-0 md:py-0  space-y-10">
               <FormTitle
                 step={`step 1`}
@@ -86,6 +106,10 @@ export default function Form(
                   p="Let us know what you do. "
                   register={register}
                   type="about_business"
+                  value={
+                    props.formOneValues.business_desc &&
+                    props.formOneValues.business_desc
+                  }
                 />
                 {errors.business_desc && (
                   <p className="error">{errors.business_desc.message}</p>
@@ -95,6 +119,9 @@ export default function Form(
                   p="Choose your primary vertical."
                   register={register}
                   type="industry"
+                  value={
+                    props.formOneValues.industry && props.formOneValues.industry
+                  }
                 />
 
                 <DropDown
@@ -102,6 +129,9 @@ export default function Form(
                   p="Where are you present?"
                   register={register}
                   type="region"
+                  value={
+                    props.formOneValues.region && props.formOneValues.region
+                  }
                 />
 
                 <TextArea
@@ -109,6 +139,10 @@ export default function Form(
                   p="Let us know what you think."
                   register={register}
                   type="additional_details"
+                  value={
+                    props.formOneValues.additional_details &&
+                    props.formOneValues.additional_details
+                  }
                 />
                 {errors.additional_details && (
                   <p className="error">{errors.additional_details.message}</p>

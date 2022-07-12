@@ -7,6 +7,7 @@ type Props = {
   inputType: string;
   register?: any;
   type: "keywords" | "names_disliked" | "phone" | "email" | "company";
+  value?: any;
 };
 
 export default function FormInput({
@@ -16,6 +17,7 @@ export default function FormInput({
   register,
   inputType,
   type,
+  value,
 }: Props) {
   const registerType =
     type === "keywords"
@@ -65,6 +67,7 @@ export default function FormInput({
         placeholder={placeholder}
         autoComplete={autoComplete}
         className="block w-full border-solid border border-black py-3 px-4 placeholder-gray-500  rounded-lg focus:outline-none focus:ring-2"
+        value={value}
       />
     </div>
   );

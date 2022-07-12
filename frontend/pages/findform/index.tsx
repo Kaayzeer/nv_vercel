@@ -5,15 +5,11 @@ import WizardSteps from "../../components/Wizard/WizardSteps";
 import formReducer from "../../components/Wizard/formReducer";
 
 //components
-import GetStarted from "../../components/Modals/GetStarted";
 import Layout from "../../components/Layout/Layout";
 
 type Props = {};
 
 export default function FindForm({}: Props) {
-  //Modal toggler
-  const [showModal, setShowModal] = useState(true);
-
   // This is how you create the wizard
   const [step, wizard] = useWizard([
     "name purpose",
@@ -25,14 +21,26 @@ export default function FindForm({}: Props) {
   // This is only used to store user inputs
   const [form, dispatchForm] = useReducer(formReducer, {});
 
-  /*   useEffect(() => {
-      console.log(form);
-    }, [form]); */
+  //store formData in outside state to save input values
+  const [formOneValues, setFormOneValues] = useState({});
+  const [formTwoValues, setFormTwoValues] = useState({});
 
+  console.log({ formOneValues }, { formTwoValues });
+  console.log(form);
   return (
     <Layout title={""} description={""} keywords={""}>
-      {showModal && <GetStarted setShowModal={setShowModal} />}
-      <WizardSteps {...{ step, wizard, form, dispatchForm }} />
+      <WizardSteps
+        {...{
+          step,
+          wizard,
+          form,
+          dispatchForm,
+          setFormOneValues,
+          formOneValues,
+          formTwoValues,
+          setFormTwoValues,
+        }}
+      />
     </Layout>
   );
 }

@@ -5,9 +5,10 @@ type Props = {
   p: string;
   register: any;
   type: "about_business" | "additional_details" | "domain";
+  value?: string;
 };
 
-export default function TextArea({ title, p, register, type }: Props) {
+export default function TextArea({ title, p, register, type, value }: Props) {
   const registerFilter =
     type === "about_business"
       ? "business_desc"
@@ -44,6 +45,7 @@ export default function TextArea({ title, p, register, type }: Props) {
           className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 p-8 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
           placeholder={placeholder}
           autoComplete="on"
+          value={value}
         />
       </div>
     </div>

@@ -11,6 +11,7 @@ type Props = {
   type: "industry" | "region" | "letters" | "words" | "budget";
   wordCheckbox?: boolean;
   letterCheckbox?: boolean;
+  value?: any;
 };
 
 export default function Dropdown({
@@ -20,6 +21,7 @@ export default function Dropdown({
   type,
   wordCheckbox,
   letterCheckbox,
+  value,
 }: Props) {
   const registerType =
     type === "industry"
@@ -63,6 +65,7 @@ export default function Dropdown({
           (letterCheckbox && " cursor-not-allowed ") ||
           (wordCheckbox && " cursor-not-allowed ")
         }`}
+        value={value}
       >
         <option key="optkey" value={"Select"}>
           Select

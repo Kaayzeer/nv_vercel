@@ -24,8 +24,8 @@ export default function Testimonials({ bgColor }: Props) {
   const view = width >= 645;
 
   return (
-    <div className={`w-full ${bgColor}`}>
-      <div className="customContainer capitalize px-10">
+    <div className={`w-full ${bgColor}`} id={"testimonials"}>
+      <div className="customContainer px-10">
         {view && (
           <section className="py-40">
             <h2 className="section-title  mb-10 ">
@@ -34,11 +34,9 @@ export default function Testimonials({ bgColor }: Props) {
             <div className="md:grid-col2 gap-40 w-full">
               <div className="md:flex-start md:h-auto">
                 <PortraitCard />
-                <PortraitCard />
-                <PortraitCard />
               </div>
               <div className="flex-start-top gap-10 h-auto">
-                <h3 className="section-sub-title">
+                <h3 className="section-sub-title capitalize">
                   Trustworthy professionals!
                 </h3>
                 <p className="section-paragraph">

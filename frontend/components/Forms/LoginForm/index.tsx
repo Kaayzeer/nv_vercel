@@ -21,7 +21,7 @@ type Props = {
 };
 
 export default function LoginForm({ emailLabel, passwordLabel }: Props) {
-  const { login } = useLogin();
+  const { login, error } = useLogin();
 
   const {
     register,
@@ -85,6 +85,7 @@ export default function LoginForm({ emailLabel, passwordLabel }: Props) {
           buttonText={"sign in"}
           type={"signInBtn"}
         />
+        {error && <p className="error">{error}</p>}
         <button className="underline text-sm font-normal mt-10" type="button">
           Forgot password?
         </button>

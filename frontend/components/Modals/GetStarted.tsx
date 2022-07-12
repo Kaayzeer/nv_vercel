@@ -8,28 +8,35 @@ import FormTitle from "../ui-components/FormTitle/FormTitle";
 import FormInput from "../ui-components/InputField/FormInput";
 import FormButton from "../ui-components/Button/FormButton";
 
-interface IFormInput {
+/* interface IFormInput {
   phone: number;
   email: string;
-}
+} */
 
 type Props = {
   setShowModal: any;
+  register: any;
+  handleFormButton: any;
+  handleSubmit: any;
 };
 
-export default function GetStarted({ setShowModal }: Props) {
-  const {
+export default function GetStarted({
+  setShowModal,
+  register,
+  handleFormButton,
+  handleSubmit,
+}: Props) {
+  /*   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IFormInput>();
+  } = useForm<IFormInput>(); */
 
-  const handleFormButton: SubmitHandler<IFormInput> = async (
+  /*   const handleFormButton: SubmitHandler<IFormInput> = async (
     form_data: any
   ) => {
     console.log(form_data);
-  };
-
+  }; */
   return (
     <div
       className="fixed top-0 left-0 z-100 w-full h-full"

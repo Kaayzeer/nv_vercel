@@ -89,7 +89,7 @@ export default function Banner({ page, title, subTitle }: Props) {
         {page === "home" && (
           <>
             <img
-              className="absolute top-10 left-0  md:left-20 md:top-20 md:w-96  w-2/3"
+              className="absolute top-10 left-0 md:left-10 md:top-10  md:w-56  2xl:left-20 2xl:top-20 2xl:w-96  w-2/3"
               src={"/images/birds.svg"}
             />
             <img
@@ -97,7 +97,7 @@ export default function Banner({ page, title, subTitle }: Props) {
               src={"/images/homePageClouds.svg"}
             />
             <img
-              className="absolute xl:h-4/5 bottom-0 right-0"
+              className="absolute md:h-3/4 xl:h-4/5 bottom-0 right-0"
               src={"/images/adventurer.svg"}
             />
           </>

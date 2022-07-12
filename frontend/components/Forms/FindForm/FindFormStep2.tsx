@@ -30,6 +30,8 @@ export default function FindFormStep2(props: {
   wizard: IWizard;
   form: any;
   dispatchForm: Function;
+  formTwoValues: any;
+  setFormTwoValues: any;
 }) {
   const {
     register,
@@ -52,11 +54,6 @@ export default function FindFormStep2(props: {
 
   const letterCheckbox = watch("no_letters");
 
-  /*   console.log("no_words", wordCheckbox);
-  console.log("no_letters", letterCheckbox); */
-
-  console.log(errors);
-
   useEffect(() => {
     if (wordCheckbox) {
       unregister("maximum_words");
@@ -66,11 +63,12 @@ export default function FindFormStep2(props: {
     }
   }, [letterCheckbox, wordCheckbox, unregister]);
 
-  const handleFormButton: SubmitHandler<IFormInput> = (saved_data: any) => {
-    console.log(saved_data);
+  const handleFormButton: SubmitHandler<IFormInput> = (form_two_data: any) => {
+    console.log(form_two_data);
+    props.setFormTwoValues({ ...form_two_data });
     props.dispatchForm({
       type: "UPDATE_KEY_VALUES",
-      payload: saved_data,
+      payload: form_two_data,
     });
 
     props.wizard.nextStep();
@@ -78,9 +76,13 @@ export default function FindFormStep2(props: {
   };
 
   const handleBackButton = () => {
-    props.wizard.previousStep();
+    props.wizard.goToStep("name purpose");
     window.scrollTo(0, 0);
   };
+
+  console.log(props.formTwoValues.keywords);
+  console.log(props.formTwoValues.names_disliked);
+  console.log(props.form);
 
   return (
     <div className="w-full pt-40 ">
@@ -105,6 +107,9 @@ export default function FindFormStep2(props: {
               register={register}
               inputType="text"
               type="keywords"
+              value={
+                props.formTwoValues.keywords && props.formTwoValues.keywords
+              }
             />
             {errors.keywords && (
               <p className="error">{(errors.keywords as any).message}</p>
@@ -116,6 +121,10 @@ export default function FindFormStep2(props: {
               register={register}
               inputType="text"
               type="names_disliked"
+              value={
+                props.formTwoValues.names_disliked &&
+                props.formTwoValues.names_disliked
+              }
             />
             {errors.names_disliked && (
               <p className="error">{(errors.names_disliked as any).message}</p>

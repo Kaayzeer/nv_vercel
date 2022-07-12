@@ -14,7 +14,7 @@ import {
 } from "firebase/auth";
 
 export const useLogin = () => {
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState("");
   const { dispatch } = useAuthContext();
   const router = useRouter();
@@ -36,7 +36,7 @@ export const useLogin = () => {
       .catch((err) => {
         console.log("error while tryin to log in :", err.message);
 
-        setError(err.message);
+        setError("Wrong password or username");
       });
   };
 

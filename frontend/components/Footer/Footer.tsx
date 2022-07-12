@@ -1,8 +1,6 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { AiFillInstagram } from "react-icons/ai";
-import { BsFacebook, BsTwitter } from "react-icons/bs";
-import { FaLinkedinIn } from "react-icons/fa";
+import Link from "next/link";
 
 type Props = {};
 
@@ -10,21 +8,29 @@ const footerInfo = [
   {
     name: "services",
     sub1: "find a domain",
+    link1: "/find",
     sub2: "buy a domain",
+    link2: "/buy",
     sub3: "sell your domain",
+    link3: "/sell",
+  },
+  {
+    name: "the company",
+    sub1: "about next venture",
+    link1: "/about",
+    sub2: "what clients say",
+    link2: "/#testimonials",
+    sub3: "policys",
+    link3: "/policy",
   },
   {
     name: "contact",
     sub1: "contact information",
+    link1: "/find",
     sub2: "lorem ipsum",
+    link2: "/buy",
     sub3: "lorem ipsum",
-  },
-
-  {
-    name: "the company",
-    sub1: "about next venture",
-    sub2: "what our customers say",
-    sub3: "policys",
+    link3: "/sell",
   },
 ];
 
@@ -54,9 +60,25 @@ export default function Footer({}: Props) {
                 className=" mt-20 lg:mt-40 w-1/2 sm:w-full space-y-3 "
               >
                 <h1 className="section-sub-title">{info.name.toUpperCase()}</h1>
-                <p className="section-sub-paragraph capitalize">{info.sub1}</p>
-                <p className="section-sub-paragraph capitalize">{info.sub2}</p>
-                <p className="section-sub-paragraph capitalize">{info.sub3}</p>
+
+                <div className="flex flex-col gap-3">
+                  <Link href={info.link1}>
+                    <a className="section-sub-paragraph capitalize">
+                      {info.sub1}
+                    </a>
+                  </Link>
+
+                  <Link href={info.link2}>
+                    <a className="section-sub-paragraph capitalize">
+                      {info.sub2}
+                    </a>
+                  </Link>
+                  <Link href={info.link3}>
+                    <a className="section-sub-paragraph capitalize">
+                      {info.sub3}
+                    </a>
+                  </Link>
+                </div>
               </div>
             ))}
           </div>

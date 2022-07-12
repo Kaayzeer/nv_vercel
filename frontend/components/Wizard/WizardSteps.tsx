@@ -20,6 +20,10 @@ function WizardSteps(props: {
   wizard: IWizard;
   form: any;
   dispatchForm: Function;
+  formOneValues: any;
+  setFormOneValues: any;
+  formTwoValues: any;
+  setFormTwoValues: any;
 }) {
   const router = useRouter();
   const route = router.route.substring(1);
