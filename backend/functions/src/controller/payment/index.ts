@@ -41,10 +41,11 @@ export const CreateCheckoutSession = async (req : Request, res: Response) => {
                       quantity: 1,
                 }
             ],
+            customer_email: snapData!.email,
             payment_method_types: ["card"],
             mode: "payment",
-            success_url: `${process.env.DOMAIN}/success.html`,
-            cancel_url: `${process.env.DOMAIN}/error.html`
+            success_url: `${process.env.DOMAIN}/success/${id}`,
+            cancel_url: `${process.env.DOMAIN}/error/${id}`
         })
     
         // Return session url

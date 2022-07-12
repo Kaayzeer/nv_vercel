@@ -1,13 +1,9 @@
 import * as express from "express";
-import { testController } from "../controller";
+import { declineOffer, getErrand, signOffer, updateErrand } from "../controller/errand";
 import { createBuy, createFind, createSell } from "../controller/public";
-import { getUserRequest } from "../middleware/user_info";
+import { getUserMiddle, getUserRequest } from "../middleware/user_info";
 
 const router = express.Router()
-
-router.get("/test",
-    testController
-);
 
 router.post("/find",
     getUserRequest,
@@ -23,5 +19,26 @@ router.post("/offer",
     getUserRequest,
     createBuy
 );
+
+router.post("/sign/:id",
+    getUserMiddle,
+    signOffer
+);
+
+router.post("/decline/:id",
+    getUserMiddle,
+    declineOffer
+);
+
+router.get("/get/:id",
+    getUserMiddle,
+    getErrand
+)
+
+router.patch("/update/:id",
+    getUserMiddle,
+    updateErrand
+)
+
 
 module.exports = router;

@@ -36,3 +36,35 @@ export const getUserRequest = async (req: Request, res: Response, next: Function
         return res.status(400).send({message: err})
     }
 }
+
+export async function getUserMiddle(req: Request, res: Response, next: Function) {
+    const {authorization} = req.headers;
+  
+    // Check if bearer exists
+    if (!authorization || !authorization.startsWith("Bearer")) {
+        return next();
+    }
+  
+    // Check if field has two values
+    const splitToken = authorization.split("Bearer ");
+    if (splitToken.length !== 2) {
+        return next();
+    }
+  
+    const token = splitToken[1];
+  
+    // Try to verify token
+    try {
+      const decodedToken: admin.auth.DecodedIdToken = await admin.auth().verifyIdToken(token);
+  
+      const email_snap = await admin.firestore().collection("users").where("email", "==", decodedToken.email).get();
+      const salesforce_id = email_snap.docs[0].data().salesforce_id;
+
+      // Set locals for future reference
+      res.locals = {...res.locals, uid: decodedToken.uid, email: decodedToken.email, salesforce_id: salesforce_id};
+  
+      return next();
+    } catch (err) {
+      return next();
+    }
+}

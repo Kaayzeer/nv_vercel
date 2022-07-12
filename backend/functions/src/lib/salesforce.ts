@@ -1,19 +1,17 @@
 import fetch from 'node-fetch';
 
-export const changeStatusErrand = async(id: string, type: string, status: string) => {
-    // Get Auth token
-    let type_url = "";
-
-    // Map to sObject
+const mapTypeUrl = (type: string) => {
     if(type == "buy")
-        type_url = "BuyErrand__c"
+        return "BuyErrand__c"
     else if(type == "sell")
-        type_url = "SellErrand__c"
+        return "SellErrand__c"
     else if(type == "find")
-        type_url = "FindErrand__c"
+        return "FindErrand__c"
+}
 
+export const changeStatusErrand = async(id: string, type: string, status: string) => {
     // Update record
-    await fetch(`${process.env.SALESFORCE_URL}services/data/v54.0/sobjects/${type_url}/${id}/`, {
+    await fetch(`${process.env.SALESFORCE_URL}services/data/v54.0/sobjects/${mapTypeUrl(type)}/${id}/`, {
         method: "PATCH",
         headers: {
             Authorization: `Bearer ${await getSalesForceAuthToken()}`,
@@ -26,6 +24,26 @@ export const changeStatusErrand = async(id: string, type: string, status: string
     .catch(err => {
         console.log(err)
     })
+}
+
+export const getErrandSalesForce = async (id: string, type: string) => {
+    let data = {};
+    await fetch(`${process.env.SALESFORCE_URL}services/data/v54.0/sobjects/${mapTypeUrl(type)}/${id}/`, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${await getSalesForceAuthToken()}`,
+            "Content-Type": "application/json"
+        }
+    })
+    .then((res) => res.json())
+    .then((d) => {
+        data = d;
+    })
+    .catch(err => {
+        console.log(err)
+    })
+    
+    return data;
 }
 
 export const checkSalesForceCustomer = async(email: string) => {
