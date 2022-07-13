@@ -25,7 +25,7 @@ const descriptionsteps = [
 
 export default function HomeDescription({}: Props) {
   return (
-    <div className="customContainer mt-16">
+    <div className="customContainer mt-13" >
       <div className="flex-start w-full ">
         <h2 className="section-title mx-auto my-20 lg:mx-0">how it works</h2>
 
