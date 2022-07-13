@@ -128,7 +128,7 @@ ol {
   }
 
   .btnOutlined {
-    @apply border-solid  border-2 border-section-blue hover:border-white  hover:bg-gradient-to-r from-royal-blue to-loyal-blue active:scale-95 active:shadow-md rounded-xl py-5 px-16 md:px-20  uppercase text-sm font-normal shadow-btnPrimary cursor-pointer  tracking-wider mt-4;
+    @apply border-solid hover:text-white border-2 border-section-blue hover:border-white  hover:bg-gradient-to-r from-royal-blue to-loyal-blue active:scale-95 active:shadow-md rounded-xl py-5 px-16 md:px-20  uppercase text-sm font-normal shadow-btnPrimary cursor-pointer  tracking-wider mt-4;
   }
 
   .btnTertiary {
