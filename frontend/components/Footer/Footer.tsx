@@ -15,15 +15,6 @@ const footerInfo = [
     link3: "/sell",
   },
   {
-    name: "the company",
-    sub1: "about next venture",
-    link1: "/about",
-    sub2: "what clients say",
-    link2: "/#testimonials",
-    sub3: "policys",
-    link3: "/policy",
-  },
-  {
     name: "contact",
     sub1: "contact information",
     link1: "/find",
@@ -32,6 +23,15 @@ const footerInfo = [
     sub3: "lorem ipsum",
     link3: "/sell",
   },
+  {
+    name: "the company",
+    sub1: "about next venture",
+    link1: "/about",
+    sub2: "what clients say",
+    link2: "/#testimonials",
+    sub3: "policys",
+    link3: "/policy",
+  }
 ];
 
 export default function Footer({}: Props) {
@@ -52,8 +52,8 @@ export default function Footer({}: Props) {
   return (
     <footer>
       <div className="w-full min-h-699 bg-footer-background-sm sm:bg-footer-background bg-center bg-cover bg-no-repeat relative overflow-hidden">
-        <div className="customContainer  ">
-          <div className=" flex flex-wrap sm:flex-nowrap px-8 ">
+        <div className="customContainer">
+          <div className=" flex flex-wrap sm:flex-nowrap px-20" >
             {footerInfo.map((info, idx) => (
               <div
                 key={idx}
