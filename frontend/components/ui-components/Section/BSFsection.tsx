@@ -25,7 +25,7 @@ export default function Section({ h1, p, page }: Props) {
       <div className={`w-full min-h-699 ${customStyles(page).bgColor} `}>
         {view ? (
           <>
-            <div className="flex-start max-w-[1500px] -mb-4 sm:mb-0 w-11/12 px-12 2xl:mx-auto  max-h-516">
+            <div className="flex-start max-w-[1500px] -mb-4 sm:mb-0 w-11/12 px-12 2xl:mx-auto  max-h-80 pb-0">
               <h2
                 className={`section-sub-title italic ${
                   customStyles(page).chosenTextColor
@@ -41,7 +41,7 @@ export default function Section({ h1, p, page }: Props) {
                 {p}
               </p>
             </div>
-            <div className="flex-start max-w-[1500px] -mb-4 sm:mb-0 w-11/12 px-12 2xl:mx-auto  max-h-516">
+            <div className="flex-start max-w-[1500px] -mb-4 sm:mb-0 w-11/12 px-12 2xl:mx-auto  max-h-80" >
               {/* <div className="relative w-5/6 h-24"> */}
               <div className="relative w-5/6 h-24 object-contain">
                 <Image
