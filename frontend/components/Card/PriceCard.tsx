@@ -36,15 +36,17 @@ export default function PriceCard({ page }: Props) {
   console.log(page);
   return (
     <>
-      <div className="flex flex-col items-left justify-between mx-auto md:mx-0 -mt-60 md:mt-0 max-w-lg p-10 2xl:p-20 w-full gap-10 bg-white rounded-lg shadow-signInCard">
+      <div className="flex flex-col items-left justify-between mx-auto md:mx-0 -mt-60 md:mt-0 max-w-md p-10 2xl:p-20 w-full gap-10 bg-white rounded-lg shadow-signInCard">
         <h2 className="section-title lowercase text-4xl">
           {cards[page].price}
         </h2>
-        <div className="flex flex-col md:space-y-5">
-          <h3 className="section-title2 uppercase text-4xl">
+        <div className="md:space-y-5" >
+          <span className="font-bold uppercase text-4xl">
             {cards[page].title}
-          </h3>
-          <p className="section-paragraph text-left text-sm  ">
+          </span>
+          <span className="pl-2 mb-0 align-top" >pilot</span>
+          
+          <p className="section-paragraph text-left text-sm">
             {cards[page].subTitle}
           </p>
         </div>
