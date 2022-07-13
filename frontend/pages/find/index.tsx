@@ -35,7 +35,7 @@ export default function Find(props: IFindProps) {
       <Section
         bgColor={"bg-white"}
         h1={"want to know more"}
-        p={"Jump on a call or send us a message and we will be on the case."}
+        p={"Send us a message and we will be on the case."}
         page={"find"}
       />
     </Layout>

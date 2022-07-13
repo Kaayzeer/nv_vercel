@@ -10,9 +10,13 @@ type Props = {
 };
 
 export default function Button({ linkHref, color, type, buttonText }: Props) {
-  const icon = buttonText === "Contact us" && (
-    <Image src="/icons/rightArrowIcon.svg" width={16} height={16} />
-  );
+  const icon = buttonText === "Contact us" && type != "btnFourthiary" ? (
+    <Image src="/icons/rightArrowIcon.svg" width={16} height={16} />)
+    :
+    (
+      // <Image src="/icons/rightArrowIcon.svg" width={16} height={16} />
+      <div>Arrow</div>
+    );
 
   return (
     <Link href={linkHref}>
