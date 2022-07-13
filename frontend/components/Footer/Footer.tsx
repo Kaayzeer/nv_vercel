@@ -84,7 +84,7 @@ export default function Footer({}: Props) {
           </div>
         </div>
 
-        <div className="absolute flex flex-row bottom-5 right-10 2xl:right-40 md: gap-10 xl:gap-20 ">
+        <div className="absolute flex flex-row bottom-5 left-10 2xl:right-40 md: gap-10 xl:gap-20 ">
           <span className=" w-4 h-4 md:w-8 md:h-8">
             <Image src="/icons/instagramIcon.svg" height={30} width={30} />
           </span>
