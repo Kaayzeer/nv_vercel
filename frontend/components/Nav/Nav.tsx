@@ -66,7 +66,7 @@ export default function Nav(props: IHeaderProps) {
       {({ open, close }) => (
         <>
           <div className={`max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 `}>
-            <div className="relative flex items-center justify-between h-20">
+            <div className="relative flex items-center justify-between h-20" >
               <div className="absolute inset-y-0 right-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
 
@@ -96,15 +96,15 @@ export default function Nav(props: IHeaderProps) {
                   )} */}
                 </div>
                 <div className="hidden sm:block sm:ml-auto ">
-                  <div className="flex space-x-4 mr-10">
+                   <div className="flex space-x-9 mr-10"> {/* space between buttons in navbar */}
                     {navigation.map((item) => (
                       <Link key={item.name} href={item.href}>
                         <a
                           className={classNames(
                             item.current
-                              ? " text-black-400"
-                              : "text-black-400 hover:underline decoration-blue-800",
-                            "px-3 py-2 rounded-md text-sm font-medium"
+                              ? "text-black-400"
+                              : "text-black-400 decoration-blue-800",
+                            "px-3 py-2 rounded-md hover:font-bold text-sm font-medium"
                           )}
                           aria-current={item.current ? "page" : undefined}
                         >
@@ -115,7 +115,7 @@ export default function Nav(props: IHeaderProps) {
                   </div>
                 </div>
               </div>
-              <div className="hidden md:flex absolute inset-y-0 right-0  items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+              <div className="hidden md:flex absolute inset-y-0 right-0 items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {!user && (
                   <LinkButton
                     color={"text-black"}
@@ -136,7 +136,7 @@ export default function Nav(props: IHeaderProps) {
             </div>
           </div>
 
-          <Disclosure.Panel className="sm:hidden relative ">
+          <Disclosure.Panel className="sm:hidden relative " >
             {/* Mobile menu button*/}
             <Transition
               appear={true}
@@ -157,7 +157,7 @@ export default function Nav(props: IHeaderProps) {
                 <XIcon className="block h-8 w-8" />
               </Disclosure.Button>
               <div
-                className={` w-full h-full  flex-col flex items-left justify-center px-10 gap-6`}
+                className={` w-full h-full flex-col flex items-left justify-center px-10 gap-6`}
               >
                 {navigation.map((item) => (
                   <Disclosure.Button
