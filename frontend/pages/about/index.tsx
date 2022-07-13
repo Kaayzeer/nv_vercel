@@ -12,7 +12,7 @@ export default function About(props: IAboutProps) {
     <Layout title={""} description={""} keywords={""}>
       <Banner
         page="about"
-        title="THE DOMAIN AFTERMARKET AGENCY WITH TRANSPARENT, COST-EFFECTIVE PROCESS."
+        title="WE GET NAMES."
       />
       <Description
         page="about"
