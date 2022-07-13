@@ -14,15 +14,7 @@ const footerInfo = [
     sub3: "sell your domain",
     link3: "/sell",
   },
-  {
-    name: "contact",
-    sub1: "contact information",
-    link1: "/find",
-    sub2: "lorem ipsum",
-    link2: "/buy",
-    sub3: "lorem ipsum",
-    link3: "/sell",
-  },
+  ,
   {
     name: "the company",
     sub1: "about next venture",
@@ -31,6 +23,15 @@ const footerInfo = [
     link2: "/#testimonials",
     sub3: "policys",
     link3: "/policy",
+  },
+  {
+    name: "contact",
+    sub1: "contact information",
+    link1: "/find",
+    sub2: "lorem ipsum",
+    link2: "/buy",
+    sub3: "lorem ipsum",
+    link3: "/sell",
   }
 ];
 
