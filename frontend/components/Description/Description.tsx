@@ -34,12 +34,12 @@ export default function Description({ page, bgColor, textColor }: Props) {
               {descriptionSteps[page].title}
             </h3>
             <p
-              className={`section-sub-paragraphBold ${textColor} leading-7 md:leading-9`}
+              className={`section-sub-paragraphBold ${textColor} leading-7 md:leading-8 text-lg`}
             >
               {descriptionSteps[page].subTitle}
             </p>
             {page !== "about" && (
-              <p className="section-sub-paragraph  leading-7 md:leading-9">
+              <p className="section-sub-paragraph leading-7 md:leading-8 text-lg">
                 {descriptionSteps[page].subTitle2}
               </p>
             )}
@@ -63,7 +63,7 @@ export default function Description({ page, bgColor, textColor }: Props) {
               </ol>
             ) : (
               <>
-                <p className="section-sub-paragraph-italic leading-7 md:leading-9">
+                <p className="section-sub-paragraph-italic leading-7 md:leading-8 text-lg">
                   {descriptionSteps[page].subTitle3}
                 </p>
               </>
