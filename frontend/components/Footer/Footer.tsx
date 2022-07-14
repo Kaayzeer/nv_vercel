@@ -32,7 +32,7 @@ const footerInfo = [
     link2: "/buy",
     sub3: "lorem ipsum",
     link3: "/sell",
-  }
+  },
 ];
 
 export default function Footer({}: Props) {
@@ -54,8 +54,8 @@ export default function Footer({}: Props) {
     <footer>
       <div className="w-full min-h-699 bg-footer-background-sm sm:bg-footer-background bg-center bg-cover bg-no-repeat relative overflow-hidden">
         <div className="customContainer">
-          <div className=" flex flex-wrap sm:flex-nowrap px-20" >
-            {footerInfo.map((info, idx) => (
+          <div className=" flex flex-wrap sm:flex-nowrap px-20">
+            {footerInfo.map((info: any, idx) => (
               <div
                 key={idx}
                 className=" mt-20 lg:mt-40 w-1/2 sm:w-full space-y-3 "
