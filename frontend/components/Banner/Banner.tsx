@@ -47,7 +47,7 @@ export default function Banner({ page, title, subTitle }: Props) {
             )}
             {page === "home" && (
               <LinkButton
-                linkHref="/about"
+                linkHref="/buy"
                 color="text-white"
                 buttonText="Let’s go"
                 type="btnPrimary"
