@@ -173,7 +173,7 @@ export default function FindFormStep3(props: {
             <FormInput
               title={"Email*"}
               p={"This is your registered email."}
-              placeholder={"ifyllt redan"}
+              placeholder={"Enter your Email"}
               inputType={"email"}
               register={register}
               type="email"
@@ -182,7 +182,7 @@ export default function FindFormStep3(props: {
             <FormInput
               title={"Phone*"}
               p={"This is your registered phone number."}
-              placeholder={"ifyllt redan"}
+              placeholder={"Enter your phone number"}
               inputType={"number"}
               register={register}
               type="phone"
