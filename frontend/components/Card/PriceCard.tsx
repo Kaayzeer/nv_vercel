@@ -44,8 +44,10 @@ export default function PriceCard({ page }: Props) {
           <span className="font-bold uppercase text-4xl">
             {cards[page].title}
           </span>
-          <span className="pl-2 mb-0 align-top" >pilot</span>
-          
+          {
+            page === "buy" && <span className="pl-2 mb-0 align-top" >pilot</span>
+          }
+
           <p className="section-paragraph text-left text-sm">
             {cards[page].subTitle}
           </p>
