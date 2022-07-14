@@ -78,14 +78,15 @@ export default function Nav(props: IHeaderProps) {
                 <div className="flex-shrink-0 flex items-center mr-auto px-1 sm:px-0 sm:m-0">
                   {!user && (
                     <Link href={"/"}>
-                      <Image
-                        className="hidden lg:block h-8 w-auto"
-                        src="/images/nextLogo.svg"
-                        alt="venture-logo"
-                        width={75}
-                        height={45}
-                      />
-                    
+                      <a>
+                        <Image
+                          className="hidden lg:block h-8 w-auto"
+                          src="/images/nextLogo.svg"
+                          alt="venture-logo"
+                          width={75}
+                          height={45}
+                          />
+                        </a>
                     </Link>
                   )}
                   {/*  {user && (
