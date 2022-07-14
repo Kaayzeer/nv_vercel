@@ -7,7 +7,7 @@ type Props = {
 
 function BackButton({ title, onClick }: Props) {
   return (
-    <button className="underline" type="button" onClick={onClick}>
+    <button className="underline hover:font-bold" type="button" onClick={onClick}>
       {title}
     </button>
   );

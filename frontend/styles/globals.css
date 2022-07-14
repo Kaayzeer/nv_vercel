@@ -146,8 +146,13 @@ ol {
   }
 
   .formBtn {
-    @apply bg-form-btn hover:from-form-btn-blueTwo hover:to-form-btn-blueOne active:scale-95 active:shadow-md rounded-lg py-4  uppercase text-sm font-normal shadow-btnPrimary cursor-pointer tracking-wider mt-4 max-w-xs md:max-w-546 w-full text-center;
+    @apply bg-gradient-to-r from-royal-blue to-loyal-blue hover:from-loyal-blue hover:to-royal-blue active:scale-95 active:shadow-md rounded-lg py-4  uppercase text-sm font-normal shadow-btnPrimary cursor-pointer tracking-wider mt-4 max-w-xs md:max-w-546 w-full text-center;
   }
+
+  .getStartedBtn {
+    @apply bg-gradient-to-r from-royal-blue to-loyal-blue hover:from-loyal-blue hover:to-royal-blue active:scale-95 active:shadow-md rounded-lg py-4  uppercase text-sm font-normal shadow-btnPrimary cursor-pointer tracking-wider mt-4 w-full text-center;
+  }
+
 
   .signInBtn {
     @apply bg-sign-in-btn hover:bg-yellow-400 active:scale-95 active:shadow-md rounded-xl py-5 px-16 md:px-20 capitalize text-sm md:text-lg font-bold shadow-btnPrimary cursor-pointer tracking-wider mt-4 text-center;

@@ -61,7 +61,7 @@ export default function GetStarted({
             inputType={"email"}
             type={"email"}
             register={register}
-          />
+            />
           <FormInput
             title={""}
             p={""}
@@ -69,14 +69,14 @@ export default function GetStarted({
             inputType={"phone"}
             type={"phone"}
             register={register}
-          />
-          <div className="text-center">
+            />
+          <div className="text-center" >
             <FormButton
               onClick={() => setShowModal(false)}
               color={"text-white"}
               buttonText={"continue"}
-              type={"formBtn"}
-            />
+              type={"getStartedBtn"}
+              />
           </div>
         </form>
       </div>
