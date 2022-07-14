@@ -16,7 +16,7 @@ export default function About(props: IAboutProps) {
       />
       <Description
         page="about"
-        bgColor="bg-section-blue-about"
+        bgColor="bg-royal-blue"
         textColor="text-white"
       />
       <AboutQuestions />

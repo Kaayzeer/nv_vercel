@@ -50,7 +50,7 @@ function WizardNavbar(props: {
             className={`${
               name == props.step
                 ? " wizard-layout-button-selected"
-                : " wizard-layout-button "
+                : " wizard-layout-button"
             }`}
             onClick={() => handleClick(name)}
           >

@@ -13,7 +13,7 @@ type Props = {
 export default function Description({ page, bgColor, textColor }: Props) {
   return (
     <div
-      className={`w-full  min-h-699 ${bgColor}  ${
+      className={`w-full  min-h-699 ${bgColor} ${
         page === "about" ? "-mt-1" : "mt-0"
       }`}
     >
