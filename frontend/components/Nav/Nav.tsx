@@ -96,19 +96,19 @@ export default function Nav(props: IHeaderProps) {
                   )} */}
                 </div>
                 <div className="hidden sm:block sm:ml-auto ">
-                   <div className="flex space-x-9 mr-10"> {/* space between buttons in navbar */}
+                   <div className="flex justify-between items-center space-x-12  h-full w-full"> {/* space between buttons in navbar */}
                     {navigation.map((item) => (
                       <Link key={item.name} href={item.href}>
-                        <a
-                          className={classNames(
+                        <a className={classNames(
                             item.current
                               ? "text-black-400"
                               : "text-black-400 decoration-blue-800",
-                            "px-3 py-2 rounded-md hover:font-bold text-sm font-medium"
+                            "rounded-md hover:drop-shadow hover:transition-all text-sm font-medium"
                           )}
                           aria-current={item.current ? "page" : undefined}
                         >
                           {item.name}
+
                         </a>
                       </Link>
                     ))}

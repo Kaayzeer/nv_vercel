@@ -15,8 +15,7 @@ export default function Button({ linkHref, color, type, buttonText }: Props) {
     :
     buttonText === "Contact us" && type === "btnFourthiary"?
     (
-      // <Image src="/icons/rightArrowIcon.svg" width={16} height={16} />
-      <div>Arrow</div>
+      <Image src="/icons/rightArrowIconWhite.svg" width={16} height={16} />
     ):
     (
       <></>
