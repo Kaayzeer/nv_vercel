@@ -63,6 +63,10 @@ ol {
   letter-spacing: 0.02rem;
 }
 
+.wizard-layout-button:hover {
+  font-weight: bold;
+}
+
 .wizard-layout-button-selected {
   min-width: 150px;
   width: 100%;
