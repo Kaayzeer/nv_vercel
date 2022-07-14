@@ -13,8 +13,6 @@ type Props = {
   register: any;
   handleFormButton: any;
   handleSubmit: any;
-  /*   dispatchForm: Function;
-  form: any; */
 };
 
 export default function GetStarted({
@@ -22,9 +20,7 @@ export default function GetStarted({
   register,
   handleFormButton,
   handleSubmit,
-}: /*   dispatchForm,
-  form, */
-Props) {
+}: Props) {
   return (
     <div
       className="fixed top-0 left-0 z-100 w-full h-full"
@@ -33,7 +29,7 @@ Props) {
       <div className=" h-full flex justify-center">
         <form
           className="w-full m-auto bg-white p-12 rounded-2xl md:w-1/2 "
-          onSubmit={handleSubmit(handleFormButton)}
+          /* onSubmit={handleSubmit(handleFormButton)} */
         >
           <FormTitle
             step={""}
@@ -49,8 +45,6 @@ Props) {
             inputType={"email"}
             type={"email"}
             register={register}
-            /*  dispatchForm={dispatchForm}
-            form={form} */
           />
           <FormInput
             title={""}
@@ -59,8 +53,6 @@ Props) {
             inputType={"phone"}
             type={"phone"}
             register={register}
-            /*   dispatchForm={dispatchForm}
-            form={form} */
           />
           <div className="text-center">
             <FormButton

@@ -1,5 +1,5 @@
 import React from "react";
-import BackButton from "../ui-components/Button/ClickButton";
+/* import BackButton from "../ui-components/Button/ClickButton"; */
 import { useRouter } from "next/router";
 
 type Props = {};
@@ -43,7 +43,7 @@ export default function Policy({}: Props) {
         <p className="section-paragraph">{policySteps.pTwo2}</p>
       </div>
 
-      <BackButton title={"Back to form"} onClick={() => router.back()} />
+      {/* <BackButton title={"Back to form"} onClick={() => router.back()} /> */}
     </section>
   );
 }

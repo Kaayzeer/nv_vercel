@@ -68,7 +68,9 @@ export default function Form(
   const handleFormButton: SubmitHandler<IFormInput> = (form_data: any) => {
     console.log(form_data);
 
+    //lift up state for form value updates
     props.setFindFormValues({ ...props.findFormValues, ...form_data });
+
     // Update values
     props.dispatchForm({
       type: "UPDATE_KEY_VALUES",
@@ -97,8 +99,6 @@ export default function Form(
                 register={register}
                 handleFormButton={handleFormButton}
                 handleSubmit={handleSubmit}
-                /*  dispatchForm={props.dispatchForm}
-                form={props.form} */
               />
             )}
             <div className="customContainer px-4 py-5 md:px-0 md:py-0  space-y-10">
@@ -132,9 +132,6 @@ export default function Form(
                   p="Choose your primary vertical."
                   register={register}
                   type="industry"
-                  /*  value={
-                    props.formOneValues.industry && props.formOneValues.industry
-                  } */
                 />
 
                 <DropDown
@@ -142,9 +139,6 @@ export default function Form(
                   p="Where are you present?"
                   register={register}
                   type="region"
-                  /* value={
-                    props.formOneValues.region && props.formOneValues.region
-                  } */
                 />
 
                 <TextArea
@@ -152,10 +146,6 @@ export default function Form(
                   p="Let us know what you think."
                   register={register}
                   type="additional_details"
-                  /* value={
-                    props.formOneValues.additional_details &&
-                    props.formOneValues.additional_details
-                  } */
                 />
                 {errors.additional_details && (
                   <p className="error">{errors.additional_details.message}</p>

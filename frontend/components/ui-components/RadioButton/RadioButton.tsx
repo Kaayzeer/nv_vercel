@@ -23,8 +23,10 @@ export default function RadioButton({
   updateState,
   updateDropDownState, */
 Props) {
-  //Modal toggler
-  const [showModal, setShowModal] = useState(true);
+  //open policy in another window
+  const openInNewTab = (url: any) => {
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
 
   const registerType =
     type === "no_letters"
@@ -57,6 +59,8 @@ Props) {
       {type === "policy" && (
         <Link href={"/policy"}>
           <a
+            target="_blank"
+            rel="noopener noreferrer"
             className={"underline uppercase ml-1"}
             /* aria-current={item.current ? "page" : undefined} */
           >

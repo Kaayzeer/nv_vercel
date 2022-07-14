@@ -1,7 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 
 //react hook form
 import { useForm, SubmitHandler } from "react-hook-form";
+
+//next router
+import { useRouter } from "next/router";
 
 //components
 
@@ -31,17 +34,30 @@ export default function Form(
     wizard: IWizard;
     form: any;
     dispatchForm: Function;
+    setBuyFormValues: any;
+    buyFormValues: any;
   },
   { type }: Props
 ) {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IFormInput>();
+  } = useForm<IFormInput>({
+    defaultValues: {
+      domain: props.buyFormValues.domain,
+      budget: props.buyFormValues.budget,
+    },
+  });
 
-  const handleFormButton: SubmitHandler<IFormInput> = (form_data: any) => {
+  const handleBuyFormButton: SubmitHandler<IFormInput> = (form_data: any) => {
     console.log(form_data);
+
+    //lift up state for form value updates
+    props.setBuyFormValues({ ...props.buyFormValues, ...form_data });
+
     // Update values
     props.dispatchForm({
       type: "UPDATE_KEY_VALUES",
@@ -55,7 +71,7 @@ export default function Form(
 
   //Go back to page
   const handleBackButton = () => {
-    /* props.wizard.previousStep(); */
+    router.push("/buy");
     window.scrollTo(0, 0);
   };
 
@@ -76,7 +92,7 @@ export default function Form(
               />
 
               <form
-                onSubmit={handleSubmit(handleFormButton)}
+                onSubmit={handleSubmit(handleBuyFormButton)}
                 className="space-y-10"
               >
                 <TextArea title="" p="" register={register} type="domain" />

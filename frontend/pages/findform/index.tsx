@@ -30,6 +30,8 @@ export default function FindForm({}: Props) {
 
   //store formData in outside state to save input values via props in the useForm declaration
   const [findFormValues, setFindFormValues] = useState({});
+  const [sellFormValues, setSellFormValues] = useState({});
+  const [buyFormValues, setBuyFormValues] = useState({});
 
   return (
     <Layout title={""} description={""} keywords={""}>
@@ -41,6 +43,8 @@ export default function FindForm({}: Props) {
           dispatchForm,
           setFindFormValues,
           findFormValues,
+          setBuyFormValues,
+          buyFormValues,
         }}
       />
     </Layout>

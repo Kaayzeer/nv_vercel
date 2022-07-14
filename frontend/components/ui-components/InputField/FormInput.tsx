@@ -72,7 +72,6 @@ Props) {
         placeholder={placeholder}
         autoComplete={autoComplete}
         className="block w-full border-solid border border-black py-3 px-4 placeholder-gray-500  rounded-lg focus:outline-none focus:ring-2"
-        /* value={value} */
       />
     </div>
   );
