@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 type Props = {
   title: string;
@@ -8,6 +8,8 @@ type Props = {
   register?: any;
   type: "keywords" | "names_disliked" | "phone" | "email" | "company";
   value?: any;
+  /*   dispatchForm: Function;
+  form: any; */
 };
 
 export default function FormInput({
@@ -18,7 +20,9 @@ export default function FormInput({
   inputType,
   type,
   value,
-}: Props) {
+}: /* dispatchForm,
+  form, */
+Props) {
   const registerType =
     type === "keywords"
       ? "keywords"
@@ -60,6 +64,7 @@ export default function FormInput({
         {...register(registerType, {
           required: "This field is required",
           maxLength: 20,
+
           pattern:
             (registerType === "phone" && /^\d{10}$/) ||
             (registerType === "password" && /^[a-zA-Z0-9]{3,30}$/),
@@ -67,7 +72,7 @@ export default function FormInput({
         placeholder={placeholder}
         autoComplete={autoComplete}
         className="block w-full border-solid border border-black py-3 px-4 placeholder-gray-500  rounded-lg focus:outline-none focus:ring-2"
-        value={value}
+        /* value={value} */
       />
     </div>
   );

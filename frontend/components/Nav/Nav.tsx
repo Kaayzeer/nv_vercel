@@ -52,10 +52,6 @@ export default function Nav(props: IHeaderProps) {
     };
   }, []);
 
-  /*  ${
-    navBackground ? "bg-white" : "bg-transparent"
-  } */
-
   return (
     <Disclosure
       as="nav"
@@ -96,15 +92,15 @@ export default function Nav(props: IHeaderProps) {
                   )} */}
                 </div>
                 <div className="hidden sm:block sm:ml-auto ">
-                  <div className="flex space-x-4 mr-10">
+                  <div className="flex justify-between items-center space-x-6  h-full w-full">
                     {navigation.map((item) => (
                       <Link key={item.name} href={item.href}>
                         <a
                           className={classNames(
                             item.current
-                              ? " text-black-400"
-                              : "text-black-400 hover:underline decoration-blue-800",
-                            "px-3 py-2 rounded-md text-sm font-medium"
+                              ? " text-black-400 "
+                              : "text-black-400 hover:drop-shadow-xl hover:shadow-blue-600/50  decoration-blue-800",
+                            " rounded-md text-sm font-medium"
                           )}
                           aria-current={item.current ? "page" : undefined}
                         >

@@ -52,6 +52,8 @@ export default function FindFormStep3(props: {
   wizard: IWizard;
   form: any;
   dispatchForm: Function;
+  findFormValues: any;
+  setFindFormValues: Function;
 }) {
   const { user } = useAuthContext();
 
@@ -59,7 +61,15 @@ export default function FindFormStep3(props: {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IFormInput>();
+  } = useForm<IFormInput>({
+    defaultValues: {
+      firstname: props.findFormValues.firstname,
+      surname: props.findFormValues.surname,
+      phone: props.findFormValues.phone,
+      email: props.findFormValues.email,
+      company: props.findFormValues.company,
+    },
+  });
 
   const [fetchedId, setFetchedId] = useState<string>("");
 

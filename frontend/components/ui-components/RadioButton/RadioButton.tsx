@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 
 type Props = {
@@ -23,6 +23,9 @@ export default function RadioButton({
   updateState,
   updateDropDownState, */
 Props) {
+  //Modal toggler
+  const [showModal, setShowModal] = useState(true);
+
   const registerType =
     type === "no_letters"
       ? "no_letters"

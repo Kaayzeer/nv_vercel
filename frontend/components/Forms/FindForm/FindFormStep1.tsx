@@ -39,8 +39,9 @@ export default function Form(
     wizard: IWizard;
     form: any;
     dispatchForm: Function;
-    formOneValues: any;
-    setFormOneValues: Function;
+
+    findFormValues: any;
+    setFindFormValues: Function;
   },
   { type }: Props
 ) {
@@ -53,11 +54,21 @@ export default function Form(
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IFormInput>();
+  } = useForm<IFormInput>({
+    defaultValues: {
+      business_desc: props.findFormValues.business_desc,
+      additional_details: props.findFormValues.additional_details,
+      industry: props.findFormValues.industry,
+      region: props.findFormValues.region,
+      phone: props.findFormValues.phone,
+      email: props.findFormValues.email,
+    },
+  });
 
   const handleFormButton: SubmitHandler<IFormInput> = (form_data: any) => {
     console.log(form_data);
-    props.setFormOneValues({ ...form_data });
+
+    props.setFindFormValues({ ...props.findFormValues, ...form_data });
     // Update values
     props.dispatchForm({
       type: "UPDATE_KEY_VALUES",
@@ -80,12 +91,14 @@ export default function Form(
       <>
         <div className="w-full pt-40 ">
           <WizardLayout {...props}>
-            {!props.formOneValues.email && showModal && (
+            {!props.findFormValues.email && showModal && (
               <GetStarted
                 setShowModal={setShowModal}
                 register={register}
                 handleFormButton={handleFormButton}
                 handleSubmit={handleSubmit}
+                /*  dispatchForm={props.dispatchForm}
+                form={props.form} */
               />
             )}
             <div className="customContainer px-4 py-5 md:px-0 md:py-0  space-y-10">
@@ -106,10 +119,10 @@ export default function Form(
                   p="Let us know what you do. "
                   register={register}
                   type="about_business"
-                  value={
+                  /* value={
                     props.formOneValues.business_desc &&
                     props.formOneValues.business_desc
-                  }
+                  } */
                 />
                 {errors.business_desc && (
                   <p className="error">{errors.business_desc.message}</p>
@@ -119,9 +132,9 @@ export default function Form(
                   p="Choose your primary vertical."
                   register={register}
                   type="industry"
-                  value={
+                  /*  value={
                     props.formOneValues.industry && props.formOneValues.industry
-                  }
+                  } */
                 />
 
                 <DropDown
@@ -129,9 +142,9 @@ export default function Form(
                   p="Where are you present?"
                   register={register}
                   type="region"
-                  value={
+                  /* value={
                     props.formOneValues.region && props.formOneValues.region
-                  }
+                  } */
                 />
 
                 <TextArea
@@ -139,10 +152,10 @@ export default function Form(
                   p="Let us know what you think."
                   register={register}
                   type="additional_details"
-                  value={
+                  /* value={
                     props.formOneValues.additional_details &&
                     props.formOneValues.additional_details
-                  }
+                  } */
                 />
                 {errors.additional_details && (
                   <p className="error">{errors.additional_details.message}</p>

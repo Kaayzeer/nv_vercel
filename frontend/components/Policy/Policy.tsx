@@ -1,4 +1,6 @@
 import React from "react";
+import BackButton from "../ui-components/Button/ClickButton";
+import { useRouter } from "next/router";
 
 type Props = {};
 
@@ -23,6 +25,7 @@ const policySteps = {
 };
 
 export default function Policy({}: Props) {
+  const router = useRouter();
   return (
     <section className="flex flex-col items-center justify-start py-10 md:py-60 min-h-699 gap-10">
       <div className="mx-auto">
@@ -39,6 +42,8 @@ export default function Policy({}: Props) {
         <p className="section-paragraph">{policySteps.pTwo1}</p>
         <p className="section-paragraph">{policySteps.pTwo2}</p>
       </div>
+
+      <BackButton title={"Back to form"} onClick={() => router.back()} />
     </section>
   );
 }

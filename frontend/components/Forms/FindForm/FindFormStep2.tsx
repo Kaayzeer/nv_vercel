@@ -30,23 +30,25 @@ export default function FindFormStep2(props: {
   wizard: IWizard;
   form: any;
   dispatchForm: Function;
-  formTwoValues: any;
-  setFormTwoValues: any;
+
+  findFormValues: any;
+  setFindFormValues: Function;
 }) {
   const {
     register,
     handleSubmit,
     watch,
     unregister,
+
     formState: { errors },
   } = useForm<IFormInput>({
     defaultValues: {
-      names_disliked: [],
-      keywords: [],
-      maximum_letters: 0,
-      maximum_words: 0,
-      no_letters: false,
-      no_words: false,
+      names_disliked: props.findFormValues.names_disliked,
+      keywords: props.findFormValues.keywords,
+      maximum_letters: props.findFormValues.maximum_letters,
+      maximum_words: props.findFormValues.maximum_words,
+      no_letters: props.findFormValues.no_letters,
+      no_words: props.findFormValues.no_words,
     },
   });
 
@@ -64,13 +66,13 @@ export default function FindFormStep2(props: {
   }, [letterCheckbox, wordCheckbox, unregister]);
 
   const handleFormButton: SubmitHandler<IFormInput> = (form_two_data: any) => {
-    console.log(form_two_data);
-    props.setFormTwoValues({ ...form_two_data });
+    props.setFindFormValues({ ...props.findFormValues, ...form_two_data });
     props.dispatchForm({
       type: "UPDATE_KEY_VALUES",
       payload: form_two_data,
     });
 
+    console.log(form_two_data);
     props.wizard.nextStep();
     window.scrollTo(0, 0);
   };
@@ -79,10 +81,6 @@ export default function FindFormStep2(props: {
     props.wizard.goToStep("name purpose");
     window.scrollTo(0, 0);
   };
-
-  console.log(props.formTwoValues.keywords);
-  console.log(props.formTwoValues.names_disliked);
-  console.log(props.form);
 
   return (
     <div className="w-full pt-40 ">
@@ -107,9 +105,12 @@ export default function FindFormStep2(props: {
               register={register}
               inputType="text"
               type="keywords"
-              value={
+              // setFormValue={setFormValue}
+              /* value={
                 props.formTwoValues.keywords && props.formTwoValues.keywords
-              }
+              } */
+              /* dispatchForm={props.dispatchForm}
+              form={props.form} */
             />
             {errors.keywords && (
               <p className="error">{(errors.keywords as any).message}</p>
@@ -121,10 +122,12 @@ export default function FindFormStep2(props: {
               register={register}
               inputType="text"
               type="names_disliked"
-              value={
+              /*  dispatchForm={props.dispatchForm}
+              value={props.form.names_disliked && props.form.names_disliked} */
+              /* value={
                 props.formTwoValues.names_disliked &&
                 props.formTwoValues.names_disliked
-              }
+              } */
             />
             {errors.names_disliked && (
               <p className="error">{(errors.names_disliked as any).message}</p>

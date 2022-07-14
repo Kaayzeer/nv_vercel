@@ -8,16 +8,13 @@ import FormTitle from "../ui-components/FormTitle/FormTitle";
 import FormInput from "../ui-components/InputField/FormInput";
 import FormButton from "../ui-components/Button/FormButton";
 
-/* interface IFormInput {
-  phone: number;
-  email: string;
-} */
-
 type Props = {
   setShowModal: any;
   register: any;
   handleFormButton: any;
   handleSubmit: any;
+  /*   dispatchForm: Function;
+  form: any; */
 };
 
 export default function GetStarted({
@@ -25,18 +22,9 @@ export default function GetStarted({
   register,
   handleFormButton,
   handleSubmit,
-}: Props) {
-  /*   const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IFormInput>(); */
-
-  /*   const handleFormButton: SubmitHandler<IFormInput> = async (
-    form_data: any
-  ) => {
-    console.log(form_data);
-  }; */
+}: /*   dispatchForm,
+  form, */
+Props) {
   return (
     <div
       className="fixed top-0 left-0 z-100 w-full h-full"
@@ -61,6 +49,8 @@ export default function GetStarted({
             inputType={"email"}
             type={"email"}
             register={register}
+            /*  dispatchForm={dispatchForm}
+            form={form} */
           />
           <FormInput
             title={""}
@@ -69,6 +59,8 @@ export default function GetStarted({
             inputType={"phone"}
             type={"phone"}
             register={register}
+            /*   dispatchForm={dispatchForm}
+            form={form} */
           />
           <div className="text-center">
             <FormButton

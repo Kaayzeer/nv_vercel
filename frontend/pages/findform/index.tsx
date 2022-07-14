@@ -6,7 +6,14 @@ import formReducer from "../../components/Wizard/formReducer";
 
 //components
 import Layout from "../../components/Layout/Layout";
-
+interface IFormInput {
+  names_disliked?: string[];
+  keywords: string[];
+  maximum_letters: string | number | boolean;
+  maximum_words: string | number | boolean;
+  no_letters: boolean;
+  no_words: boolean;
+}
 type Props = {};
 
 export default function FindForm({}: Props) {
@@ -21,12 +28,9 @@ export default function FindForm({}: Props) {
   // This is only used to store user inputs
   const [form, dispatchForm] = useReducer(formReducer, {});
 
-  //store formData in outside state to save input values
-  const [formOneValues, setFormOneValues] = useState({});
-  const [formTwoValues, setFormTwoValues] = useState({});
+  //store formData in outside state to save input values via props in the useForm declaration
+  const [findFormValues, setFindFormValues] = useState({});
 
-  console.log({ formOneValues }, { formTwoValues });
-  console.log(form);
   return (
     <Layout title={""} description={""} keywords={""}>
       <WizardSteps
@@ -35,10 +39,8 @@ export default function FindForm({}: Props) {
           wizard,
           form,
           dispatchForm,
-          setFormOneValues,
-          formOneValues,
-          formTwoValues,
-          setFormTwoValues,
+          setFindFormValues,
+          findFormValues,
         }}
       />
     </Layout>
