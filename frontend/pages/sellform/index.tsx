@@ -12,7 +12,7 @@ type Props = {};
 
 export default function SellForm({}: Props) {
   //Modal toggler
-  /*   const [showModal, setShowModal] = useState(true); */
+  /* const [showModal, setShowModal] = useState(true); */
 
   // This is how you create the wizard
   const [step, wizard] = useWizard([
