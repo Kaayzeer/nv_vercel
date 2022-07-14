@@ -14,7 +14,7 @@ export default function Dropdown({ title, register, type }: Props) {
 
   return (
     <div className="w-full space-y-3">
-      <label htmlFor={title} className="block li-title capitalize">
+      <label htmlFor={title} className="block text-lg capitalize">
         {title}
       </label>
 

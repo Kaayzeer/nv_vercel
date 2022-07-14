@@ -52,10 +52,6 @@ export default function Nav(props: IHeaderProps) {
     };
   }, []);
 
-  /*  ${
-    navBackground ? "bg-white" : "bg-transparent"
-  } */
-
   return (
     <Disclosure
       as="nav"

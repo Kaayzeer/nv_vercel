@@ -20,10 +20,10 @@ function WizardSteps(props: {
   wizard: IWizard;
   form: any;
   dispatchForm: Function;
-  formOneValues: any;
-  setFormOneValues: any;
-  formTwoValues: any;
-  setFormTwoValues: any;
+  findFormValues: any;
+  setFindFormValues: any;
+  setBuyFormValues: any;
+  buyFormValues: any;
 }) {
   const router = useRouter();
   const route = router.route.substring(1);
@@ -47,8 +47,8 @@ function WizardSteps(props: {
     case "customer":
       return contactOrCustomerDetails;
 
-    case "payment":
-      return <StripeCheckout fetchedId={""} />;
+    /*   case "payment":
+      return <StripeCheckout fetchedId={""} />; */
 
     case "buy":
       return <BuyFormStep1 {...props} />;

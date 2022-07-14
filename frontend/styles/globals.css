@@ -53,7 +53,7 @@ ol {
 .wizard-layout-button {
   transition: all 0.3s linear;
   border: none;
-  cursor: pointer;
+  cursor: default;
   z-index: 1;
   background-color: rgba(196, 196, 196, 0.22);
   font-size: 1rem;
@@ -70,7 +70,7 @@ ol {
 .wizard-layout-button-selected {
   min-width: 150px;
   width: 100%;
-  cursor: pointer;
+  cursor: default;
   z-index: 1;
   font-size: 1rem;
   height: 100%;

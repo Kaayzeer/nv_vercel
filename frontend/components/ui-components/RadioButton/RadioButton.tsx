@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 
 type Props = {
@@ -23,6 +23,11 @@ export default function RadioButton({
   updateState,
   updateDropDownState, */
 Props) {
+  //open policy in another window
+  const openInNewTab = (url: any) => {
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
   const registerType =
     type === "no_letters"
       ? "no_letters"
@@ -54,6 +59,8 @@ Props) {
       {type === "policy" && (
         <Link href={"/policy"}>
           <a
+            target="_blank"
+            rel="noopener noreferrer"
             className={"underline uppercase ml-1"}
             /* aria-current={item.current ? "page" : undefined} */
           >

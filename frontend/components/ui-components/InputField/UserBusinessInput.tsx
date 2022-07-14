@@ -14,7 +14,7 @@ export default function FormInputHalf({
     <>
       <label
         htmlFor={companyLabel}
-        className="section-sub-paragraphMediumBold capitalize"
+        className=" text-lg capitalize"
       >
         {companyLabel}
       </label>

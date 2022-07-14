@@ -52,7 +52,7 @@ function WizardNavbar(props: {
                 ? " wizard-layout-button-selected"
                 : " wizard-layout-button"
             }`}
-            onClick={() => handleClick(name)}
+            /* onClick={() => handleClick(name)} */
           >
             {view ? name : name == props.step && name}
           </button>
