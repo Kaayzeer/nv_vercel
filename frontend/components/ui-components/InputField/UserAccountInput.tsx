@@ -1,4 +1,6 @@
 import React from "react";
+import UnderlinedButton from '../Button/UnderlinedButton'
+import { useState } from 'react';
 
 type Props = {
   emailLabel: "email";
@@ -11,8 +13,24 @@ export default function FormInputHalf({
   phoneLabel,
   register,
 }: Props) {
+
+  const [nonEditable, setNonEditable] = useState(true);
+
+  const [btnName, setBtnName] = useState("Edit");
+
+  const toggleEditBtn = () => {
+    setNonEditable(!nonEditable)
+
+    // Here we need to also add logic for updating info in backend
+    if(nonEditable)
+      setBtnName("Save")
+    else
+      setBtnName("Edit")
+  }
+
   return (
-    <div className="space-y-4 ">
+    <div className="space-y-7 md:w-1/3 sm:w-full">
+      
       <div className="flex flex-col">
         <label
           htmlFor={emailLabel}
@@ -27,9 +45,11 @@ export default function FormInputHalf({
             required: "This field required",
           })}
           autoComplete="email"
-          className="mt-1 py-4 w-full md:max-w-md bg-sign-in-input-bg  sm:text-sm gray-300 rounded-lg border-0"
+          className="mt-1 py-4 w-full bg-sign-in-input-bg  sm:text-sm gray-300 rounded-lg border-0"
+          disabled = {nonEditable}
         />
       </div>
+
       <div className="flex flex-col">
         <label
           htmlFor={phoneLabel}
@@ -38,15 +58,21 @@ export default function FormInputHalf({
           {phoneLabel}
         </label>
         <input
-          type={phoneLabel}
+          type="tel"
           {...register(phoneLabel, {
             required: "This field is required",
             maxLength: 20,
             pattern: /^[a-zA-Z0-9]{3,30}$/,
           })}
           autoComplete="current-password"
-          className="mt-1 py-4 w-full md:max-w-md bg-sign-in-input-bg  sm:text-sm gray-300 rounded-lg border-0"
+          className="mt-1 py-4 w-full bg-sign-in-input-bg  sm:text-sm gray-300 rounded-lg border-0"
+          disabled = {nonEditable}
         />
+      </div>
+      
+      <div className="flex flex-row-reverse">
+        <UnderlinedButton title= { btnName } onClick={ toggleEditBtn }/>
+        
       </div>
     </div>
   );
