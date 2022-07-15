@@ -39,6 +39,10 @@ export default function Nav(props: IHeaderProps) {
     { name: "About", href: "/about", current: false },
   ];
 
+  // Need it for hiding/displaying the logo depending on if user is in
+  // login pages or not
+  const router = useRouter()
+
   useEffect(() => {
     const handleScroll = () => {
       const show = window.scrollY > 50;
@@ -72,7 +76,7 @@ export default function Nav(props: IHeaderProps) {
               </div>
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start ">
                 <div className="flex-shrink-0 flex items-center mr-auto px-1 sm:px-0 sm:m-0">
-                  {!user && (
+                  {(!user || !router.pathname.includes("login/[id]")) && (
                     <Link href={"/"}>
                       <a>
                         <Image
