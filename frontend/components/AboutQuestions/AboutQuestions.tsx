@@ -20,7 +20,10 @@ export default function AboutQuestions({}: Props) {
           <p className={`section-paragraph  max-w-lg text-left`}>
             {QuestionsSectionInfo.p}
           </p>
-          <div className="w-full mt-20">{/* /* <Accordion />*/}</div>
+          <div className="w-full mt-20">
+            {" "}
+            <Accordion />
+          </div>
         </div>
         <div className="text-center md:text-left mt-10">
           <Image src={"/images/wireframe.png"} width={343} height={350} />
