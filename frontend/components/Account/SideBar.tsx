@@ -13,7 +13,7 @@ function classNames(...classes: any) {
 
 export default function SideBar({ item, handleClick }: Props) {
   return (
-    <>
+    <div className="flex mx-auto md:mx-0 md:pl-4">
       <Image src={item.icon} width={23} height={23} />
       <button
         className={classNames(
@@ -28,6 +28,6 @@ export default function SideBar({ item, handleClick }: Props) {
           {item.name}
         </span>
       </button>
-    </>
+    </div>
   );
 }

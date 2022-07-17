@@ -1,6 +1,6 @@
 import React from "react";
-import UnderlinedButton from '../Button/UnderlinedButton'
-import { useState } from 'react';
+import UnderlinedButton from "../Button/UnderlinedButton";
+import { useState } from "react";
 
 type Props = {
   emailLabel: "email";
@@ -13,42 +13,36 @@ export default function FormInputHalf({
   phoneLabel,
   register,
 }: Props) {
-
   const [nonEditable, setNonEditable] = useState(true);
 
   const [btnName, setBtnName] = useState("Edit");
 
   const toggleEditBtn = () => {
-    setNonEditable(!nonEditable)
+    setNonEditable(!nonEditable);
 
     // Here we need to also add logic for updating info in backend
-    if(nonEditable)
-      setBtnName("Save")
-    else
-      setBtnName("Edit")
-  }
+    if (nonEditable) setBtnName("Save");
+    else setBtnName("Edit");
+  };
 
   return (
-    <div className="space-y-7 md:w-1/3 sm:w-full">
-      
-      <div className="flex flex-col">
-        <label
-          htmlFor={emailLabel}
-          className="section-sub-paragraphMediumBold capitalize"
-        >
-          {emailLabel}
-        </label>
-        <input
-          type={emailLabel}
-          id={emailLabel}
-          {...register(emailLabel, {
-            required: "This field required",
-          })}
-          autoComplete="email"
-          className="mt-1 py-4 w-full bg-sign-in-input-bg  sm:text-sm gray-300 rounded-lg border-0"
-          disabled = {nonEditable}
-        />
-      </div>
+    <div className="flex flex-col space-y-7 lg:w-1/2 w-full">
+      <label
+        htmlFor={emailLabel}
+        className="section-sub-paragraphMediumBold capitalize"
+      >
+        {emailLabel}
+      </label>
+      <input
+        type={emailLabel}
+        id={emailLabel}
+        {...register(emailLabel, {
+          required: "This field required",
+        })}
+        autoComplete="email"
+        className="mt-1 py-4 w-full bg-sign-in-input-bg  sm:text-sm gray-300 rounded-lg border-0"
+        disabled={nonEditable}
+      />
 
       <div className="flex flex-col">
         <label
@@ -66,13 +60,12 @@ export default function FormInputHalf({
           })}
           autoComplete="current-password"
           className="mt-1 py-4 w-full bg-sign-in-input-bg  sm:text-sm gray-300 rounded-lg border-0"
-          disabled = {nonEditable}
+          disabled={nonEditable}
         />
       </div>
-      
+
       <div className="flex flex-row-reverse">
-        <UnderlinedButton title= { btnName } onClick={ toggleEditBtn }/>
-        
+        <UnderlinedButton title={btnName} onClick={toggleEditBtn} />
       </div>
     </div>
   );

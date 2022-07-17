@@ -28,7 +28,7 @@ export default function GetStarted({
     >
       <div className="h-full flex justify-center ">
         <form
-          className="w-full m-auto bg-white p-20 rounded-2xl md:w-1/2 lg:w-1/3"
+          className="w-5/6 m-auto bg-white p-8 md:p-20 rounded-2xl md:w-3/5 lg:w-2/5"
           onSubmit={handleSubmit(handleFormButton)}
         >
           <FormTitle
