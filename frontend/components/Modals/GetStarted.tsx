@@ -6,7 +6,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 //components
 import FormTitle from "../ui-components/FormTitle/FormTitle";
 import FormInput from "../ui-components/InputField/FormInput";
-import FormButton from "../ui-components/Button/FormButton";
+import FormButton from "../ui-components/Button/Button";
 
 type Props = {
   setShowModal: any;
@@ -46,7 +46,7 @@ export default function GetStarted({
             inputType={"email"}
             type={"email"}
             register={register}
-            />
+          />
           <FormInput
             title={""}
             p={""}
@@ -54,14 +54,14 @@ export default function GetStarted({
             inputType={"phone"}
             type={"phone"}
             register={register}
-            />
-          <div className="text-center" >
+          />
+          <div className="text-center">
             <FormButton
               onClick={() => setShowModal(false)}
               color={"text-white"}
               buttonText={"continue"}
               type={"getStartedBtn"}
-              />
+            />
           </div>
         </form>
       </div>

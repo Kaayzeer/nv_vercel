@@ -16,7 +16,7 @@ import FormTitle from "../../ui-components/FormTitle/FormTitle";
 import FormInput from "../../ui-components/InputField/FormInput";
 import NameInput from "../../ui-components/InputField/NameInput";
 import RadioButton from "../../ui-components/RadioButton/RadioButton";
-import FormButton from "../../ui-components/Button/FormButton";
+import FormButton from "../../ui-components/Button/Button";
 
 //wizard imports
 import { IWizard } from "use-wizard/lib/cjs/useWizard/types/IWizard";

@@ -5,12 +5,16 @@ type Props = {
   onClick: () => void;
 };
 
-function BackButton({ title, onClick }: Props) {
+function ClickButton({ title, onClick }: Props) {
   return (
-    <button className="underline hover:font-bold" type="button" onClick={onClick}>
+    <button
+      className={"underline hover:font-bold"}
+      type="button"
+      onClick={onClick}
+    >
       {title}
     </button>
   );
 }
 
-export default BackButton;
+export default ClickButton;

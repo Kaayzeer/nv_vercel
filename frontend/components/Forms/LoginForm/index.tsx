@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 //components
-import FormButton from "../../ui-components/Button/FormButton";
+import FormButton from "../../ui-components/Button/Button";
 
 //hooks
 import { useLogin } from "../../../hooks/useLogin";

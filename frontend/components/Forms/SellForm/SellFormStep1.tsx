@@ -7,7 +7,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import FormInput from "../../ui-components/InputField/FormInput";
 import FormTitle from "../../ui-components/FormTitle/FormTitle";
 import BackButton from "../../ui-components/Button/ClickButton";
-import FormButton from "../../ui-components/Button/FormButton";
+import FormButton from "../../ui-components/Button/Button";
 
 //wizard imports
 import { IWizard } from "use-wizard/lib/cjs/useWizard/types/IWizard";
