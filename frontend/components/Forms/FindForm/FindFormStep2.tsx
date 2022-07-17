@@ -13,7 +13,7 @@ import FormInput from "../../ui-components/InputField/FormInput";
 import { IWizard } from "use-wizard/lib/cjs/useWizard/types/IWizard";
 import { TStep } from "use-wizard/lib/cjs/useWizard/types/TStep";
 import WizardLayout from "../../Wizard/WizardLayout";
-import FormButton from "../../ui-components/Button/FormButton";
+import FormButton from "../../ui-components/Button/Button";
 import DropDownRadioLTR from "../../ui-components/Dropdown/DropDownRadioLTR";
 import DropDownRadioWords from "../../ui-components/Dropdown/DropDownRadioWords";
 

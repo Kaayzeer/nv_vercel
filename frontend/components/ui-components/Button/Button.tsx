@@ -3,7 +3,7 @@ import React from "react";
 type Props = {
   color: string;
   buttonText: string;
-  type: "formBtn" | "signInBtn" | "getStartedBtn";
+  type: string;
   onClick?: () => void;
 };
 

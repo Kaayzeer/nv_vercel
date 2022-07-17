@@ -21,6 +21,7 @@ export default function AboutQuestions({}: Props) {
             {QuestionsSectionInfo.p}
           </p>
           <div className="w-full mt-20">
+            {" "}
             <Accordion />
           </div>
         </div>

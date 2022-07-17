@@ -20,7 +20,7 @@ import RadioButton from "../../ui-components/RadioButton/RadioButton";
 import { IWizard } from "use-wizard/lib/cjs/useWizard/types/IWizard";
 import { TStep } from "use-wizard/lib/cjs/useWizard/types/TStep";
 import WizardLayout from "../../Wizard/WizardLayout";
-import FormButton from "../../ui-components/Button/FormButton";
+import FormButton from "../../ui-components/Button/Button";
 
 //stripe
 import {
