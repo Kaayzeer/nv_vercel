@@ -36,6 +36,7 @@ export default function Nav(props: IHeaderProps) {
     { name: "Sell", href: "/sell", current: false },
     { name: "Find", href: "/find", current: false },
     { name: "Testimonials", href: "#testimonials", current: false },
+    { name: "Market", href: "https://brandalready.com", current: false },
     { name: "About", href: "/about", current: false },
   ];
 

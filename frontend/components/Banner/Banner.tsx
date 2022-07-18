@@ -61,7 +61,7 @@ export default function Banner({ page, title, subTitle }: Props) {
                 type="formBtn"
               />
             )}
-            {page === "find" && <SearchWlm />}
+            {/*  {page === "find" && <SearchWlm />} */}
           </div>
           {page === "login" && (
             <div className="md:m-auto w-full">
