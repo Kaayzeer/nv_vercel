@@ -71,10 +71,12 @@ const publicRoute = require("./routes/public");
 const userRoute = require("./routes/user");
 const paymentRoute = require("./routes/payment");
 const fortnoxRoute = require("./routes/fortnox");
+const webhookRoute = require("./routes/webhook");
 
 app.use("/payment", paymentRoute);
 app.use("/public", publicRoute);
 app.use("/user", userRoute);
 app.use("/fortnox", fortnoxRoute);
+app.use("/webhook", webhookRoute);
 
 export const api = functions.region(REGION).https.onRequest(app);

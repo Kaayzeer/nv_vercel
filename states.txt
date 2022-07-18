@@ -1,0 +1,7 @@
+- Initial
+-- Service Payment Declined
+- Study
+- Offer
+-- Offer Declined
+- Transaction
+- Handover

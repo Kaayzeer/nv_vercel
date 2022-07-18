@@ -36,6 +36,14 @@ export async function getErrand(req: Request, res: Response) {
 /**
  * Get errand info
  */
+ export async function getErrandAll(req: Request, res: Response) {
+    const {user} = res.locals;
+    // TODO
+}
+
+/**
+ * Get errand info
+ */
  export async function updateErrand(req: Request, res: Response) {
     const {id} = req.params;
 

@@ -6,7 +6,7 @@ const API_TOKEN_CALL = "https://apps.fortnox.se/oauth-v1/token"
 const REDIRECT_URI = "http://localhost:5001/next-venture/europe-west1/api/fortnox/generate-auth"
 
 
-// https://apps.fortnox.se/oauth-v1/login?next=%2Foauth-v1%2Fauth%3Fclient_id%3D9wfhkgTQV1gs%26redirect_uri%3Dhttp%3A%2F%2Flocalhost%3A5001%2Fnext-venture%2Feurope-west1%2Fapi%2Ffortnox%2Fgenerate-auth%26scope%3Dpayment%20customer%20invoice%20bookkeeping%26state%3Dasdasd%26access_type%3Doffline%26response_type%3Dcode%26account_type%3Dservice
+// https://apps.fortnox.se/oauth-v1/auth?client_id=9wfhkgTQV1gs&redirect_uri=http://localhost:5001/next-venture/europe-west1/api/fortnox/generate-auth&scope=payment%20customer%20invoice%20offer%20bookkeeping&state=asdasd&access_type=offline&response_type=code&account_type=service
 
 /**
  * Create Financial Year
@@ -47,7 +47,7 @@ export const createFinancialYear = async() => {
     let customer_id = undefined;
 
     if(authToken){
-
+        console.log("CREATING")
         // TODO: Send to right customer number
 
         // Create if not exists
@@ -75,8 +75,8 @@ export const createFinancialYear = async() => {
         .then(response => response.json())
         .then(data => {
             // Get customer ID
-            if(data.Offers)
-                customer_id = data.Customer.DocumentNumber
+            if(data.Offer)
+                customer_id = data.Offer.DocumentNumber
         })
         .catch(err => {
             console.log(err)
@@ -96,7 +96,7 @@ export const getOfferPDF = async(id : string) => {
 
     if(authToken){
         await fetch(`https://api.fortnox.se/3/offers/${id}/print`,{
-            method: "PUT",
+            method: "GET",
             headers: {
                 Authorization: `Bearer ${authToken}`,
                 "Content-Type": "application/json",
@@ -127,10 +127,14 @@ export const sendOfferPDF = async(id : string) => {
             },
             // Todo: Fix mail here
             body: JSON.stringify({
-                EmailAddressTo: "",
-                EmailSubject: "Next-Venture Offert #",
-                EmailBody: ""
+                EmailAddressTo: "omarhindawi98@gmail.com",
+                EmailAddressFrom: "omar.hindawi@weknowit.nu",
+                EmailSubject: "Next-Venture Offert #"
             })
+        })
+        .then(response => response.json())
+        .then((data) => {
+            console.log(data)
         })
         .catch(err => {
             console.log(err)

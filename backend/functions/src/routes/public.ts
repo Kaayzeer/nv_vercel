@@ -1,5 +1,5 @@
 import * as express from "express";
-import { declineOffer, getErrand, signOffer, updateErrand } from "../controller/errand";
+import { declineOffer, getErrand, getErrandAll, signOffer, updateErrand } from "../controller/errand";
 import { createBuy, createFind, createSell } from "../controller/public";
 import { getUserMiddle, getUserRequest } from "../middleware/user_info";
 
@@ -29,6 +29,16 @@ router.post("/decline/:id",
     getUserMiddle,
     declineOffer
 );
+
+router.get("/get/all",
+    getUserMiddle,
+    getErrandAll
+)
+
+router.get("/get/all/unfinished",
+    getUserMiddle,
+    getErrandAll
+)
 
 router.get("/get/:id",
     getUserMiddle,

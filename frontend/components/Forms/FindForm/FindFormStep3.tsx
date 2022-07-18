@@ -109,7 +109,7 @@ export default function FindFormStep3(props: {
     } else {
       //send to db
       await fetch(
-        `https://europe-west1-next-venture.cloudfunctions.net/api/public/sell`,
+        `http://localhost:5001/next-venture/europe-west1/api/public/sell`,
         {
           method: "POST",
           headers: headers,
