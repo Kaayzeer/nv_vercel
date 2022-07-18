@@ -72,6 +72,7 @@ module.exports = {
       },
       zIndex: {
         100: "100",
+        999: "999",
       },
       variants: {
         background: ["responsive", "hover", "focus", "group-hover"],

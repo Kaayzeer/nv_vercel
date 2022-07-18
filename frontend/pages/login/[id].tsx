@@ -125,8 +125,8 @@ export default function Login({}: Props) {
     <AccountLayout title={""} description={""} keywords={""}>
       <div className="w-full flex py-56 md:py-44 md:pl-60 md:pr-20 h-full">
         {/* ------- SideBar -------- */}
-        <div className="fixed top-20 w-full py-3 md:py-0 md:w-auto md:top-0 md:left-0 md:min-w-16  md:rounded-r-3xl bg-section-blue ">
-          <div className="flex px-8 w-full mt-4">
+        <div className="fixed top-20 w-full py-3 md:py-0 md:w-auto md:top-0 md:left-0 md:min-w-16  md:rounded-r-3xl bg-section-blue  z-999">
+          <div className=" px-8 w-full mt-4 hidden md:flex">
             <Image
               className="h-8 w-auto"
               src="/icons/whiteLogo.png"
@@ -137,9 +137,9 @@ export default function Login({}: Props) {
           </div>
           <div className="flex items-center justify-between md:flex-start md:gap-10 md:mx-auto md:text-left md:mr-10">
             {sideBarInfo.map((item, idx) => (
-              <div className="flex mx-auto md:mx-0 md:pl-4 " key={idx}>
+              <React.Fragment key={idx}>
                 <SideBar item={item} handleClick={handleClick} />
-              </div>
+              </React.Fragment>
             ))}
           </div>
           {/* ------------------------ */}

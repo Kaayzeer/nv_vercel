@@ -6,7 +6,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 //components
 import FormTitle from "../ui-components/FormTitle/FormTitle";
 import FormInput from "../ui-components/InputField/FormInput";
-import FormButton from "../ui-components/Button/FormButton";
+import FormButton from "../ui-components/Button/Button";
 
 type Props = {
   setShowModal: any;
@@ -28,7 +28,7 @@ export default function GetStarted({
     >
       <div className="h-full flex justify-center ">
         <form
-          className="w-full m-auto bg-white p-20 rounded-2xl md:w-1/2 lg:w-1/3"
+          className="w-5/6 m-auto bg-white p-8 md:p-20 rounded-2xl md:w-3/5 lg:w-2/5"
           onSubmit={handleSubmit(handleFormButton)}
         >
           <FormTitle
@@ -46,7 +46,7 @@ export default function GetStarted({
             inputType={"email"}
             type={"email"}
             register={register}
-            />
+          />
           <FormInput
             title={""}
             p={""}
@@ -54,14 +54,14 @@ export default function GetStarted({
             inputType={"phone"}
             type={"phone"}
             register={register}
-            />
-          <div className="text-center" >
+          />
+          <div className="text-center">
             <FormButton
               onClick={() => setShowModal(false)}
               color={"text-white"}
               buttonText={"continue"}
               type={"getStartedBtn"}
-              />
+            />
           </div>
         </form>
       </div>

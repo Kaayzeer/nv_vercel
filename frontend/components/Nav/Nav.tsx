@@ -39,6 +39,10 @@ export default function Nav(props: IHeaderProps) {
     { name: "About", href: "/about", current: false },
   ];
 
+  // Need it for hiding/displaying the logo depending on if user is in
+  // login pages or not
+  const router = useRouter();
+
   useEffect(() => {
     const handleScroll = () => {
       const show = window.scrollY > 50;
@@ -62,7 +66,7 @@ export default function Nav(props: IHeaderProps) {
       {({ open, close }) => (
         <>
           <div className={`max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 `}>
-            <div className="relative flex items-center justify-between h-20" >
+            <div className="relative flex items-center justify-between h-20">
               <div className="absolute inset-y-0 right-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
 
@@ -72,7 +76,7 @@ export default function Nav(props: IHeaderProps) {
               </div>
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start ">
                 <div className="flex-shrink-0 flex items-center mr-auto px-1 sm:px-0 sm:m-0">
-                  {!user && (
+                  {(!user || !router.pathname.includes("login/[id]")) && (
                     <Link href={"/"}>
                       <a>
                         <Image
@@ -81,25 +85,32 @@ export default function Nav(props: IHeaderProps) {
                           alt="venture-logo"
                           width={75}
                           height={45}
-                          />
-                        </a>
+                        />
+                      </a>
                     </Link>
                   )}
-                  {/*  {user && (
-                    <Image
-                      className="hidden lg:block h-8 w-auto"
-                      src="/icons/whiteLogo.png"
-                      alt="venture-logo"
-                      width={75}
-                      height={45}
-                    />
-                  )} */}
+                  {router.pathname.includes("login/[id]") && (
+                    <Link href={"/"}>
+                      <a>
+                        <Image
+                          className="flex md:hidden lg:block h-8 w-auto"
+                          src="/images/nextLogo.svg"
+                          alt="venture-logo"
+                          width={75}
+                          height={45}
+                        />
+                      </a>
+                    </Link>
+                  )}
                 </div>
                 <div className="hidden sm:block sm:ml-auto ">
-                   <div className="flex justify-between items-center space-x-12  h-full w-full"> {/* space between buttons in navbar */}
+                  <div className="flex justify-between items-center space-x-12  h-full w-full">
+                    {" "}
+                    {/* space between buttons in navbar */}
                     {navigation.map((item) => (
                       <Link key={item.name} href={item.href}>
-                        <a className={classNames(
+                        <a
+                          className={classNames(
                             item.current
                               ? "text-black-400"
                               : "text-black-400 decoration-blue-800",
@@ -108,7 +119,6 @@ export default function Nav(props: IHeaderProps) {
                           aria-current={item.current ? "page" : undefined}
                         >
                           {item.name}
-
                         </a>
                       </Link>
                     ))}
@@ -136,7 +146,7 @@ export default function Nav(props: IHeaderProps) {
             </div>
           </div>
 
-          <Disclosure.Panel className="sm:hidden relative " >
+          <Disclosure.Panel className="sm:hidden relative ">
             {/* Mobile menu button*/}
             <Transition
               appear={true}

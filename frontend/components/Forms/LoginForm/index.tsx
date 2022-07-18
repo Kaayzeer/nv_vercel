@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 //components
-import FormButton from "../../ui-components/Button/FormButton";
+import FormButton from "../../ui-components/Button/Button";
 
 //hooks
 import { useLogin } from "../../../hooks/useLogin";
@@ -40,7 +40,7 @@ export default function LoginForm({ emailLabel, passwordLabel }: Props) {
   };
 
   return (
-    <div className="flex max-w-lg bg-white rounded-lg shadow-signInCard">
+    <div className="flex justify-center max-w-lg bg-white rounded-lg shadow-signInCard -mt-96 mb-48 mx-4 sm:m-0 ">
       <form
         onSubmit={handleSubmit(handleFormButton)}
         className="flex flex-col items-left justify-between p-10 2xl:p-20 w-full gap-3 "
