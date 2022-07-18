@@ -15,11 +15,11 @@ export default function Document() {
           rel="stylesheet"
         />
         {/*  <!-- TrustBox script --> */}
-        <script
+        {/*  <script
           type="text/javascript"
           src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
           async
-        ></script>
+        ></script> */}
         {/* <!-- End TrustBox script --> */}
       </Head>
       <body>

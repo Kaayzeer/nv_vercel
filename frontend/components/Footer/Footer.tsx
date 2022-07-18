@@ -116,7 +116,7 @@ export default function Footer({}: Props) {
             />
           </span>
         </div>
-        <div className="absolute bottom-0 w-1/4 md:w-full md:bottom-1 left-5  ">
+        {/*   <div className="absolute bottom-0 w-1/4 md:w-full md:bottom-1 left-5  ">
           <div
             className="trustpilot-widget "
             data-locale="sv-SE"
@@ -133,7 +133,7 @@ export default function Footer({}: Props) {
               Trustpilot
             </a>
           </div>
-        </div>
+        </div> */}
       </div>
     </footer>
   );
