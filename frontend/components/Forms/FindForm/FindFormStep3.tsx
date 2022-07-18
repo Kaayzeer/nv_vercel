@@ -122,7 +122,6 @@ export default function FindFormStep3(props: {
       )
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           // if (!data.success) setError(data.message.details.join("\n"));
 
           if (data.id) {
