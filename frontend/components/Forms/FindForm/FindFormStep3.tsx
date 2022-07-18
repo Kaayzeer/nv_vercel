@@ -109,7 +109,7 @@ export default function FindFormStep3(props: {
     } else {
       //send to db
       await fetch(
-        `http://localhost:5001/next-venture/europe-west1/api/public/sell`,
+        `https://europe-west1-next-venture.cloudfunctions.net/api/public/find`,
         {
           method: "POST",
           headers: headers,
@@ -122,6 +122,7 @@ export default function FindFormStep3(props: {
       )
         .then((res) => res.json())
         .then((data) => {
+          console.log(data);
           // if (!data.success) setError(data.message.details.join("\n"));
 
           if (data.id) {
